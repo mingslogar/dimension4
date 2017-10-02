@@ -1,0 +1,88 @@
+﻿<ResourceDictionary x:Uid="ResourceDictionary_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Style x:Uid="Style_1" x:Key="TileButton" TargetType="Button">
+		<Setter x:Uid="Setter_1" Property="Height" Value="144" />
+		<Setter x:Uid="Setter_2" Property="Width" Value="354" />
+		<Setter x:Uid="Setter_3" Property="BorderThickness" Value="2" />
+		<Setter x:Uid="Setter_4" Property="Background" Value="Transparent" />
+		<Setter x:Uid="Setter_5" Property="Margin" Value="0,10,0,0" />
+		<Setter x:Uid="Setter_6" Property="HorizontalAlignment" Value="Left" />
+		<Setter x:Uid="Setter_7" Property="HorizontalContentAlignment" Value="Stretch" />
+		<Setter x:Uid="Setter_8" Property="VerticalContentAlignment" Value="Stretch" />
+		<Setter x:Uid="Setter_9" Property="Template">
+			<Setter.Value>
+				<ControlTemplate x:Uid="ControlTemplate_1" TargetType="Button">
+					<Border x:Uid="Border_1" BorderThickness="{TemplateBinding BorderThickness}"
+							Background="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5">
+						<Border.RenderTransform>
+							<ScaleTransform x:Uid="scale" x:Name="scale" ScaleX="1" ScaleY="1" />
+						</Border.RenderTransform>
+						<Border.BorderBrush>
+							<SolidColorBrush x:Uid="border" x:Name="border" Color="#10000000" />
+						</Border.BorderBrush>
+						<ContentPresenter x:Uid="ContentPresenter_1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Uid="CommonStates" x:Name="CommonStates">
+								<VisualState x:Uid="Normal" x:Name="Normal">
+									<Storyboard x:Uid="Storyboard_1">
+										<DoubleAnimation x:Uid="DoubleAnimation_1" Storyboard.TargetName="scale"
+												Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3">
+											<DoubleAnimation.EasingFunction>
+												<QuarticEase x:Uid="QuarticEase_1" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+										<DoubleAnimation x:Uid="DoubleAnimation_2" Storyboard.TargetName="scale"
+												Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3">
+											<DoubleAnimation.EasingFunction>
+												<QuarticEase x:Uid="QuarticEase_2" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+										<ColorAnimation x:Uid="ColorAnimation_1" Storyboard.TargetName="border" Storyboard.TargetProperty="Color"
+												To="#10000000" Duration="0" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Uid="MouseOver" x:Name="MouseOver">
+									<Storyboard x:Uid="Storyboard_2">
+										<DoubleAnimation x:Uid="DoubleAnimation_3" Storyboard.TargetName="scale"
+												Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3">
+											<DoubleAnimation.EasingFunction>
+												<QuarticEase x:Uid="QuarticEase_3" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+										<DoubleAnimation x:Uid="DoubleAnimation_4" Storyboard.TargetName="scale"
+												Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3">
+											<DoubleAnimation.EasingFunction>
+												<QuarticEase x:Uid="QuarticEase_4" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+										<ColorAnimation x:Uid="ColorAnimation_2" Storyboard.TargetName="border" Storyboard.TargetProperty="Color"
+												To="#50000000" Duration="0" />
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Uid="Pressed" x:Name="Pressed">
+									<Storyboard x:Uid="Storyboard_3">
+										<DoubleAnimation x:Uid="DoubleAnimation_5" Storyboard.TargetName="scale"
+												Storyboard.TargetProperty="ScaleX" To="0.95" Duration="0:0:0.3">
+											<DoubleAnimation.EasingFunction>
+												<QuarticEase x:Uid="QuarticEase_5" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+										<DoubleAnimation x:Uid="DoubleAnimation_6" Storyboard.TargetName="scale"
+												Storyboard.TargetProperty="ScaleY" To="0.95" Duration="0:0:0.3">
+											<DoubleAnimation.EasingFunction>
+												<QuarticEase x:Uid="QuarticEase_6" />
+											</DoubleAnimation.EasingFunction>
+										</DoubleAnimation>
+										<ColorAnimation x:Uid="ColorAnimation_3" Storyboard.TargetName="border" Storyboard.TargetProperty="Color"
+												To="#50000000" Duration="0" />
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

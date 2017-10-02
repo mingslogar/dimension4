@@ -1,0 +1,131 @@
+﻿<CalendarControls:CalendarView x:Class="Daytimer.Controls.Panes.Calendar.Day.DayView"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Controls="clr-namespace:Daytimer.Controls"
+		xmlns:CalendarControls="clr-namespace:Daytimer.Controls.Panes.Calendar"
+		xmlns:DayControls="clr-namespace:Daytimer.Controls.Panes.Calendar.Day"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+		xmlns:Friction="clr-namespace:Daytimer.Controls.Friction" mc:Ignorable="d" d:DesignHeight="300"
+		d:DesignWidth="700" Background="Transparent" AllowDrop="True" ClipToBounds="True"
+		RenderOptions.BitmapScalingMode="LowQuality">
+	<CalendarControls:CalendarView.CacheMode>
+		<BitmapCache EnableClearType="True" />
+	</CalendarControls:CalendarView.CacheMode>
+	<CalendarControls:CalendarView.Resources>
+		<Style x:Key="backButton" TargetType="RepeatButton" BasedOn="{StaticResource navButton}">
+			<Setter Property="Template" Value="{DynamicResource navButtonTemplate}" />
+			<Setter Property="Content">
+				<Setter.Value>
+					<Path StrokeThickness="0" Fill="#FF5A5B5C" Data="M 6 0 0 5 6 10 Z" RenderOptions.EdgeMode="Aliased" />
+				</Setter.Value>
+			</Setter>
+			<!--<Setter Property="Padding" Value="5,5,7,5" />-->
+			<Setter Property="Padding" Value="8,7,10,8" />
+			<Setter Property="ToolTip">
+				<Setter.Value>
+					<Ribbon:RibbonToolTip Title="Back (Ctrl+Left Arrow)" Description="Jump back one day." />
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="forwardButton" TargetType="RepeatButton" BasedOn="{StaticResource navButton}">
+			<Setter Property="Template" Value="{DynamicResource navButtonTemplate}" />
+			<Setter Property="Content">
+				<Setter.Value>
+					<Path StrokeThickness="0" Fill="#FF5A5B5C" Data="M 0 0 6 5 0 10 Z" RenderOptions.EdgeMode="Aliased" />
+				</Setter.Value>
+			</Setter>
+			<!--<Setter Property="Padding" Value="7,5,5,5" />-->
+			<Setter Property="Padding" Value="9,7,9,8" />
+			<Setter Property="ToolTip">
+				<Setter.Value>
+					<Ribbon:RibbonToolTip Title="Forward (Ctrl+Right Arrow)" Description="Jump forward one day." />
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Grid.Column" Value="1" />
+		</Style>
+	</CalendarControls:CalendarView.Resources>
+	<CalendarControls:CalendarView.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="*" />
+	</CalendarControls:CalendarView.RowDefinitions>
+	<Grid x:Name="header">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<RepeatButton x:Name="yesterdayButton" Style="{StaticResource backButton}" Click="yesterdayButton_Click"
+				PreviewMouseLeftButtonUp="yesterdayButton_PreviewMouseLeftButtonUp" />
+		<RepeatButton x:Name="tomorrowButton" Style="{StaticResource forwardButton}" Click="tomorrowButton_Click"
+				PreviewMouseLeftButtonUp="tomorrowButton_PreviewMouseLeftButtonUp" />
+		<TextBlock x:Name="dayName" Text="Day" FontSize="20" Margin="11,5,11,9" HorizontalAlignment="Left"
+				VerticalAlignment="Center" Grid.Column="2" TextTrimming="CharacterEllipsis"
+				ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+		<Button x:Name="todayLink" Style="{StaticResource LinkText}" Content="Today" Grid.Column="3"
+				HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{DynamicResource LinkTextForeground}"
+				Margin="0,5,5,5" Click="todayLink_Click">
+			<Button.ToolTip>
+				<Ribbon:RibbonToolTip Title="Today" Description="Show today in the calendar." />
+			</Button.ToolTip>
+		</Button>
+	</Grid>
+	<Grid x:Name="grid" Grid.Row="1" Panel.ZIndex="1" ClipToBounds="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<CalendarControls:DayOfWeekHeader x:Name="dayHeader" Panel.ZIndex="10" Margin="49,0,17,0" />
+		<ScrollBar x:Name="allDayScrollBar" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.RowSpan="2"
+				Scroll="allDayScrollBar_Scroll" />
+		<Grid Grid.Row="1" x:Name="multiGrid">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<RadioButton x:Name="allDayButton" GroupName="_dayGridRadios" Grid.RowSpan="2"
+					Margin="{Binding Margin, ElementName=dayHeader}" Background="Transparent" ClickMode="Press"
+					Checked="allDayButton_Checked" Unchecked="allDayButton_Unchecked"
+					PreviewMouseLeftButtonDown="allDayButton_PreviewMouseLeftButtonDown">
+				<RadioButton.Template>
+					<ControlTemplate TargetType="RadioButton">
+						<Rectangle x:Name="PART_Rect" Fill="{TemplateBinding Background}" />
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter Property="Fill" TargetName="PART_Rect" Value="{DynamicResource CheckedDate}" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</RadioButton.Template>
+			</RadioButton>
+			<Controls:TextControl x:Name="dateNumber" IsHitTestVisible="False" />
+			<CalendarControls:QuoteButton x:Name="PART_QuoteButton" Visibility="Collapsed" HorizontalAlignment="Right"
+					VerticalAlignment="Center" Margin="0,0,5,0" />
+			<Border x:Name="allDayGrid" Grid.Row="1" MinHeight="35" BorderBrush="#FFE1E1E1" BorderThickness="0,0,0,1"
+					SizeChanged="allDayGrid_SizeChanged">
+				<Friction:FrictionScrollViewer x:Name="allDayScroller" Focusable="False"
+						ScrollChanged="allDayScroller_ScrollChanged" VerticalScrollBarVisibility="Hidden"
+						LayoutUpdated="allDayScroller_LayoutUpdated"
+						PreviewMouseLeftButtonDown="allDayScroller_PreviewMouseLeftButtonDown">
+					<StackPanel x:Name="stackPanel" Focusable="False" Margin="0,0,10,0" />
+				</Friction:FrictionScrollViewer>
+			</Border>
+			<Border BorderBrush="#FFE1E1E1" Grid.RowSpan="2" Margin="{Binding Margin, ElementName=dayHeader}"
+					BorderThickness="1,0" IsHitTestVisible="False" />
+			<DayControls:HourlyClockChartDay x:Name="clockGrid" Grid.Row="2"
+					OnFirstColumnSizeChangedEvent="clockGrid_OnFirstColumnSizeChangedEvent"
+					RadioButtonChecked="clockGrid_RadioButtonChecked"
+					RadioButtonPreviewMouseLeftButtonDown="clockGrid_RadioButtonPreviewMouseLeftButtonDown" />
+			<Grid x:Name="navApptButtonGrid" Grid.Row="2" Margin="50,0,18,0">
+				<Controls:AppointmentNavButton x:Name="prevApptButton" IsPrev="True" HorizontalAlignment="Left"
+						IsEnabled="False" Margin="-1,0,0,0" Click="prevApptButton_Click" />
+				<Controls:AppointmentNavButton x:Name="nextApptButton" HorizontalAlignment="Right" Margin="0,0,-1,0"
+						IsEnabled="False" Click="nextApptButton_Click" />
+			</Grid>
+		</Grid>
+	</Grid>
+	<Image x:Name="tempImg" Grid.Row="1" Visibility="Collapsed" Stretch="None" HorizontalAlignment="Left"
+			Panel.ZIndex="10" IsHitTestVisible="False" />
+</CalendarControls:CalendarView>

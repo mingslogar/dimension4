@@ -1,0 +1,167 @@
+﻿<CalendarControls:CalendarView x:Class="Daytimer.Controls.Panes.Calendar.Week.WeekView"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Controls="clr-namespace:Daytimer.Controls"
+		xmlns:CalendarControls="clr-namespace:Daytimer.Controls.Panes.Calendar"
+		xmlns:WeekViewControls="clr-namespace:Daytimer.Controls.WeekView"
+		xmlns:Friction="clr-namespace:Daytimer.Controls.Friction"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary" mc:Ignorable="d"
+		d:DesignHeight="300" d:DesignWidth="700" Background="Transparent" AllowDrop="True" ClipToBounds="True"
+		RenderOptions.BitmapScalingMode="LowQuality">
+	<CalendarControls:CalendarView.CacheMode>
+		<BitmapCache EnableClearType="True" />
+	</CalendarControls:CalendarView.CacheMode>
+	<CalendarControls:CalendarView.Resources>
+		<Style x:Key="backButton" TargetType="RepeatButton" BasedOn="{StaticResource navButton}">
+			<Setter Property="Template" Value="{DynamicResource navButtonTemplate}" />
+			<Setter Property="Content">
+				<Setter.Value>
+					<Path StrokeThickness="0" Fill="#FF5A5B5C" Data="M 6 0 0 5 6 10 Z" RenderOptions.EdgeMode="Aliased" />
+				</Setter.Value>
+			</Setter>
+			<!--<Setter Property="Padding" Value="5,5,7,5" />-->
+			<Setter Property="Padding" Value="8,7,10,8" />
+			<Setter Property="ToolTip">
+				<Setter.Value>
+					<Ribbon:RibbonToolTip Title="Back (Ctrl+Left Arrow)" Description="Jump back one week." />
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="forwardButton" TargetType="RepeatButton" BasedOn="{StaticResource navButton}">
+			<Setter Property="Template" Value="{DynamicResource navButtonTemplate}" />
+			<Setter Property="Content">
+				<Setter.Value>
+					<Path StrokeThickness="0" Fill="#FF5A5B5C" Data="M 0 0 6 5 0 10 Z" RenderOptions.EdgeMode="Aliased" />
+				</Setter.Value>
+			</Setter>
+			<!--<Setter Property="Padding" Value="7,5,5,5" />-->
+			<Setter Property="Padding" Value="9,7,9,8" />
+			<Setter Property="ToolTip">
+				<Setter.Value>
+					<Ribbon:RibbonToolTip Title="Forward (Ctrl+Right Arrow)" Description="Jump forward one week." />
+				</Setter.Value>
+			</Setter>
+			<Setter Property="Grid.Column" Value="1" />
+		</Style>
+	</CalendarControls:CalendarView.Resources>
+	<CalendarControls:CalendarView.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="*" />
+	</CalendarControls:CalendarView.RowDefinitions>
+	<Grid x:Name="header" Panel.ZIndex="5">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<RepeatButton x:Name="lastWeekButton" Style="{StaticResource backButton}" Click="lastWeekButton_Click"
+				PreviewMouseLeftButtonUp="lastWeekButton_PreviewMouseLeftButtonUp" />
+		<RepeatButton x:Name="nextWeekButton" Style="{StaticResource forwardButton}" Click="nextWeekButton_Click"
+				PreviewMouseLeftButtonUp="nextWeekButton_PreviewMouseLeftButtonUp" />
+		<TextBlock x:Name="weekName" Text="Week" FontSize="20" Margin="11,5,11,9" HorizontalAlignment="Left"
+				VerticalAlignment="Center" Grid.Column="2" TextTrimming="CharacterEllipsis"
+				ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" />
+		<Button x:Name="todayLink" Style="{StaticResource LinkText}" Content="Today" Grid.Column="3"
+				HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="{DynamicResource LinkTextForeground}"
+				Margin="0,5,5,5" Click="todayLink_Click">
+			<Button.ToolTip>
+				<Ribbon:RibbonToolTip Title="Today" Description="Show today in the calendar." />
+			</Button.ToolTip>
+		</Button>
+	</Grid>
+	<Grid x:Name="displayGrid" Grid.Row="1" Panel.ZIndex="1" ClipToBounds="True">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="50" />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<WeekViewControls:SingleDay Grid.Column="1" Grid.RowSpan="2" ShowBorderOnTwoSides="True"
+				OnClockScrollEvent="SingleDay_OnClockScroll" OnAllDayScrollEvent="SingleDay_OnAllDayScroll"
+				OnBeginEditEvent="SingleDay_OnBeginEdit" OnEndEditEvent="SingleDay_OnEndEdit"
+				OnDeleteEvent="SingleDay_OnDelete" Checked="SingleDay_Checked"
+				OnAllDaySizeChangedEvent="SingleDay_OnAllDaySizeChangedEvent"
+				OnAllDayLayoutEvent="SingleDay_OnAllDayLayoutEvent" Panel.ZIndex="6" OnExportEvent="SingleDay_OnExport"
+				Navigate="SingleDay_Navigate" ShowAsChanged="SingleDay_ShowAsChanged" />
+		<WeekViewControls:SingleDay Grid.Column="2" Grid.RowSpan="2" OnClockScrollEvent="SingleDay_OnClockScroll"
+				OnAllDayScrollEvent="SingleDay_OnAllDayScroll" OnBeginEditEvent="SingleDay_OnBeginEdit"
+				OnDeleteEvent="SingleDay_OnDelete" OnEndEditEvent="SingleDay_OnEndEdit" Checked="SingleDay_Checked"
+				OnAllDaySizeChangedEvent="SingleDay_OnAllDaySizeChangedEvent"
+				OnAllDayLayoutEvent="SingleDay_OnAllDayLayoutEvent" Panel.ZIndex="5" OnExportEvent="SingleDay_OnExport"
+				Navigate="SingleDay_Navigate" ShowAsChanged="SingleDay_ShowAsChanged" />
+		<WeekViewControls:SingleDay Grid.Column="3" Grid.RowSpan="2" OnClockScrollEvent="SingleDay_OnClockScroll"
+				OnAllDayScrollEvent="SingleDay_OnAllDayScroll" OnBeginEditEvent="SingleDay_OnBeginEdit"
+				OnDeleteEvent="SingleDay_OnDelete" OnEndEditEvent="SingleDay_OnEndEdit" Checked="SingleDay_Checked"
+				OnAllDaySizeChangedEvent="SingleDay_OnAllDaySizeChangedEvent"
+				OnAllDayLayoutEvent="SingleDay_OnAllDayLayoutEvent" Panel.ZIndex="4" OnExportEvent="SingleDay_OnExport"
+				Navigate="SingleDay_Navigate" ShowAsChanged="SingleDay_ShowAsChanged" />
+		<WeekViewControls:SingleDay Grid.Column="4" Grid.RowSpan="2" OnClockScrollEvent="SingleDay_OnClockScroll"
+				OnAllDayScrollEvent="SingleDay_OnAllDayScroll" OnBeginEditEvent="SingleDay_OnBeginEdit"
+				OnDeleteEvent="SingleDay_OnDelete" OnEndEditEvent="SingleDay_OnEndEdit" Checked="SingleDay_Checked"
+				OnAllDaySizeChangedEvent="SingleDay_OnAllDaySizeChangedEvent"
+				OnAllDayLayoutEvent="SingleDay_OnAllDayLayoutEvent" Panel.ZIndex="3" OnExportEvent="SingleDay_OnExport"
+				Navigate="SingleDay_Navigate" ShowAsChanged="SingleDay_ShowAsChanged" />
+		<WeekViewControls:SingleDay Grid.Column="5" Grid.RowSpan="2" OnClockScrollEvent="SingleDay_OnClockScroll"
+				OnAllDayScrollEvent="SingleDay_OnAllDayScroll" OnBeginEditEvent="SingleDay_OnBeginEdit"
+				OnDeleteEvent="SingleDay_OnDelete" OnEndEditEvent="SingleDay_OnEndEdit" Checked="SingleDay_Checked"
+				OnAllDaySizeChangedEvent="SingleDay_OnAllDaySizeChangedEvent"
+				OnAllDayLayoutEvent="SingleDay_OnAllDayLayoutEvent" Panel.ZIndex="2" OnExportEvent="SingleDay_OnExport"
+				Navigate="SingleDay_Navigate" ShowAsChanged="SingleDay_ShowAsChanged" />
+		<WeekViewControls:SingleDay Grid.Column="6" Grid.RowSpan="2" OnClockScrollEvent="SingleDay_OnClockScroll"
+				OnAllDayScrollEvent="SingleDay_OnAllDayScroll" OnBeginEditEvent="SingleDay_OnBeginEdit"
+				OnDeleteEvent="SingleDay_OnDelete" OnEndEditEvent="SingleDay_OnEndEdit" Checked="SingleDay_Checked"
+				OnAllDaySizeChangedEvent="SingleDay_OnAllDaySizeChangedEvent"
+				OnAllDayLayoutEvent="SingleDay_OnAllDayLayoutEvent" Panel.ZIndex="1" OnExportEvent="SingleDay_OnExport"
+				Navigate="SingleDay_Navigate" ShowAsChanged="SingleDay_ShowAsChanged" />
+		<WeekViewControls:SingleDay Grid.Column="7" Grid.RowSpan="2" OnClockScrollEvent="SingleDay_OnClockScroll"
+				OnAllDayScrollEvent="SingleDay_OnAllDayScroll" OnBeginEditEvent="SingleDay_OnBeginEdit"
+				OnDeleteEvent="SingleDay_OnDelete" OnEndEditEvent="SingleDay_OnEndEdit" Checked="SingleDay_Checked"
+				OnAllDaySizeChangedEvent="SingleDay_OnAllDaySizeChangedEvent"
+				OnAllDayLayoutEvent="SingleDay_OnAllDayLayoutEvent" Panel.ZIndex="0" OnExportEvent="SingleDay_OnExport"
+				Navigate="SingleDay_Navigate" ShowAsChanged="SingleDay_ShowAsChanged" />
+		<Border Grid.Row="1" BorderThickness="0,1,0,0" Margin="0,-1,0,1" BorderBrush="{DynamicResource Gray}"
+				IsHitTestVisible="False" />
+		<Friction:FrictionScrollViewerControl x:Name="clockTimesScroller" Panel.ZIndex="-10"
+				ScrollChanged="clockTimesScroller_ScrollChanged" Grid.Row="1" Grid.ColumnSpan="9" Focusable="False"
+				LayoutUpdated="clockTimesScroller_LayoutUpdated" VerticalSnapToValue="22">
+			<Grid x:Name="grid" Height="1056" IsHitTestVisible="False">
+				<!--<Grid.CacheMode>
+					<BitmapCache />
+				</Grid.CacheMode>-->
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<WeekViewControls:ClockGrid Height="{Binding Height, ElementName=grid, Mode=OneWay}"
+						x:Name="clockGridBg" Grid.Column="1" />
+				<Grid x:Name="clockTimesGrid" Height="{Binding Height, ElementName=grid, Mode=OneWay}" Width="50"
+						Background="Transparent" />
+			</Grid>
+		</Friction:FrictionScrollViewerControl>
+		<Border Grid.ColumnSpan="8" Grid.Row="1" ClipToBounds="True" IsHitTestVisible="False" Panel.ZIndex="7">
+			<Border x:Name="currentTime" Background="{DynamicResource TimeSliderBackground}"
+					BorderBrush="{DynamicResource TimeSliderBorder}" BorderThickness="0,1" Height="3"
+					VerticalAlignment="Top" Visibility="Collapsed" />
+		</Border>
+		<Grid x:Name="navApptButtonGrid" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="7" Panel.ZIndex="8">
+			<Controls:AppointmentNavButton x:Name="prevApptButton" IsPrev="True" HorizontalAlignment="Left"
+					IsEnabled="False" Click="prevApptButton_Click" />
+			<Controls:AppointmentNavButton x:Name="nextApptButton" HorizontalAlignment="Right" IsEnabled="False"
+					Click="nextApptButton_Click" />
+		</Grid>
+		<ScrollBar x:Name="allDayScroller" Grid.Column="8" Scroll="allDayScroller_Scroll" />
+	</Grid>
+	<Image x:Name="tempImg" Grid.Row="1" Visibility="Collapsed" Stretch="None" HorizontalAlignment="Left"
+			Panel.ZIndex="10" IsHitTestVisible="False" />
+</CalendarControls:CalendarView>

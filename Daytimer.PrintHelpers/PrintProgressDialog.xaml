@@ -1,0 +1,22 @@
+﻿<fundamentals:OfficeWindow x:Uid="fundamentals:OfficeWindow_1" x:Class="Daytimer.PrintHelpers.PrintProgressDialog"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:fundamentals="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals" Title="Print Progress"
+		IsTitleVisible="False" Height="230" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+	<fundamentals:OfficeWindow.TaskbarItemInfo>
+		<TaskbarItemInfo x:Uid="taskbarItemInfo" x:Name="taskbarItemInfo" ProgressState="Normal" ProgressValue="0" />
+	</fundamentals:OfficeWindow.TaskbarItemInfo>
+	<Grid x:Uid="Grid_1">
+		<Grid.RowDefinitions>
+			<RowDefinition x:Uid="RowDefinition_1" Height="Auto" />
+			<RowDefinition x:Uid="RowDefinition_2" Height="Auto" />
+			<RowDefinition x:Uid="RowDefinition_3" Height="*" />
+		</Grid.RowDefinitions>
+		<TextBlock x:Uid="TextBlock_1" Foreground="{DynamicResource DialogTitle}" FontSize="29" Margin="25,0,25,10" TextWrapping="Wrap"
+				Text="Printing..." />
+		<TextBlock x:Uid="detailsText" x:Name="detailsText" Grid.Row="1" Margin="25,15,25,15" Foreground="{DynamicResource DialogContent}"
+				FontSize="15" TextWrapping="Wrap" TextTrimming="WordEllipsis" Text="Initializing..." />
+		<ProgressBar x:Uid="progress" x:Name="progress" Grid.Row="2" Height="23" Margin="25" Maximum="1" VerticalAlignment="Top"
+				Value="{Binding ProgressValue, ElementName=taskbarItemInfo}" />
+	</Grid>
+</fundamentals:OfficeWindow>

@@ -1,0 +1,76 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+		xmlns:ext="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell"
+		xmlns:local="clr-namespace:Daytimer.Styles"
+		xmlns:Controls="clr-namespace:Daytimer.Controls.Ribbon;assembly=Daytimer.Controls">
+	<Style TargetType="Ribbon:RibbonApplicationMenu">
+		<Setter Property="ext:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+		<Setter Property="Height" Value="25" />
+		<Setter Property="Width" Value="59" />
+		<Setter Property="Foreground" Value="{DynamicResource Black}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Ribbon:RibbonApplicationMenu">
+					<Grid Focusable="False" SnapsToDevicePixels="True">
+						<Ribbon:RibbonToggleButton x:Name="PART_ToggleButton"
+								Height="{Binding Height, RelativeSource={RelativeSource TemplatedParent}}"
+								FocusVisualStyle="{TemplateBinding FocusVisualStyle}"
+								ToolTipDescription="{TemplateBinding ToolTipDescription}"
+								ToolTipFooterDescription="{TemplateBinding ToolTipFooterDescription}"
+								ToolTipImageSource="{TemplateBinding ToolTipImageSource}"
+								ToolTipFooterTitle="{TemplateBinding ToolTipFooterTitle}"
+								ToolTipFooterImageSource="{TemplateBinding ToolTipFooterImageSource}"
+								ToolTipTitle="{TemplateBinding ToolTipTitle}">
+							<Ribbon:RibbonToggleButton.Style>
+								<Style TargetType="Ribbon:RibbonToggleButton">
+									<Setter Property="ClickMode" Value="Press" />
+									<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+									<Setter Property="FocusManager.IsFocusScope" Value="False" />
+									<Setter Property="VerticalAlignment" Value="Bottom" />
+									<Setter Property="ToolTipService.InitialShowDelay" Value="900" />
+									<Setter Property="ToolTipService.ShowDuration" Value="20000" />
+									<Setter Property="ToolTipService.BetweenShowDelay" Value="0" />
+									<Setter Property="Template">
+										<Setter.Value>
+											<ControlTemplate TargetType="Ribbon:RibbonToggleButton">
+												<Border x:Name="Border" Background="{DynamicResource RibbonAppMenu}">
+													<TextBlock Text="FILE" HorizontalAlignment="Center" Margin="0,1,0,1"
+															VerticalAlignment="Center"
+															Foreground="{DynamicResource White}" />
+												</Border>
+												<ControlTemplate.Triggers>
+													<MultiTrigger>
+														<MultiTrigger.Conditions>
+															<Condition Property="IsKeyboardFocused" Value="True" />
+															<Condition Property="IsChecked" Value="False" />
+														</MultiTrigger.Conditions>
+														<Setter Property="Background" TargetName="Border"
+																Value="{DynamicResource RibbonAppMenuMouseOver}" />
+													</MultiTrigger>
+													<MultiTrigger>
+														<MultiTrigger.Conditions>
+															<Condition Property="IsMouseOver" Value="True" />
+															<Condition Property="IsChecked" Value="False" />
+														</MultiTrigger.Conditions>
+														<Setter Property="Background" TargetName="Border"
+																Value="{DynamicResource RibbonAppMenuMouseOver}" />
+													</MultiTrigger>
+													<Trigger Property="IsChecked" Value="True">
+														<Setter Property="Background" TargetName="Border"
+																Value="{DynamicResource RibbonAppMenuChecked}" />
+													</Trigger>
+												</ControlTemplate.Triggers>
+											</ControlTemplate>
+										</Setter.Value>
+									</Setter>
+								</Style>
+							</Ribbon:RibbonToggleButton.Style>
+						</Ribbon:RibbonToggleButton>
+						<Controls:BackstageController />
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

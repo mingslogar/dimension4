@@ -1,0 +1,65 @@
+﻿<Display:Peek x:Class="Daytimer.Controls.Panes.Weather.WeatherPeekContent"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:Display="clr-namespace:Daytimer.Controls.Panes" xmlns:Friction="clr-namespace:Daytimer.Controls.Friction"
+		mc:Ignorable="d" d:DesignHeight="330" d:DesignWidth="250">
+	<Display:Peek.Resources>
+		<SolidColorBrush x:Key="LightText">#803C3C3C</SolidColorBrush>
+	</Display:Peek.Resources>
+	<Friction:FrictionScrollViewerControl Margin="9,0,8,9" VerticalScrollBarVisibility="Auto">
+		<Grid x:Name="grid" Margin="0,-8,0,0" IsHitTestVisible="False">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<TextBlock x:Name="location" HorizontalAlignment="Left" VerticalAlignment="Top" Text="New York City"
+					FontSize="22" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Margin="4,0,0,0"
+					FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light" TextOptions.TextFormattingMode="Ideal" />
+			<StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+				<TextBlock x:Name="temp" Text="--" FontSize="72"
+						FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light"
+						TextOptions.TextFormattingMode="Ideal" />
+				<TextBlock x:Name="tempUnit" Text="&#176;F" FontSize="22" VerticalAlignment="Center" Margin="0,-13,0,14" />
+			</StackPanel>
+			<!--<Image x:Name="icon" Width="89" Height="89" Grid.Row="1" Margin="0,3,0,-3" VerticalAlignment="Center"
+					HorizontalAlignment="Right"
+					Source="pack://application:,,,/Daytimer.Images;component/Images/skycodes/89x89/44.png" />-->
+			<TextBlock x:Name="icon" Grid.Row="1" Margin="0,3,0,-3" Width="89" FontSize="64" VerticalAlignment="Center"
+					HorizontalAlignment="Right" FontFamily="/Daytimer.Fonts;component/#Weather Icons"
+					TextAlignment="Center" Text="&#xf03e;" TextOptions.TextFormattingMode="Ideal" />
+			<TextBlock x:Name="skyCondition" Grid.Row="2" FontSize="18" Margin="3,0,0,10" Text="Loading..."
+					TextTrimming="CharacterEllipsis" FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light"
+					TextOptions.TextFormattingMode="Ideal" />
+			<Grid Grid.Row="3" VerticalAlignment="Bottom" Margin="3,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="20" />
+					<RowDefinition Height="27" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="27" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="27" />
+				</Grid.RowDefinitions>
+				<TextBlock Text="Wind" Foreground="{StaticResource LightText}" />
+				<TextBlock x:Name="wind" Grid.Row="1" Text="Loading..." />
+				<TextBlock Text="Humidity" Grid.Row="2" Foreground="{StaticResource LightText}" />
+				<TextBlock x:Name="humidity" Grid.Row="3" Text="Loading..." />
+				<TextBlock Text="Cloud Cover" Foreground="{StaticResource LightText}" Grid.Column="1" />
+				<TextBlock x:Name="cloudCover" Grid.Row="1" Grid.Column="1" Text="Loading..." />
+				<TextBlock Text="Barometer" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource LightText}" />
+				<TextBlock x:Name="pressure" Grid.Column="1" Grid.Row="3" Text="Loading..." />
+				<TextBlock Text="Sunrise" Foreground="{StaticResource LightText}" Grid.Row="4" />
+				<TextBlock x:Name="sunrise" Grid.Row="5" Text="Loading..." />
+				<TextBlock Text="Sunset" Grid.Column="1" Grid.Row="4" Foreground="{StaticResource LightText}" />
+				<TextBlock x:Name="sunset" Grid.Column="1" Grid.Row="5" Text="Loading..." />
+			</Grid>
+		</Grid>
+	</Friction:FrictionScrollViewerControl>
+</Display:Peek>

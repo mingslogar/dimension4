@@ -1,0 +1,92 @@
+﻿<Grid x:Class="Daytimer.Controls.Ribbon.FeedbackControl"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:RibbonControls="clr-namespace:Daytimer.Controls.Ribbon" mc:Ignorable="d" d:DesignHeight="400"
+		d:DesignWidth="700" ClipToBounds="True" Background="Transparent" Margin="40,0,58,38">
+	<Grid.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition />
+	</Grid.RowDefinitions>
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition />
+	</Grid.ColumnDefinitions>
+	<TextBlock Text="Feedback" FontSize="40" FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light"
+			Foreground="{DynamicResource BackstageSubHeaderForeground}" Grid.ColumnSpan="2" />
+	<TabControl x:Name="tabControl" Grid.Row="1" SelectionChanged="tabControl_SelectionChanged">
+		<TabControl.Resources>
+			<Style TargetType="StackPanel">
+				<Setter Property="IsHitTestVisible" Value="False" />
+			</Style>
+		</TabControl.Resources>
+		<TabItem x:Name="smileTab">
+			<TabItem.Header>
+				<StackPanel Orientation="Horizontal">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/smile.png" Stretch="None" />
+					<TextBlock Text="Send a smile" Margin="18,0,0,0" />
+				</StackPanel>
+			</TabItem.Header>
+			<Grid TextElement.FontSize="12">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<TextBlock Text="Send a smile" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}"
+						Grid.ColumnSpan="2" />
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.Column="1" Text="Tell us what you love about Dimension 4" />
+				<BulletDecorator Grid.Row="3" />
+				<TextBlock Grid.Row="3" Grid.Column="1" Text="Let us know which features we should keep improving" />
+				<BulletDecorator Grid.Row="4" />
+				<TextBlock Grid.Row="4" Grid.Column="1" Text="Just say hi" />
+				<RibbonControls:BackstageSquareButton x:Name="sendSmile" Grid.Row="5" Width="87"
+						Image="pack://application:,,,/Daytimer.Images;component/Images/smile.png" Text="Send a Smile"
+						Click="sendSmile_Click" />
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="frownTab">
+			<TabItem.Header>
+				<StackPanel Orientation="Horizontal">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/frown.png" Stretch="None" />
+					<TextBlock Text="Send a frown" Margin="18,0,0,0" />
+				</StackPanel>
+			</TabItem.Header>
+			<Grid TextElement.FontSize="12">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<TextBlock Text="Send a frown" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}"
+						Grid.ColumnSpan="2" />
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.Column="1" Text="Tell us what you hate about Dimension 4" />
+				<BulletDecorator Grid.Row="3" />
+				<TextBlock Grid.Row="3" Grid.Column="1"
+						Text="Give us ideas about how we can make a feature easier to use" />
+				<BulletDecorator Grid.Row="4" />
+				<TextBlock Grid.Row="4" Grid.Column="1" Text="Report a bug" />
+				<RibbonControls:BackstageSquareButton x:Name="sendFrown" Grid.Row="5" Width="87"
+						Image="pack://application:,,,/Daytimer.Images;component/Images/frown.png" Text="Send a Frown"
+						Click="sendFrown_Click" />
+			</Grid>
+		</TabItem>
+	</TabControl>
+</Grid>

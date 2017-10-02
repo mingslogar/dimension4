@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Style TargetType="ToolTip">
+		<Setter Property="Foreground" Value="#FF767676" />
+		<Setter Property="Height" Value="Auto" />
+		<Setter Property="Width" Value="Auto" />
+		<Setter Property="MaxWidth" Value="240" />
+		<Setter Property="MaxHeight" Value="Infinity" />
+		<Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+		<Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+		<Setter Property="FontFamily"
+				Value="Segoe UI, /Daytimer.Fonts;component/#WeblySleek UI Normal, /#WeblySleek UI Normal" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ToolTip">
+					<Border>
+						<Border.Effect>
+							<DropShadowEffect ShadowDepth="0" Opacity="0.5" Color="#FFBBBBBB" />
+						</Border.Effect>
+						<Border BorderThickness="1" BorderBrush="#FFBFBFBF" Background="#FFFFFFFF" Margin="4">
+							<!--<ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,3" />-->
+							<TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="4,3"
+									TextWrapping="Wrap" TextTrimming="CharacterEllipsis"
+									Text="{TemplateBinding Content}" />
+						</Border>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

@@ -1,0 +1,37 @@
+﻿<ResourceDictionary  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Style  x:Key="ComboBoxItemStyle" TargetType="ComboBoxItem">
+		<Setter  Property="Padding" Value="5,4" />
+		<Setter  Property="Margin" Value="1" />
+		<Setter  Property="Foreground" Value="{DynamicResource Black}" />
+		<Setter  Property="Template">
+			<Setter.Value>
+				<ControlTemplate  TargetType="ComboBoxItem">
+					<Border  x:Name="Bd" BorderThickness="0" Background="{TemplateBinding Background}"
+							Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+						<ContentPresenter  RecognizesAccessKey="True"
+								ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"
+								ContentStringFormat="{TemplateBinding ContentStringFormat}"
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger  Property="IsEnabled" Value="False">
+							<Setter  Property="TextElement.Foreground" TargetName="Bd" Value="#FF6D6D6D" />
+						</Trigger>
+						<Trigger  Property="IsMouseOver" Value="True">
+							<Setter  Property="Background" TargetName="Bd"
+									Value="{DynamicResource ContextMenuHoverBackground}" />
+						</Trigger>
+						<Trigger  Property="IsSelected" Value="True">
+							<Setter  Property="Background" TargetName="Bd"
+									Value="{DynamicResource ContextMenuHoverBackground}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style  TargetType="ComboBoxItem" BasedOn="{StaticResource ComboBoxItemStyle}" />
+</ResourceDictionary>

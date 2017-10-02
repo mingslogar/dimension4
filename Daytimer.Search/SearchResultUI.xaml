@@ -1,0 +1,33 @@
+﻿<ListBoxItem xmlns:Search="clr-namespace:Daytimer.Search" x:Class="Daytimer.Search.SearchResultUI"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" Height="50" d:DesignWidth="300"
+		HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0" Margin="0">
+	<!--<ListBoxItem.CacheMode>
+		<BitmapCache />
+	</ListBoxItem.CacheMode>-->
+	<Grid Margin="15,0,5,0">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Search:SearchableTextControl x:Name="majorText" IsMatchCase="False" IsHighlight="True"
+				HighlightForeground="{Binding Foreground, RelativeSource={RelativeSource Self}}"
+				VerticalAlignment="Bottom" FontSize="15" Margin="0,5,5,0" />
+		<Search:SearchableTextControl x:Name="minorText" Grid.Row="1" IsMatchCase="False" IsHighlight="True"
+				HighlightForeground="{Binding Foreground, RelativeSource={RelativeSource Self}}" VerticalAlignment="Top"
+				Margin="0,2,5,0" />
+		<Image x:Name="icon" Grid.Column="1" Width="16" Height="16" HorizontalAlignment="Right"
+				VerticalAlignment="Bottom" />
+		<Image x:Name="recurring" Grid.Column="1" Grid.Row="1" Width="16" Height="16" HorizontalAlignment="Right"
+				VerticalAlignment="Top" Visibility="Collapsed"
+				Source="pack://application:,,,/Daytimer.Images;component/Images/recurrence_sml.png" />
+		<TextBlock x:Name="date" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top"
+				Margin="0,2,0,0" />
+	</Grid>
+</ListBoxItem>

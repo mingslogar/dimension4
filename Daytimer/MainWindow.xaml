@@ -1,0 +1,1645 @@
+﻿<Window x:Name="window" x:Class="Daytimer.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Daytimer"
+		xmlns:ext="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell"
+		xmlns:Controls="clr-namespace:Daytimer.Controls;assembly=Daytimer.Controls"
+		xmlns:Display="clr-namespace:Daytimer.Controls.Panes;assembly=Daytimer.Controls"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+		xmlns:RibbonControls="clr-namespace:Daytimer.Controls.Ribbon;assembly=Daytimer.Controls"
+		xmlns:Dock="clr-namespace:Daytimer.DockableDialogs;assembly=Daytimer.DockableDialogs"
+		xmlns:fundamentals="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals"
+		xmlns:System="clr-namespace:System;assembly=mscorlib" Title="Dimension 4" Height="550" Width="900"
+		MinHeight="400" MinWidth="400" UseLayoutRounding="True" TextOptions.TextFormattingMode="Display"
+		Loaded="window_Loaded" FontFamily="Segoe UI, /Daytimer.Fonts;component/#WeblySleek UI Normal" FontSize="12"
+		FontWeight="Normal" Icon="pack://application:,,,/logo.ico" ShowActivated="True"
+		TextOptions.TextRenderingMode="ClearType" WindowStartupLocation="Manual" Background="{DynamicResource White}"
+		Foreground="{DynamicResource Black}">
+	<ext:WindowChrome.WindowChrome>
+		<ext:WindowChrome GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False" CaptionHeight="150" />
+	</ext:WindowChrome.WindowChrome>
+	<Window.Resources>
+		<fundamentals:WindowIconConverter x:Key="WindowIconConverter" />
+	</Window.Resources>
+	<Grid x:Name="outerGrid" Background="{DynamicResource White}" IsHitTestVisible="False">
+		<Grid ClipToBounds="True" VerticalAlignment="Top" HorizontalAlignment="Right" Height="54"
+				Visibility="{DynamicResource BackgroundVisibility}" IsHitTestVisible="False">
+			<Image x:Name="copyBackgroundImage" HorizontalAlignment="Right" />
+			<Image x:Name="backgroundImage" HorizontalAlignment="Right" />
+		</Grid>
+		<Grid x:Name="captionGrid" VerticalAlignment="Top" Height="31" Margin="1,0">
+			<Grid.ColumnDefinitions>
+				<!-- Icon -->
+				<ColumnDefinition Width="34" />
+				<!-- QAT -->
+				<ColumnDefinition Width="Auto" />
+				<!-- Title -->
+				<ColumnDefinition Width="*" />
+				<!-- Help -->
+				<ColumnDefinition Width="29" />
+				<!-- Ribbon Display Options -->
+				<ColumnDefinition Width="29" />
+				<!-- Minimize -->
+				<ColumnDefinition Width="29" />
+				<!-- Maximize/Restore -->
+				<ColumnDefinition Width="29" />
+				<!-- Close -->
+				<ColumnDefinition Width="29" />
+			</Grid.ColumnDefinitions>
+			<Button x:Name="captionImg" PreviewMouseDoubleClick="captionImg_PreviewMouseDoubleClick" MinWidth="0"
+					Width="NaN" Height="NaN" PreviewMouseLeftButtonDown="captionImg_PreviewMouseLeftButtonDown"
+					MouseRightButtonUp="captionImg_MouseRightButtonUp" ext:WindowChrome.IsHitTestVisibleInChrome="True"
+					Focusable="False">
+				<Button.Template>
+					<ControlTemplate TargetType="Button">
+						<Border Background="Transparent">
+							<ContentPresenter IsHitTestVisible="False" />
+						</Border>
+					</ControlTemplate>
+				</Button.Template>
+				<Image Source="{Binding Icon, ElementName=window, Converter={StaticResource WindowIconConverter}}"
+						HorizontalAlignment="Center" VerticalAlignment="Center" Height="16" Width="16" Stretch="None"
+						Margin="0,-1,0,0" />
+			</Button>
+			<Button x:Name="helpButton" Style="{StaticResource CaptionButton}" Grid.Column="3"
+					Content="{StaticResource HelpButtonKey}"
+					Foreground="{Binding Foreground, ElementName=minimizeButton}"
+					Margin="{Binding Margin, ElementName=minimizeButton}" ToolTip="Dimension 4 Help (F1)" Tag="1"
+					Command="local:MainWindow.HelpCommand" />
+			<ToggleButton x:Name="ribbonDisplayOptionsButton" Style="{StaticResource CaptionButton}" Grid.Column="4"
+					Content="{StaticResource RibbonDisplayOptionsButtonKey}"
+					Foreground="{Binding Foreground, ElementName=minimizeButton}"
+					Margin="{Binding Margin, ElementName=minimizeButton}" ToolTip="Ribbon Display Options" Tag="1" />
+			<Popup x:Name="ribbonDisplayOptionsPopup" Placement="Bottom"
+					PlacementTarget="{Binding ElementName=ribbonDisplayOptionsButton}"
+					IsOpen="{Binding IsChecked, ElementName=ribbonDisplayOptionsButton}" PopupAnimation="Fade"
+					AllowsTransparency="True" SnapsToDevicePixels="True" StaysOpen="False"
+					Opened="ribbonDisplayOptionsPopup_Opened">
+				<Popup.Style>
+					<Style TargetType="Popup">
+						<Style.Triggers>
+							<Trigger Property="IsOpen" Value="True">
+								<Trigger.EnterActions>
+									<BeginStoryboard>
+										<Storyboard>
+											<DoubleAnimation Storyboard.TargetProperty="VerticalOffset" From="-30"
+													To="0" Duration="0:0:0.4">
+												<DoubleAnimation.EasingFunction>
+													<QuarticEase />
+												</DoubleAnimation.EasingFunction>
+											</DoubleAnimation>
+										</Storyboard>
+									</BeginStoryboard>
+								</Trigger.EnterActions>
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</Popup.Style>
+				<Border x:Name="OuterBorder">
+					<Border.CacheMode>
+						<BitmapCache />
+					</Border.CacheMode>
+					<Border.Effect>
+						<DropShadowEffect Color="#FFBBBBBB" ShadowDepth="0" RenderingBias="Performance" Opacity="0.5" />
+					</Border.Effect>
+					<Border x:Name="InnerBorder" BorderBrush="#FFC6C6C6" BorderThickness="1"
+							Background="{DynamicResource White}" Margin="5">
+						<Border x:Name="ItemsPresenter" Margin="1">
+							<Grid>
+								<Grid.RowDefinitions>
+									<RowDefinition />
+									<RowDefinition />
+									<RowDefinition />
+								</Grid.RowDefinitions>
+								<Grid.Resources>
+									<Style TargetType="RadioButton">
+										<Setter Property="Background" Value="Transparent" />
+										<Setter Property="GroupName" Value="_ribbonDisplayOptionsRadios" />
+										<Setter Property="Width" Value="240" />
+										<Setter Property="Height" Value="58" />
+										<Setter Property="Foreground" Value="#FF5E5E5E" />
+										<EventSetter Event="Click" Handler="ribbonStateRadio_Click" />
+										<Setter Property="Template">
+											<Setter.Value>
+												<ControlTemplate TargetType="RadioButton">
+													<Border x:Name="PART_Border" BorderThickness="2"
+															BorderBrush="{Binding Background, RelativeSource={RelativeSource Self}}"
+															Background="{TemplateBinding Background}">
+														<ContentPresenter />
+													</Border>
+													<ControlTemplate.Triggers>
+														<Trigger Property="IsMouseOver" Value="True">
+															<Setter Property="Background"
+																	Value="{DynamicResource RibbonChecked}" />
+														</Trigger>
+														<Trigger Property="IsChecked" Value="True">
+															<Setter Property="BorderBrush" TargetName="PART_Border"
+																	Value="{DynamicResource RibbonChecked}" />
+														</Trigger>
+														<Trigger Property="IsEnabled" Value="False">
+															<Setter Property="Opacity" TargetName="PART_Border"
+																	Value="0.5" />
+														</Trigger>
+													</ControlTemplate.Triggers>
+												</ControlTemplate>
+											</Setter.Value>
+										</Setter>
+									</Style>
+								</Grid.Resources>
+								<RadioButton x:Name="hideRibbonRadio" IsEnabled="False">
+									<Grid VerticalAlignment="Center">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition />
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto" />
+											<RowDefinition />
+										</Grid.RowDefinitions>
+										<Image Grid.RowSpan="2" Margin="6,6,9,6" Stretch="None"
+												Source="pack://application:,,,/Daytimer.Images;component/Images/autohideribbon.png" />
+										<TextBlock Grid.Column="1" FontWeight="Bold" Text="Auto-hide Ribbon" />
+										<TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"
+												Text="Hide the Ribbon. Click at the top of the application to show it." />
+									</Grid>
+								</RadioButton>
+								<RadioButton x:Name="showRibbonTabsRadio" Grid.Row="1">
+									<Grid VerticalAlignment="Center">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition />
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto" />
+											<RowDefinition />
+										</Grid.RowDefinitions>
+										<Image Grid.RowSpan="2" Margin="6,6,9,6" Stretch="None"
+												Source="pack://application:,,,/Daytimer.Images;component/Images/showtabs.png" />
+										<TextBlock Grid.Column="1" FontWeight="Bold" Text="Show Tabs" />
+										<TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"
+												Text="Show Ribbon tabs only. Click a tab to show the commands." />
+									</Grid>
+								</RadioButton>
+								<RadioButton x:Name="showRibbonRadio" Grid.Row="2">
+									<Grid VerticalAlignment="Center">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition />
+										</Grid.ColumnDefinitions>
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto" />
+											<RowDefinition />
+										</Grid.RowDefinitions>
+										<Image Grid.RowSpan="2" Margin="6,6,9,6" Stretch="None"
+												Source="pack://application:,,,/Daytimer.Images;component/Images/showtabscommands.png" />
+										<TextBlock Grid.Column="1" FontWeight="Bold" Text="Show Tabs and Commands" />
+										<TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap"
+												Text="Show Ribbon tabs and commands all the time." />
+									</Grid>
+								</RadioButton>
+							</Grid>
+						</Border>
+					</Border>
+				</Border>
+			</Popup>
+			<Button x:Name="minimizeButton" Style="{StaticResource CaptionButton}" Grid.Column="5"
+					Content="{StaticResource MinimizeButtonKey}" Foreground="#FFB2B2B2" Click="minimizeButton_Click"
+					ToolTip="Minimize" Tag="2" />
+			<Button x:Name="maximizeRestoreButton" Style="{StaticResource CaptionButton}" Grid.Column="6"
+					ToolTip="Maximize" Foreground="{Binding Foreground, ElementName=minimizeButton}"
+					Click="maximizeRestoreButton_Click" Tag="1" Margin="{Binding Margin, ElementName=minimizeButton}" />
+			<Button x:Name="closeButton" Style="{StaticResource CaptionButton}" Grid.Column="7"
+					Content="{StaticResource CloseButtonKey}" Click="closeButton_Click"
+					Foreground="{Binding Foreground, ElementName=minimizeButton}" ToolTip="Close" Tag="2"
+					Margin="{Binding Margin, ElementName=minimizeButton}" />
+		</Grid>
+		<Grid x:Name="clientGrid" Margin="1,31,1,1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Ribbon:Ribbon x:Name="ribbon" Background="{x:Null}" BorderBrush="{DynamicResource RibbonBorder}"
+					IsMinimized="False" Panel.ZIndex="100" MouseOverBackground="{DynamicResource RibbonMouseOver}"
+					MouseOverBorderBrush="{DynamicResource RibbonMouseOver}"
+					PressedBackground="{DynamicResource RibbonPressed}"
+					PressedBorderBrush="{DynamicResource RibbonPressed}"
+					CheckedBackground="{DynamicResource RibbonChecked}"
+					CheckedBorderBrush="{DynamicResource RibbonChecked}"
+					FocusedBackground="{DynamicResource RibbonMouseOver}"
+					FocusedBorderBrush="{DynamicResource RibbonMouseOver}"
+					KeyTipService.KeyTipStyle="{StaticResource KeyTipStyle}" Title="{Binding Title, ElementName=window}"
+					Margin="0,-30,0,0" Grid.ColumnSpan="2">
+				<Ribbon:Ribbon.ApplicationMenu>
+					<Ribbon:RibbonApplicationMenu x:Name="ribbonApplicationMenu" IsMainMenu="True" KeyTip="F" />
+				</Ribbon:Ribbon.ApplicationMenu>
+				<Ribbon:Ribbon.QuickAccessToolBar>
+					<Ribbon:RibbonQuickAccessToolBar x:Name="ribbonQAT">
+						<!--<Ribbon:RibbonQuickAccessToolBar.CustomizeMenuButton>
+							<Ribbon:RibbonMenuButton>
+							</Ribbon:RibbonMenuButton>
+						</Ribbon:RibbonQuickAccessToolBar.CustomizeMenuButton>-->
+					</Ribbon:RibbonQuickAccessToolBar>
+				</Ribbon:Ribbon.QuickAccessToolBar>
+				<Ribbon:Ribbon.ContextualTabGroups>
+					<Ribbon:RibbonContextualTabGroup x:Name="calendarTools" Header="CALENDAR TOOLS"
+							BorderBrush="#FF49A349" Background="#FFE6F3E6" Foreground="#FF118A11" />
+					<Ribbon:RibbonContextualTabGroup x:Name="tasksTools" Header="TASKS TOOLS" BorderBrush="#FFC9599C"
+							Background="#FFFCF0F7" Foreground="#FFA2437C" />
+					<Ribbon:RibbonContextualTabGroup x:Name="peopleTools" Header="PEOPLE TOOLS" BorderBrush="#FFFF9D00"
+							Background="#FFFFF8ED" Foreground="#FFD05E0E" />
+					<Ribbon:RibbonContextualTabGroup x:Name="textTools" Header="TEXT TOOLS" BorderBrush="#FFF2CB1D"
+							Background="#FFFFFBE6" Foreground="#FF9A7918" />
+				</Ribbon:Ribbon.ContextualTabGroups>
+				<!-- Ribbon Tabs for Appointments -->
+				<Ribbon:RibbonTab x:Name="apptsHome" Header="HOME" KeyTip="H">
+					<Ribbon:RibbonGroup Header="New"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/new_sml.png">
+						<Ribbon:RibbonButton Label="New Appointment" ToolTipTitle="New Appointment (Ctrl+N)"
+								ToolTipDescription="Create a new appointment."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/newappointment.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/newappointment_sml.png"
+								Command="local:MainWindow.NewItemCommand" />
+						<Ribbon:RibbonSplitButton x:Name="newItems" Label="New Items" ToolTipTitle="New Items"
+								ToolTipDescription="Create a new item, such as a new task or contact."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/new.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/new_sml.png"
+								Command="local:MainWindow.NewItemDialogCommand">
+							<Ribbon:RibbonGallery MaxColumnCount="1">
+								<Ribbon:RibbonGalleryCategory>
+									<MenuItem Header="_Appointment" Command="local:MainWindow.NewAppointmentCommand">
+										<MenuItem.Icon>
+											<Image
+													Source="pack://application:,,,/Daytimer.Images;component/Images/newappointment_sml.png" />
+										</MenuItem.Icon>
+										<MenuItem.ToolTip>
+											<Ribbon:RibbonToolTip Title="New Appointment (Ctrl+Shift+A)"
+													Description="Create a new appointment." />
+										</MenuItem.ToolTip>
+									</MenuItem>
+									<MenuItem Header="_Contact" Command="local:MainWindow.NewContactCommand">
+										<MenuItem.Icon>
+											<Image
+													Source="pack://application:,,,/Daytimer.Images;component/Images/newcontact_sml.png" />
+										</MenuItem.Icon>
+										<MenuItem.ToolTip>
+											<Ribbon:RibbonToolTip Title="New Contact (Ctrl+Shift+C)"
+													Description="Create a new contact." />
+										</MenuItem.ToolTip>
+									</MenuItem>
+									<MenuItem Header="_Task" Command="local:MainWindow.NewTaskCommand">
+										<MenuItem.Icon>
+											<Image
+													Source="pack://application:,,,/Daytimer.Images;component/Images/newtask_sml.png" />
+										</MenuItem.Icon>
+										<MenuItem.ToolTip>
+											<Ribbon:RibbonToolTip Title="New Task (Ctrl+Shift+T)"
+													Description="Create a new task." />
+										</MenuItem.ToolTip>
+									</MenuItem>
+									<MenuItem Header="_Note" Command="local:MainWindow.NewNoteCommand">
+										<MenuItem.Icon>
+											<Image
+													Source="pack://application:,,,/Daytimer.Images;component/Images/newnote_sml.png" />
+										</MenuItem.Icon>
+										<MenuItem.ToolTip>
+											<Ribbon:RibbonToolTip Title="New Note (Ctrl+Shift+E)"
+													Description="Create a new note." />
+										</MenuItem.ToolTip>
+									</MenuItem>
+								</Ribbon:RibbonGalleryCategory>
+							</Ribbon:RibbonGallery>
+						</Ribbon:RibbonSplitButton>
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Go To"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/today_sml.png">
+						<Ribbon:RibbonButton x:Name="today" Label="Today" ToolTipTitle="Today"
+								ToolTipDescription="Show today in the calendar."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/today.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/today_sml.png"
+								Click="today_Click" />
+						<Ribbon:RibbonButton x:Name="next7Days" Label="Next 7 Days" ToolTipTitle="Next 7 Days"
+								ToolTipDescription="Show the next 7 days in the calendar."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/next7days.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/next7days_sml.png"
+								Click="next7Days_Click" />
+						<Ribbon:RibbonToggleButton x:Name="specificDate" Label="Date" ToolTipTitle="Date"
+								ToolTipDescription="Show a specific date in the calendar."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/gotodate.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/gotodate_sml.png"
+								Checked="specificDate_Checked" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Arrange"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/week_sml.png">
+						<Ribbon:RibbonRadioButton x:Name="dayButton" Label="Day" ToolTipTitle="Day (Ctrl+Alt+1)"
+								ToolTipDescription="Show the daily view."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/day.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/day_sml.png"
+								Checked="dayButton_Checked" />
+						<Ribbon:RibbonRadioButton x:Name="weekButton" Label="Week" ToolTipTitle="Week (Ctrl+Alt+2)"
+								ToolTipDescription="Show the entire week."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/week.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/week_sml.png"
+								Checked="weekButton_Checked" />
+						<Ribbon:RibbonRadioButton x:Name="monthButton" Label="Month" ToolTipTitle="Month (Ctrl+Alt+3)"
+								ToolTipDescription="Show the month."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/month.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/month_sml.png"
+								Checked="monthButton_Checked" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Layout"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/layout.png">
+						<Ribbon:RibbonToggleButton x:Name="searchPaneButton" Label="Search Pane"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/searchpane.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/search.png"
+								ToolTipTitle="Search Pane (Ctrl+F)" ToolTipDescription="Show or hide the search pane."
+								Checked="searchPaneButton_Checked" Unchecked="searchPaneButton_Unchecked" />
+						<Ribbon:RibbonMenuButton x:Name="todoBarButton" Label="To-Do Bar"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/todobar.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/todobar_sml.png"
+								ToolTipTitle="To-Do Bar"
+								ToolTipDescription="Show or hide the To-Do Bar and choose what is shown.">
+							<Ribbon:RibbonGallery MaxColumnCount="1">
+								<Ribbon:RibbonGalleryCategory>
+									<MenuItem Header="_Calendar" Command="local:MainWindow.DockPeekCommand"
+											CommandParameter="Calendar">
+										<MenuItem.Icon>
+											<Image VerticalAlignment="Center" HorizontalAlignment="Center"
+													Stretch="None"
+													Source="pack://application:,,,/Daytimer.Images;component/Images/calendar_black.png" />
+										</MenuItem.Icon>
+									</MenuItem>
+									<MenuItem Header="_Notes" Command="local:MainWindow.DockPeekCommand"
+											CommandParameter="Notes">
+										<MenuItem.Icon>
+											<Image VerticalAlignment="Center" HorizontalAlignment="Center"
+													Stretch="None"
+													Source="pack://application:,,,/Daytimer.Images;component/Images/notes_black.png" />
+										</MenuItem.Icon>
+									</MenuItem>
+									<MenuItem Header="_People" Command="local:MainWindow.DockPeekCommand"
+											CommandParameter="People">
+										<MenuItem.Icon>
+											<Image VerticalAlignment="Center" HorizontalAlignment="Center"
+													Stretch="None"
+													Source="pack://application:,,,/Daytimer.Images;component/Images/people_black.png" />
+										</MenuItem.Icon>
+									</MenuItem>
+									<MenuItem Header="_Tasks" Command="local:MainWindow.DockPeekCommand"
+											CommandParameter="Tasks">
+										<MenuItem.Icon>
+											<Image
+													Source="pack://application:,,,/Daytimer.Images;component/Images/tasks_black.png" />
+										</MenuItem.Icon>
+									</MenuItem>
+									<MenuItem Header="_Weather" Command="local:MainWindow.DockPeekCommand"
+											CommandParameter="Weather">
+										<MenuItem.Icon>
+											<Image
+													Source="pack://application:,,,/Daytimer.Images;component/Images/weather_black.png" />
+										</MenuItem.Icon>
+									</MenuItem>
+								</Ribbon:RibbonGalleryCategory>
+							</Ribbon:RibbonGallery>
+						</Ribbon:RibbonMenuButton>
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Views"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/normallayout_sml.png">
+						<Ribbon:RibbonRadioButton x:Name="normalLayoutButton" Label="Normal View"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/normallayout.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/normallayout_sml.png"
+								ToolTipTitle="Normal View"
+								ToolTipDescription="Optimize the window for general viewing and editing."
+								Command="Controls:ViewMode.NormalModeCommand" IsChecked="True"
+								GroupName="_ribbonLayoutButtonGroup" />
+						<Ribbon:RibbonRadioButton x:Name="readingLayoutButton" Label="Read Mode"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/readmodelayout.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/readmodelayout_sml.png"
+								ToolTipTitle="Read Mode"
+								ToolTipDescription="The best way to read a document, including some tools designed for reading instead of writing."
+								Command="Controls:ViewMode.ReadModeCommand" GroupName="_ribbonLayoutButtonGroup" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<!--<Ribbon:RibbonTab x:Name="apptsView" Header="VIEW" KeyTip="V">
+					<Ribbon:RibbonGroup Header="Arrangement"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/week_sml.png">
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=dayButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=dayButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=dayButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=dayButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=dayButton}"
+								IsChecked="{Binding IsChecked, ElementName=dayButton}" />
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=weekButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=weekButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=weekButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=weekButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=weekButton}"
+								IsChecked="{Binding IsChecked, ElementName=weekButton}" />
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=monthButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=monthButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=monthButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=monthButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=monthButton}"
+								IsChecked="{Binding IsChecked, ElementName=monthButton}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Layout"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/layout.png">
+						<Ribbon:RibbonToggleButton x:Name="searchPaneButton" Label="Search Pane"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/searchpane.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/search.png"
+								ToolTipTitle="Search Pane (Ctrl+F)" ToolTipDescription="Show or hide the search pane."
+								Checked="searchPaneButton_Checked" Unchecked="searchPaneButton_Unchecked" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>-->
+				<Ribbon:RibbonTab x:Name="appointmentEditorTab" Header="APPOINTMENT" KeyTip="A"
+						ContextualTabGroupHeader="CALENDAR TOOLS">
+					<Ribbon:RibbonGroup Header="Actions"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png">
+						<Ribbon:RibbonButton x:Name="saveAndClose" Label="Save &amp; Close"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/saveandclose.png"
+								ToolTipTitle="Save &amp; Close"
+								ToolTipDescription="Save this item and return to the appointment overview."
+								Click="saveAndClose_Click" />
+						<Ribbon:RibbonButton x:Name="discardChanges" Label="Discard Changes"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png"
+								ToolTipTitle="Discard Changes"
+								ToolTipDescription="Stop editing this appointment. Any unsaved changes will be lost."
+								Click="discardChanges_Click" />
+						<Ribbon:RibbonButton x:Name="delete" Label="Delete"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/recycle.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/recycle_sml.png"
+								ToolTipTitle="Delete (Ctrl+D)" ToolTipDescription="Delete this item."
+								Click="delete_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Options"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/recurrence_sml.png">
+						<Ribbon:RibbonComboBox Label="Show As:  " Margin="0,6,0,3" ToolTipTitle="Show As"
+								ToolTipDescription="Change how the time for this item is marked on your calendar."
+								ToolTipFooterDescription="This also affects the free/busy information other people can view."
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/showas.png">
+							<Ribbon:RibbonGallery x:Name="showAs" MaxColumnCount="1"
+									SelectionChanged="showAs_SelectionChanged">
+								<!--<Ribbon:RibbonGallery.Resources>
+									<ResourceDictionary
+											Source="pack://application:,,,/Daytimer.Controls;component/Panes/Calendar/ShowAsFill.xaml" />
+								</Ribbon:RibbonGallery.Resources>-->
+								<Ribbon:RibbonGalleryCategory>
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="Free" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="Working Elsewhere" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="Tentative" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="Busy" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="Out of Office" />
+									<!--<Ribbon:RibbonGalleryItem Padding="5,4,5,5">
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Border Width="12" Height="12" BorderBrush="{DynamicResource Blue}"
+													BorderThickness="1" Background="{StaticResource FreeFill}"
+													Margin="1,0,5,0" VerticalAlignment="Center" />
+											<TextBlock Grid.Column="1" Text="Free" Margin="8,0"
+													VerticalAlignment="Center" />
+										</Grid>
+									</Ribbon:RibbonGalleryItem>
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5">
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Border Width="12" Height="12" BorderBrush="{DynamicResource Blue}"
+													BorderThickness="1"
+													Background="{StaticResource WorkingElsewhereFill}" Margin="1,0,5,0"
+													VerticalAlignment="Center" />
+											<TextBlock Grid.Column="1" Text="Working Elsewhere" Margin="8,0"
+													VerticalAlignment="Center" />
+										</Grid>
+									</Ribbon:RibbonGalleryItem>
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5">
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Border Width="12" Height="12" BorderBrush="{DynamicResource Blue}"
+													BorderThickness="1" Background="{StaticResource TentativeFill}"
+													Margin="1,0,5,0" VerticalAlignment="Center" />
+											<TextBlock Grid.Column="1" Text="Tentative" Margin="8,0"
+													VerticalAlignment="Center" />
+										</Grid>
+									</Ribbon:RibbonGalleryItem>
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5">
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Border Width="12" Height="12" BorderBrush="{DynamicResource Blue}"
+													BorderThickness="1" Background="{StaticResource BusyFill}"
+													Margin="1,0,5,0" VerticalAlignment="Center" />
+											<TextBlock Grid.Column="1" Text="Busy" Margin="8,0"
+													VerticalAlignment="Center" />
+										</Grid>
+									</Ribbon:RibbonGalleryItem>
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5">
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Border Width="12" Height="12" Background="{StaticResource OutOfOfficeFill}"
+													Margin="1,0,5,0" VerticalAlignment="Center" />
+											<TextBlock Grid.Column="1" Text="Out of Office" Margin="8,0"
+													VerticalAlignment="Center" />
+										</Grid>
+									</Ribbon:RibbonGalleryItem>-->
+									<!--<MenuItem Header="Free" />
+									<MenuItem Header="Working Elsewhere" />
+									<MenuItem Header="Tentative" />
+									<MenuItem Header="Busy" />
+									<MenuItem Header="Out of Office" />-->
+								</Ribbon:RibbonGalleryCategory>
+							</Ribbon:RibbonGallery>
+						</Ribbon:RibbonComboBox>
+						<Ribbon:RibbonComboBox x:Name="apptReminder" Label="Reminder:" IsEditable="True"
+								Margin="0,3,0,0" ToolTipTitle="Reminder"
+								ToolTipDescription="Choose when to be reminded of this appointment."
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/bell_sml.png">
+							<Ribbon:RibbonGallery MaxColumnCount="1" SelectedValuePath="Content"
+									SelectionChanged="apptReminder_SelectionChanged">
+								<Ribbon:RibbonGalleryCategory>
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="None" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="At start time" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="5 minutes" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="15 minutes" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="30 minutes" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="1 hour" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="2 hours" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="4 hours" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="0.5 days" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="18 hours" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="1 day" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="2 days" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="4 days" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="1 week" />
+									<Ribbon:RibbonGalleryItem Padding="5,4,5,5" Content="2 weeks" />
+								</Ribbon:RibbonGalleryCategory>
+							</Ribbon:RibbonGallery>
+						</Ribbon:RibbonComboBox>
+						<Ribbon:RibbonToggleButton x:Name="recurrence" Label="Recurrence"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/recurrence.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/recurrence_sml.png"
+								ToolTipTitle="Recurrence (Ctrl+G)"
+								ToolTipDescription="Schedule this item to repeat regularly." Click="recurrence_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Tags"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/lock_sml.png">
+						<Ribbon:RibbonMenuButton x:Name="appointmentCategory" Label="Categorize"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/categorize.png"
+								ToolTipTitle="Categorize" ToolTipDescription="Categorize this item."
+								DropDownOpened="appointmentCategory_DropDownOpened">
+							<Ribbon:RibbonGallery MaxColumnCount="1">
+								<Ribbon:RibbonGalleryCategory x:Name="appointmentCategoryGallery" />
+							</Ribbon:RibbonGallery>
+						</Ribbon:RibbonMenuButton>
+						<Ribbon:RibbonToggleButton x:Name="appointmentPrivate" Label="Private"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/lock_sml.png"
+								ToolTipTitle="Private"
+								ToolTipDescription="Mark this item as private so that other people cannnot see the details of it."
+								Click="appointmentPrivate_Click" />
+						<Ribbon:RibbonToggleButton x:Name="appointmentHighPriority" Label="High Importance"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/highpriority.png"
+								ToolTipTitle="High Importance" ToolTipDescription="Set this item as high priority."
+								Checked="appointmentHighPriority_Checked" Unchecked="appointmentHighPriority_Unchecked" />
+						<Ribbon:RibbonToggleButton x:Name="appointmentLowPriority" Label="Low Importance"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/lowpriority.png"
+								ToolTipTitle="Low Importance" ToolTipDescription="Set this item as low priority."
+								Checked="appointmentLowPriority_Checked" Unchecked="appointmentLowPriority_Unchecked" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<!-- End Ribbon Tabs for Appointments -->
+				<!-- Ribbon Tabs for Tasks -->
+				<Ribbon:RibbonTab x:Name="tasksHome" Header="HOME" KeyTip="H" Visibility="Collapsed">
+					<Ribbon:RibbonGroup Header="New"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/new_sml.png">
+						<Ribbon:RibbonButton Label="New Task" ToolTipTitle="New Task (Ctrl+N)"
+								ToolTipDescription="Create a new task."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/newtask.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/newtask_sml.png"
+								Command="local:MainWindow.NewItemCommand" />
+						<Ribbon:RibbonSplitButton Label="{Binding Label, ElementName=newItems}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=newItems}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=newItems}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=newItems}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=newItems}"
+								Command="{Binding Command, ElementName=newItems}"
+								ItemsSource="{Binding Items, ElementName=newItems}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Current View"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/greencheck.png">
+						<Ribbon:RibbonToggleButton x:Name="showCompleted" Label="Show Completed"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/blackcheck.png"
+								ToolTipTitle="Show Completed"
+								ToolTipDescription="Show tasks which have already been marked as complete."
+								Checked="showCompleted_Checked" Unchecked="showCompleted_Unchecked" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Layout"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/layout.png">
+						<Ribbon:RibbonToggleButton Label="{Binding Label, ElementName=searchPaneButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=searchPaneButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=searchPaneButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=searchPaneButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=searchPaneButton}"
+								IsChecked="{Binding IsChecked, ElementName=searchPaneButton}" />
+						<Ribbon:RibbonMenuButton Label="{Binding Label, ElementName=todoBarButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=todoBarButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=todoBarButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=todoBarButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=todoBarButton}"
+								ItemsSource="{Binding Items, ElementName=todoBarButton}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Views"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/normallayout.png">
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=normalLayoutButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=normalLayoutButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=normalLayoutButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=normalLayoutButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=normalLayoutButton}"
+								Command="{Binding Command, ElementName=normalLayoutButton}"
+								IsChecked="{Binding IsChecked, ElementName=normalLayoutButton}" />
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=readingLayoutButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=readingLayoutButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=readingLayoutButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=readingLayoutButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=readingLayoutButton}"
+								Command="{Binding Command, ElementName=readingLayoutButton}"
+								IsChecked="{Binding IsChecked, ElementName=readingLayoutButton}" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<Ribbon:RibbonTab x:Name="taskEditorTab" Header="TASK" KeyTip="T" ContextualTabGroupHeader="TASKS TOOLS">
+					<Ribbon:RibbonGroup Header="Actions"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png">
+						<Ribbon:RibbonButton x:Name="saveAndCloseTask" Label="Save &amp; Close"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/saveandclose.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/save_sml.png"
+								ToolTipTitle="Save &amp; Close"
+								ToolTipDescription="Save this item and return to the task overview."
+								Click="saveAndCloseTask_Click" />
+						<Ribbon:RibbonButton x:Name="discardChangesTask" Label="Discard Changes"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png"
+								ToolTipTitle="Discard Changes"
+								ToolTipDescription="Stop editing this task. Any unsaved changes will be lost."
+								Click="discardChangesTask_Click" />
+						<Ribbon:RibbonButton x:Name="deleteTask" Label="Delete"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/recycle.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/recycle_sml.png"
+								ToolTipTitle="Delete (Ctrl+D)" ToolTipDescription="Delete this item."
+								Click="deleteTask_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Manage Task"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/managetask.png">
+						<Ribbon:RibbonButton x:Name="markComplete" Label="Mark Complete"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/blackcheck.png"
+								ToolTipTitle="Mark Complete"
+								ToolTipDescription="Mark this task as complete when you are done with it."
+								Click="markComplete_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Tags"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/lock_sml.png">
+						<Ribbon:RibbonMenuButton x:Name="taskCategory" Label="Categorize"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/categorize.png"
+								ToolTipTitle="Categorize" ToolTipDescription="Categorize this item."
+								DropDownOpened="taskCategory_DropDownOpened">
+							<Ribbon:RibbonGallery MaxColumnCount="1">
+								<Ribbon:RibbonGalleryCategory x:Name="taskCategoryGallery" />
+							</Ribbon:RibbonGallery>
+						</Ribbon:RibbonMenuButton>
+						<Ribbon:RibbonToggleButton x:Name="taskPrivate" Label="Private"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/lock_sml.png"
+								ToolTipTitle="Private"
+								ToolTipDescription="Mark this item as private so that other people cannnot see the details of it."
+								Click="taskPrivate_Click" />
+						<Ribbon:RibbonToggleButton x:Name="taskHighPriority" Label="High Importance"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/highpriority.png"
+								ToolTipTitle="High Importance" ToolTipDescription="Set this item as high priority."
+								Checked="taskHighPriority_Checked" Unchecked="taskHighPriority_Unchecked" />
+						<Ribbon:RibbonToggleButton x:Name="taskLowPriority" Label="Low Importance"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/lowpriority.png"
+								ToolTipTitle="Low Importance" ToolTipDescription="Set this item as low priority."
+								Checked="taskLowPriority_Checked" Unchecked="taskLowPriority_Unchecked" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<!-- End Ribbon Tabs for Tasks -->
+				<!-- Ribbon Tabs for People -->
+				<Ribbon:RibbonTab x:Name="peopleHome" Header="HOME" KeyTip="H" Visibility="Collapsed">
+					<Ribbon:RibbonGroup Header="New"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/new_sml.png">
+						<Ribbon:RibbonButton Label="New Contact" ToolTipTitle="New Contact (Ctrl+N)"
+								ToolTipDescription="Create a new contact."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/newcontact.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/newcontact_sml.png"
+								Command="local:MainWindow.NewItemCommand" />
+						<Ribbon:RibbonSplitButton Label="{Binding Label, ElementName=newItems}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=newItems}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=newItems}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=newItems}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=newItems}"
+								Command="{Binding Command, ElementName=newItems}"
+								ItemsSource="{Binding Items, ElementName=newItems}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Current View"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/contactgroup_star.png">
+						<Ribbon:RibbonRadioButton x:Name="showAllContacts" Label="Show All"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/contactgroup.png"
+								ToolTipTitle="Show All" ToolTipDescription="Show all your contacts." IsChecked="True"
+								GroupName="ContactsFavorites" Checked="showAllContacts_Checked" />
+						<Ribbon:RibbonRadioButton x:Name="showFavorites" Label="Show Favorites"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/contactgroup_star.png"
+								ToolTipTitle="Show Favorites" ToolTipDescription="Show your favorite contacts."
+								GroupName="ContactsFavorites" Checked="showFavorites_Checked" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Layout"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/layout.png">
+						<Ribbon:RibbonToggleButton Label="{Binding Label, ElementName=searchPaneButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=searchPaneButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=searchPaneButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=searchPaneButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=searchPaneButton}"
+								IsChecked="{Binding IsChecked, ElementName=searchPaneButton}" />
+						<Ribbon:RibbonMenuButton Label="{Binding Label, ElementName=todoBarButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=todoBarButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=todoBarButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=todoBarButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=todoBarButton}"
+								ItemsSource="{Binding Items, ElementName=todoBarButton}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Views"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/normallayout.png">
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=normalLayoutButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=normalLayoutButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=normalLayoutButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=normalLayoutButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=normalLayoutButton}"
+								Command="{Binding Command, ElementName=normalLayoutButton}"
+								IsChecked="{Binding IsChecked, ElementName=normalLayoutButton}" />
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=readingLayoutButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=readingLayoutButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=readingLayoutButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=readingLayoutButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=readingLayoutButton}"
+								Command="{Binding Command, ElementName=readingLayoutButton}"
+								IsChecked="{Binding IsChecked, ElementName=readingLayoutButton}" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<Ribbon:RibbonTab x:Name="peopleEditorTab" Header="CONTACT" KeyTip="C"
+						ContextualTabGroupHeader="PEOPLE TOOLS">
+					<Ribbon:RibbonGroup Header="Actions"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png">
+						<Ribbon:RibbonButton x:Name="saveAndCloseContact" Label="Save &amp; Close"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/saveandclose.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/save_sml.png"
+								ToolTipTitle="Save &amp; Close"
+								ToolTipDescription="Save this item and return to the people overview."
+								Click="saveAndCloseContact_Click" />
+						<Ribbon:RibbonButton x:Name="discardChangesContact" Label="Discard Changes"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png"
+								ToolTipTitle="Discard Changes"
+								ToolTipDescription="Stop editing this contact. Any unsaved changes will be lost."
+								Click="discardChangesContact_Click" />
+						<Ribbon:RibbonButton x:Name="deleteContact" Label="Delete"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/recycle.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/recycle_sml.png"
+								ToolTipTitle="Delete (Ctrl+D)" ToolTipDescription="Delete this item."
+								Click="deleteContact_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Options"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/contact_sml.png">
+						<Ribbon:RibbonButton x:Name="contactPicture" Label="Picture"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/contact.png"
+								ToolTipTitle="Picture" ToolTipDescription="Add or edit a picture for this contact."
+								Click="contactPicture_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Tags"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/lock_sml.png">
+						<Ribbon:RibbonToggleButton x:Name="contactPrivate" Label="Private"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/lock_sml.png"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/lock.png"
+								ToolTipTitle="Private"
+								ToolTipDescription="Mark this item as private so that other people cannnot see the details of it."
+								Click="contactPrivate_Click" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<!-- End Ribbon Tabs for People -->
+				<!-- Ribbon Tabs for Weather -->
+				<Ribbon:RibbonTab x:Name="weatherHome" Header="HOME" KeyTip="H" Visibility="Collapsed">
+					<Ribbon:RibbonGroup Header="Go To">
+						<Ribbon:RibbonButton x:Name="goToHome" Label="Home" ToolTipTitle="Home"
+								ToolTipDescription="Go to your home location." Click="goToHome_Click"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/home.png" />
+						<Ribbon:RibbonButton x:Name="changeLocation" Label="Change Location"
+								ToolTipTitle="Change Location"
+								ToolTipDescription="Set which places you want to get weather for."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/compass_metro.png"
+								Click="changeLocation_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="View">
+						<!-- Current View -->
+						<Ribbon:RibbonButton x:Name="refreshWeather" Label="Refresh" ToolTipTitle="Refresh"
+								ToolTipDescription="Refresh all weather data."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/refresh.png"
+								Click="refreshWeather_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="New"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/new_sml.png">
+						<Ribbon:RibbonSplitButton Label="{Binding Label, ElementName=newItems}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=newItems}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=newItems}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=newItems}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=newItems}"
+								Command="{Binding Command, ElementName=newItems}"
+								ItemsSource="{Binding Items, ElementName=newItems}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Layout"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/layout.png">
+						<Ribbon:RibbonToggleButton Label="{Binding Label, ElementName=searchPaneButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=searchPaneButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=searchPaneButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=searchPaneButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=searchPaneButton}"
+								IsChecked="{Binding IsChecked, ElementName=searchPaneButton}" />
+						<Ribbon:RibbonMenuButton Label="{Binding Label, ElementName=todoBarButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=todoBarButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=todoBarButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=todoBarButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=todoBarButton}"
+								ItemsSource="{Binding Items, ElementName=todoBarButton}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Views"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/normallayout.png">
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=normalLayoutButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=normalLayoutButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=normalLayoutButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=normalLayoutButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=normalLayoutButton}"
+								Command="{Binding Command, ElementName=normalLayoutButton}"
+								IsChecked="{Binding IsChecked, ElementName=normalLayoutButton}" />
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=readingLayoutButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=readingLayoutButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=readingLayoutButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=readingLayoutButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=readingLayoutButton}"
+								Command="{Binding Command, ElementName=readingLayoutButton}"
+								IsChecked="{Binding IsChecked, ElementName=readingLayoutButton}" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<!-- End Ribbon Tabs for Weather -->
+				<!-- Ribbon Tabs for Notes -->
+				<Ribbon:RibbonTab x:Name="notesHome" Header="HOME" KeyTip="H" Visibility="Collapsed">
+					<Ribbon:RibbonGroup Header="New"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/new_sml.png">
+						<Ribbon:RibbonButton Label="New Note" ToolTipTitle="New Note (Ctrl+N)"
+								ToolTipDescription="Create a new note."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/newnote.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/newnote_sml.png"
+								Command="local:MainWindow.NewItemCommand" />
+						<Ribbon:RibbonSplitButton Label="{Binding Label, ElementName=newItems}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=newItems}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=newItems}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=newItems}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=newItems}"
+								Command="{Binding Command, ElementName=newItems}"
+								ItemsSource="{Binding Items, ElementName=newItems}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Layout"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/layout.png">
+						<Ribbon:RibbonToggleButton Label="{Binding Label, ElementName=searchPaneButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=searchPaneButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=searchPaneButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=searchPaneButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=searchPaneButton}"
+								IsChecked="{Binding IsChecked, ElementName=searchPaneButton}" />
+						<Ribbon:RibbonMenuButton Label="{Binding Label, ElementName=todoBarButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=todoBarButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=todoBarButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=todoBarButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=todoBarButton}"
+								ItemsSource="{Binding Items, ElementName=todoBarButton}" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Arrange"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/fullpageview_sml.png">
+						<Ribbon:RibbonToggleButton x:Name="dockNotesPane" Label="Dock to Desktop"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/docktodesktop.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/docktodesktop_sml.png"
+								ToolTipTitle="Dock to Desktop (Ctrl+Alt+D)"
+								ToolTipDescription="Keep your notes visible by anchoring a mini-notes view to the side of your desktop."
+								ToolTipFooterDescription="Your notes will stay on top while you work in other programs."
+								Command="local:MainWindow.DockNotesPaneCommand" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Views"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/normallayout.png">
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=normalLayoutButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=normalLayoutButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=normalLayoutButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=normalLayoutButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=normalLayoutButton}"
+								Command="{Binding Command, ElementName=normalLayoutButton}"
+								IsChecked="{Binding IsChecked, ElementName=normalLayoutButton}" />
+						<Ribbon:RibbonRadioButton Label="{Binding Label, ElementName=readingLayoutButton}"
+								LargeImageSource="{Binding LargeImageSource, ElementName=readingLayoutButton}"
+								SmallImageSource="{Binding SmallImageSource, ElementName=readingLayoutButton}"
+								ToolTipTitle="{Binding ToolTipTitle, ElementName=readingLayoutButton}"
+								ToolTipDescription="{Binding ToolTipDescription, ElementName=readingLayoutButton}"
+								Command="{Binding Command, ElementName=readingLayoutButton}"
+								IsChecked="{Binding IsChecked, ElementName=readingLayoutButton}" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<!-- End Ribbon Tabs for Notes -->
+				<Ribbon:RibbonTab x:Name="syncTab" Header="SEND / RECEIVE" KeyTip="S">
+					<Ribbon:RibbonGroup Header="Send &amp; Receive"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/sendreceive_sml.png">
+						<Ribbon:RibbonButton Label="Send/Receive All Folders"
+								ToolTipTitle="Send/Receive All Folders (F9)"
+								ToolTipDescription="Send and receive items such as calendar appointments and tasks in all folders."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/sendreceive.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/sendreceive_sml.png"
+								Command="local:MainWindow.SendReceiveAllFoldersCommand" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Download"
+							SmallImageSource="pack://application:,,/Daytimer.Images;component/Images/showprogress_sml.png">
+						<Ribbon:RibbonButton Label="Show Progress" ToolTipTitle="Show Progress"
+								ToolTipDescription="Show the current send/receive status."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/showprogress.png"
+								SmallImageSource="pack://application:,,/Daytimer.Images;component/Images/showprogress_sml.png"
+								Command="local:MainWindow.ShowSendReceiveProgressCommand" />
+						<Ribbon:RibbonButton Label="Cancel All" ToolTipTitle="Cancel All"
+								ToolTipDescription="Cancel all pending send/receive requests."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/cancelsendreceive.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/cancelsendreceive_sml.png"
+								Command="local:MainWindow.CancelSendReceiveCommand" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Preferences"
+							SmallImageSource="pack://application:,,/Daytimer.Images;component/Images/preferences.png">
+						<Ribbon:RibbonToggleButton x:Name="workOfflineButton" Label="Work Offline"
+								ToolTipTitle="Work Offline" ToolTipDescription="Disconnect from the server"
+								ToolTipFooterDescription="Work offline if you do not want your calendar to sync automatically with your clouds."
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/offline.png"
+								Click="workOfflineButton_Click" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+				<Ribbon:RibbonTab x:Name="textEditorTab" Header="FORMAT TEXT" KeyTip="O"
+						ContextualTabGroupHeader="TEXT TOOLS">
+					<Ribbon:RibbonGroup Header="Clipboard"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/paste_sml.png">
+						<Ribbon:RibbonButton Label="Paste" ToolTipTitle="Paste (Ctrl+V)"
+								ToolTipDescription="Add content on the Clipboard to your document."
+								Command="ApplicationCommands.Paste"
+								LargeImageSource="pack://application:,,,/Daytimer.Images;component/Images/paste.png"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/paste_sml.png">
+							<Ribbon:RibbonButton.ControlSizeDefinition>
+								<Ribbon:RibbonControlSizeDefinition ImageSize="Large" IsLabelVisible="True" />
+							</Ribbon:RibbonButton.ControlSizeDefinition>
+						</Ribbon:RibbonButton>
+						<Ribbon:RibbonButton ToolTipTitle="Cut (Ctrl+X)"
+								ToolTipDescription="Remove the selection and put it on the Clipboard so you can paste it somewhere else."
+								Command="ApplicationCommands.Cut"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/cut.png" />
+						<Ribbon:RibbonButton ToolTipTitle="Copy (Ctrl+C)"
+								ToolTipDescription="Put a copy of the selection on the Clipboard so you can paste it somewhere else."
+								Command="ApplicationCommands.Copy"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/copy.png" />
+						<Ribbon:RibbonButton x:Name="formatPainter" ToolTipTitle="Format Painter"
+								ToolTipDescription="Like the look of a particular selection? You can apply that look to other content in the document."
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/formatpainter.png"
+								IsEnabled="{Binding IsEnabled, ElementName=increaseSize}" xml:space="preserve"
+								Click="formatPainter_Click">
+							<Ribbon:RibbonButton.ToolTipFooterDescription>To get started:
+1. Select content with the formatting you like
+2. Click Format Painter
+3. Select something else to automatically apply the formatting
+
+FYI: To apply the formatting in multiple places, double-click Format Painter.</Ribbon:RibbonButton.ToolTipFooterDescription>
+						</Ribbon:RibbonButton>
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="History"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/undo.png">
+						<Ribbon:RibbonButton Label="Undo" Margin="0,6,0,3" ToolTipTitle="Undo (Ctrl+Z)"
+								ToolTipDescription="Undo your last action in the active text box."
+								Command="ApplicationCommands.Undo"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/undo.png" />
+						<Ribbon:RibbonButton Label="Redo" Margin="0,3,0,0" ToolTipTitle="Redo (Ctrl+Y)"
+								ToolTipDescription="Redo your last undone action in the active text box."
+								Command="ApplicationCommands.Redo"
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/redo.png" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup x:Name="richTextEdit" Header="Font"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/font.png">
+						<WrapPanel MaxWidth="250" VerticalAlignment="Center">
+							<WrapPanel.Resources>
+								<Style TargetType="Separator">
+									<Setter Property="Width" Value="1" />
+									<Setter Property="Height" Value="22" />
+									<Setter Property="VerticalAlignment" Value="Center" />
+									<Setter Property="Margin" Value="4,0,4,1" />
+									<Setter Property="Template">
+										<Setter.Value>
+											<ControlTemplate TargetType="Separator">
+												<Border BorderThickness="1" BorderBrush="#FFE1E1E1" />
+											</ControlTemplate>
+										</Setter.Value>
+									</Setter>
+								</Style>
+							</WrapPanel.Resources>
+							<ComboBox x:Name="fontFamilyBox" IsEditable="True" Width="104" Height="23" Margin="0,4"
+									MaxDropDownHeight="443" IsTextSearchEnabled="False"
+									IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+									VirtualizingStackPanel.IsVirtualizing="True"
+									DropDownOpened="fontFamilyBox_DropDownOpened"
+									SelectionChanged="fontFamilyBox_SelectionChanged"
+									PreviewKeyDown="fontFamilyBox_PreviewKeyDown" LostFocus="fontFamilyBox_LostFocus">
+								<ComboBox.ToolTip>
+									<Ribbon:RibbonToolTip Title="Font" Description="Pick a new font for your text." />
+								</ComboBox.ToolTip>
+								<ComboBox.ItemTemplate>
+									<DataTemplate DataType="System:String">
+										<Grid IsHitTestVisible="False">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<TextBlock Text="{Binding}" VerticalAlignment="Center" />
+											<TextBlock Grid.Column="1" Text="The quick brown fox"
+													HorizontalAlignment="Right" VerticalAlignment="Center"
+													TextTrimming="CharacterEllipsis" Margin="10,0,0,0"
+													FontFamily="{Binding IsAsync=True, FallbackValue=Segoe UI}"
+													FontSize="14" />
+										</Grid>
+									</DataTemplate>
+								</ComboBox.ItemTemplate>
+								<ComboBox.Resources>
+									<Style TargetType="ComboBoxItem" BasedOn="{StaticResource ComboBoxItemStyle}">
+										<!--<Setter Property="FontFamily"
+												Value="{Binding Content, RelativeSource={RelativeSource Self}, IsAsync=True, FallbackValue=Segoe UI}" />-->
+										<!--<Setter Property="FontSize" Value="15" />-->
+										<Setter Property="Height" Value="24" />
+										<Setter Property="Padding" Value="5,0" />
+										<Setter Property="VerticalContentAlignment" Value="Center" />
+										<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+										<Setter Property="MaxWidth" Value="250" />
+									</Style>
+								</ComboBox.Resources>
+							</ComboBox>
+							<!--<Ribbon:RibbonComboBox x:Name="fontFamilyBox" />-->
+							<ComboBox x:Name="fontSizeBox" IsEditable="True" Width="43" Height="23" Margin="2,4,4,4"
+									SelectionChanged="fontSizeBox_SelectionChanged" IsTextSearchEnabled="False"
+									IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+									PreviewKeyDown="fontSizeBox_PreviewKeyDown" LostFocus="fontSizeBox_LostFocus">
+								<ComboBox.ToolTip>
+									<Ribbon:RibbonToolTip Title="Font Size" Description="Change the size of your text." />
+								</ComboBox.ToolTip>
+								<ComboBoxItem Content="8" />
+								<ComboBoxItem Content="9" />
+								<ComboBoxItem Content="10" />
+								<ComboBoxItem Content="11" />
+								<ComboBoxItem Content="12" />
+								<ComboBoxItem Content="14" />
+								<ComboBoxItem Content="16" />
+								<ComboBoxItem Content="18" />
+								<ComboBoxItem Content="20" />
+								<ComboBoxItem Content="22" />
+								<ComboBoxItem Content="24" />
+								<ComboBoxItem Content="26" />
+								<ComboBoxItem Content="28" />
+								<ComboBoxItem Content="36" />
+								<ComboBoxItem Content="48" />
+								<ComboBoxItem Content="72" />
+							</ComboBox>
+							<Ribbon:RibbonButton x:Name="increaseSize" ToolTipTitle="Increase Font Size (Ctrl+&gt;)"
+									ToolTipDescription="Make your text a bit bigger." Width="22" Height="23"
+									Margin="0,4" Command="EditingCommands.IncreaseFontSize"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/increasesize.png" />
+							<Ribbon:RibbonButton x:Name="decreaseSize" ToolTipTitle="Decrease Font Size (Ctrl+&lt;)"
+									ToolTipDescription="Make your text a bit smaller." Width="22" Height="23"
+									Margin="0,4" Command="EditingCommands.DecreaseFontSize"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/decreasesize.png" />
+							<Separator />
+							<ComboBox x:Name="caseBox" IsEditable="False" Width="36" Height="23" Margin="0,4"
+									IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+									SelectionChanged="caseBox_SelectionChanged">
+								<ComboBox.ToolTip>
+									<Ribbon:RibbonToolTip Title="Change Case"
+											Description="Change the selected text to uppercase, lowercase, or other common capitalizations." />
+								</ComboBox.ToolTip>
+								<ComboBox.Template>
+									<ControlTemplate TargetType="ComboBox">
+										<Grid x:Name="templateRoot" SnapsToDevicePixels="True">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="*" />
+												<ColumnDefinition MinWidth="17" Width="0" />
+											</Grid.ColumnDefinitions>
+											<Popup x:Name="PART_Popup" AllowsTransparency="True" Grid.ColumnSpan="2"
+													IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+													Style="{StaticResource ComboBoxPopupStyle}" HorizontalOffset="-5"
+													VerticalOffset="-6">
+												<Border MaxHeight="{TemplateBinding MaxDropDownHeight}"
+														MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+													<Border.Effect>
+														<DropShadowEffect Color="#FFBBBBBB" ShadowDepth="0"
+																RenderingBias="Performance" Opacity="0.5" />
+													</Border.Effect>
+													<Border x:Name="DropDownBorder" BorderBrush="#FFC6C6C6"
+															BorderThickness="1" Background="{DynamicResource White}"
+															Margin="5">
+														<ScrollViewer x:Name="DropDownScrollViewer">
+															<Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+																<Canvas x:Name="canvas" HorizontalAlignment="Left"
+																		Height="0" VerticalAlignment="Top" Width="0">
+																	<Rectangle x:Name="OpaqueRect"
+																			Fill="{Binding Background, ElementName=DropDownBorder}"
+																			Height="{Binding ActualHeight, ElementName=DropDownBorder}"
+																			Width="{Binding ActualWidth, ElementName=DropDownBorder}" />
+																</Canvas>
+																<ItemsPresenter x:Name="ItemsPresenter"
+																		KeyboardNavigation.DirectionalNavigation="Contained"
+																		SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+															</Grid>
+														</ScrollViewer>
+													</Border>
+												</Border>
+											</Popup>
+											<ToggleButton x:Name="toggleButton" Grid.ColumnSpan="2"
+													IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+												<ToggleButton.Style>
+													<Style TargetType="ToggleButton">
+														<Setter Property="OverridesDefaultStyle" Value="True" />
+														<Setter Property="IsTabStop" Value="False" />
+														<Setter Property="Focusable" Value="False" />
+														<Setter Property="ClickMode" Value="Press" />
+														<Setter Property="Template">
+															<Setter.Value>
+																<ControlTemplate TargetType="ToggleButton">
+																	<Border x:Name="templateRoot"
+																			BorderThickness="{TemplateBinding BorderThickness}"
+																			SnapsToDevicePixels="True"
+																			Background="{TemplateBinding Background}">
+																		<Border x:Name="splitBorder"
+																				BorderBrush="Transparent"
+																				BorderThickness="1"
+																				HorizontalAlignment="Right" Margin="0"
+																				SnapsToDevicePixels="True" Width="17">
+																			<Path x:Name="Arrow"
+																					Data="F1M0,0L2.667,2.66665 5.3334,0 5.3334,-1.78168 2.6667,0.88501 0,-1.78168 0,0z"
+																					Fill="#FF606060"
+																					HorizontalAlignment="Center"
+																					Margin="0,2,0,0"
+																					VerticalAlignment="Center" />
+																		</Border>
+																	</Border>
+																	<ControlTemplate.Triggers>
+																		<Trigger Property="IsMouseOver" Value="True">
+																			<Setter Property="Fill" TargetName="Arrow"
+																					Value="Black" />
+																			<Setter Property="Background"
+																					TargetName="templateRoot"
+																					Value="{DynamicResource RibbonMouseOver}" />
+																		</Trigger>
+																		<Trigger Property="IsPressed" Value="True">
+																			<Setter Property="Fill" TargetName="Arrow"
+																					Value="Black" />
+																			<Setter Property="Background"
+																					TargetName="templateRoot"
+																					Value="{DynamicResource RibbonPressed}" />
+																		</Trigger>
+																	</ControlTemplate.Triggers>
+																</ControlTemplate>
+															</Setter.Value>
+														</Setter>
+													</Style>
+												</ToggleButton.Style>
+											</ToggleButton>
+											<Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+													Margin="3,0,0,0" IsHitTestVisible="False">
+												<Image
+														Source="pack://application:,,,/Daytimer.Images;component/Images/changecase.png"
+														HorizontalAlignment="Center" Stretch="None" />
+											</Grid>
+										</Grid>
+										<ControlTemplate.Triggers>
+											<Trigger Property="IsKeyboardFocusWithin" Value="True">
+												<Setter Property="Foreground" Value="Black" />
+											</Trigger>
+											<Trigger Property="IsDropDownOpen" Value="True">
+												<Setter Property="Background" TargetName="toggleButton"
+														Value="{DynamicResource RibbonChecked}" />
+											</Trigger>
+											<Trigger Property="CanContentScroll" SourceName="DropDownScrollViewer"
+													Value="False">
+												<Setter Property="Canvas.Top" TargetName="OpaqueRect"
+														Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}" />
+												<Setter Property="Canvas.Left" TargetName="OpaqueRect"
+														Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}" />
+											</Trigger>
+											<Trigger Property="IsEnabled" Value="False">
+												<Setter Property="Opacity" TargetName="templateRoot" Value="0.5" />
+											</Trigger>
+										</ControlTemplate.Triggers>
+									</ControlTemplate>
+								</ComboBox.Template>
+								<ComboBoxItem Content="_Sentence case." />
+								<ComboBoxItem Content="_lowercase" />
+								<ComboBoxItem Content="_UPPERCASE" />
+								<ComboBoxItem Content="_Capitalize Each Word" />
+								<ComboBoxItem Content="_tOGGLE cASE" />
+							</ComboBox>
+							<Ribbon:RibbonButton x:Name="clear" ToolTipTitle="Clear All Formatting"
+									ToolTipDescription="Remove all formatting from the selection, leaving only the normal, unformatted text."
+									Width="22" Height="23" Margin="0,4"
+									IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/clearformatting.png"
+									Click="clear_Click" />
+							<Separator />
+							<Ribbon:RibbonToggleButton x:Name="bold" ToolTipTitle="Bold (Ctrl+B)"
+									ToolTipDescription="Make your text bold."
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/bold.png"
+									Width="22" Height="23" Command="EditingCommands.ToggleBold" Margin="0,4" />
+							<Ribbon:RibbonToggleButton x:Name="italic" ToolTipTitle="Italic (Ctrl+I)"
+									ToolTipDescription="Italicize your text." Width="22" Height="23"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/italic.png"
+									Command="EditingCommands.ToggleItalic" Margin="0,4" />
+							<Ribbon:RibbonToggleButton x:Name="underline" ToolTipTitle="Underline (Ctrl+U)"
+									ToolTipDescription="Underline your text." Width="22" Height="23"
+									IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/underline.png"
+									Command="local:MainWindow.UnderlineCommand" Margin="0,4" />
+							<Ribbon:RibbonToggleButton x:Name="strikethrough" ToolTipTitle="Strikethrough"
+									ToolTipDescription="Cross something out by drawing a line through it." Width="22"
+									Height="23" IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/strikethrough.png"
+									Command="local:MainWindow.StrikethroughCommand" Margin="0,4" />
+							<Ribbon:RibbonToggleButton x:Name="subscript" ToolTipTitle="Subscript (Ctrl+=)"
+									ToolTipDescription="Type very small letters just below the line of text." Width="22"
+									Height="23" Command="EditingCommands.ToggleSubscript"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/subscript.png"
+									Margin="0,4" Checked="subscript_Checked" />
+							<Ribbon:RibbonToggleButton x:Name="superscript" ToolTipTitle="Superscript (Ctrl+Shift++)"
+									ToolTipDescription="Type very small letters just above the line of text." Width="22"
+									Height="23" Command="EditingCommands.ToggleSuperscript"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/superscript.png"
+									Margin="0,4" Checked="superscript_Checked" />
+							<Separator />
+							<Controls:SplitHighlightPicker x:Name="highlightColor" Width="34" Height="23" Margin="0,4"
+									IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+									ButtonImage="pack://application:,,,/Daytimer.Images;component/Images/highlightcolor.png"
+									OnSelectedChangedEvent="highlightColor_OnSelectedChangedEvent">
+								<Controls:SplitHighlightPicker.ToolTip>
+									<Ribbon:RibbonToolTip Title="Text Highlight Color"
+											Description="Make your text pop by highlighting it in a bright color." />
+								</Controls:SplitHighlightPicker.ToolTip>
+							</Controls:SplitHighlightPicker>
+							<Controls:SplitColorPicker x:Name="fontColor" Width="34" Height="23" Margin="0,4"
+									IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+									ButtonImage="pack://application:,,,/Daytimer.Images;component/Images/fontcolor.png"
+									OnSelectedChangedEvent="fontColor_OnSelectedChangedEvent">
+								<Controls:SplitColorPicker.ToolTip>
+									<Ribbon:RibbonToolTip Title="Font Color"
+											Description="Change the color of your text." />
+								</Controls:SplitColorPicker.ToolTip>
+							</Controls:SplitColorPicker>
+							<!--<Ribbon:RibbonSplitButton Width="34" Height="23">
+								<Ribbon:RibbonSplitButton.Resources>
+									<Style x:Key="Color" TargetType="Border">
+										<Setter Property="Width" Value="13" />
+										<Setter Property="Height" Value="13" />
+										<Setter Property="HorizontalAlignment" Value="Center" />
+										<Setter Property="VerticalAlignment" Value="Center" />
+										<Setter Property="BorderBrush" Value="#FFE2E4E7" />
+									</Style>
+								</Ribbon:RibbonSplitButton.Resources>
+								<Border Style="{StaticResource Color}" Background="#FFFFFFFF" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FF000000" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FFE7E6E6" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FF44546A" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FF5B9BD5" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FFED7D31" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FFA5A5A5" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FFFFC000" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FF4472C4" BorderThickness="1" />
+								<Border Style="{StaticResource Color}" Background="#FF70AD47" BorderThickness="1" />
+							</Ribbon:RibbonSplitButton>-->
+							<!--<Ribbon:RibbonComboBox ToolTipDescription="Change the size of your text."
+								ToolTipTitle="Font Size" IsEditable="True" Width="43" Height="23">
+							<Ribbon:RibbonGallery x:Name="fontSizeBox" SelectedValue="None" SelectedValuePath="Content"
+									MaxColumnCount="1" BorderThickness="0" Width="43">
+								<Ribbon:RibbonGalleryCategory>
+									<Ribbon:RibbonGalleryItem Content="8" />
+									<Ribbon:RibbonGalleryItem Content="9" />
+									<Ribbon:RibbonGalleryItem Content="10" />
+									<Ribbon:RibbonGalleryItem Content="11" />
+									<Ribbon:RibbonGalleryItem Content="12" />
+									<Ribbon:RibbonGalleryItem Content="14" />
+									<Ribbon:RibbonGalleryItem Content="16" />
+									<Ribbon:RibbonGalleryItem Content="18" />
+									<Ribbon:RibbonGalleryItem Content="20" />
+									<Ribbon:RibbonGalleryItem Content="22" />
+									<Ribbon:RibbonGalleryItem Content="24" />
+									<Ribbon:RibbonGalleryItem Content="26" />
+									<Ribbon:RibbonGalleryItem Content="28" />
+									<Ribbon:RibbonGalleryItem Content="36" />
+									<Ribbon:RibbonGalleryItem Content="48" />
+									<Ribbon:RibbonGalleryItem Content="72" />
+								</Ribbon:RibbonGalleryCategory>
+							</Ribbon:RibbonGallery>
+						</Ribbon:RibbonComboBox>-->
+						</WrapPanel>
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Paragraph" IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/center.png">
+						<WrapPanel MaxWidth="220" VerticalAlignment="Center">
+							<WrapPanel.Resources>
+								<Style TargetType="Separator">
+									<Setter Property="Width" Value="1" />
+									<Setter Property="Height" Value="22" />
+									<Setter Property="VerticalAlignment" Value="Center" />
+									<Setter Property="Margin" Value="4,0,4,1" />
+									<Setter Property="Template">
+										<Setter.Value>
+											<ControlTemplate TargetType="Separator">
+												<Border BorderThickness="1" BorderBrush="#FFE1E1E1" />
+											</ControlTemplate>
+										</Setter.Value>
+									</Setter>
+								</Style>
+							</WrapPanel.Resources>
+							<Ribbon:RibbonToggleButton x:Name="toggleBullets" Command="EditingCommands.ToggleBullets"
+									Width="22" Height="23" Margin="0,4"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/bullets.png"
+									ToolTipTitle="Bullets" ToolTipDescription="Create a bulleted list."
+									Checked="toggleBullets_Checked" />
+							<Ribbon:RibbonToggleButton x:Name="toggleNumbers" Command="EditingCommands.ToggleNumbering"
+									Width="22" Height="23" Margin="0,4"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/numbers.png"
+									ToolTipTitle="Numbering" ToolTipDescription="Create a numbered list."
+									Checked="toggleNumbers_Checked" />
+							<Separator />
+							<Ribbon:RibbonButton x:Name="decreaseIndent" Command="EditingCommands.DecreaseIndentation"
+									Width="22" Height="23" Margin="0,4"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/decreaseindent.png"
+									ToolTipTitle="Decrease Indent"
+									ToolTipDescription="Move your paragraph closer to the margin." />
+							<Ribbon:RibbonButton x:Name="increaseIndent" Command="EditingCommands.IncreaseIndentation"
+									Width="22" Height="23" Margin="0,4"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/increaseindent.png"
+									ToolTipTitle="Increase Indent"
+									ToolTipDescription="Move your paragraph farther away from the margin." />
+							<Separator />
+							<Ribbon:RibbonRadioButton x:Name="alignLeft" GroupName="align"
+									Command="EditingCommands.AlignLeft" Width="22" Height="23" Margin="0,4"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/alignLeft.png"
+									ToolTipTitle="Align Left (Ctrl+L)"
+									ToolTipDescription="Align your content with the left margin."
+									ToolTipFooterDescription="Left alignment is commonly used for body text and makes the document easier to read." />
+							<Ribbon:RibbonRadioButton x:Name="alignCenter" GroupName="align"
+									Command="EditingCommands.AlignCenter" Width="22" Height="23" Margin="0,4"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/alignCenter.png"
+									ToolTipTitle="Center (Ctrl+E)" ToolTipDescription="Center your content on the page."
+									ToolTipFooterDescription="Center alignment gives documents a formal appearance and is often used for cover pages, quotes, and sometimes headings." />
+							<Ribbon:RibbonRadioButton x:Name="alignRight" GroupName="align"
+									Command="EditingCommands.AlignRight" Width="22" Height="23" Margin="0,4"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/alignRight.png"
+									ToolTipTitle="Align Right (Ctrl+R)"
+									ToolTipDescription="Align your content with the right margin."
+									ToolTipFooterDescription="Right alignment is used for small sections of content, such as text in your header or footer." />
+							<Ribbon:RibbonRadioButton x:Name="alignJustify" GroupName="align"
+									Command="EditingCommands.AlignJustify" Width="22" Height="23" Margin="0,4"
+									SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/alignJustify.png"
+									ToolTipTitle="Justify (Ctrl+J)"
+									ToolTipDescription="Distribute your text evenly between the margins."
+									ToolTipFooterDescription="Justified text gives your document clean, crisp edges so it looks more polished." />
+							<ComboBox x:Name="paragraphSpacingBox" IsEditable="False" Width="36" Height="23"
+									Margin="0,4" SelectionChanged="paragraphSpacingBox_SelectionChanged">
+								<ComboBox.ToolTip>
+									<Ribbon:RibbonToolTip Title="Paragraph Spacing"
+											Description="Choose how much space appears between paragraphs." />
+								</ComboBox.ToolTip>
+								<ComboBox.Template>
+									<ControlTemplate TargetType="ComboBox">
+										<Grid x:Name="templateRoot" SnapsToDevicePixels="True">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="*" />
+												<ColumnDefinition MinWidth="17" Width="Auto" />
+											</Grid.ColumnDefinitions>
+											<Popup x:Name="PART_Popup" Grid.ColumnSpan="2"
+													IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+													Style="{StaticResource ComboBoxPopupStyle}" HorizontalOffset="-5"
+													VerticalOffset="-6">
+												<Border MaxHeight="{TemplateBinding MaxDropDownHeight}"
+														MinWidth="{Binding ActualWidth, ElementName=templateRoot}">
+													<Border.Effect>
+														<DropShadowEffect Color="#FFBBBBBB" ShadowDepth="0"
+																RenderingBias="Performance" Opacity="0.5" />
+													</Border.Effect>
+													<Border x:Name="DropDownBorder" BorderBrush="#FFC6C6C6"
+															BorderThickness="1" Background="{DynamicResource White}"
+															Margin="5">
+														<ScrollViewer x:Name="DropDownScrollViewer">
+															<Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
+																<Canvas x:Name="canvas" HorizontalAlignment="Left"
+																		Height="0" VerticalAlignment="Top" Width="0">
+																	<Rectangle x:Name="OpaqueRect"
+																			Fill="{Binding Background, ElementName=DropDownBorder}"
+																			Height="{Binding ActualHeight, ElementName=DropDownBorder}"
+																			Width="{Binding ActualWidth, ElementName=DropDownBorder}" />
+																</Canvas>
+																<ItemsPresenter x:Name="ItemsPresenter"
+																		KeyboardNavigation.DirectionalNavigation="Contained"
+																		SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+															</Grid>
+														</ScrollViewer>
+													</Border>
+												</Border>
+											</Popup>
+											<ToggleButton x:Name="toggleButton" Grid.ColumnSpan="2"
+													IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+												<ToggleButton.Style>
+													<Style TargetType="ToggleButton">
+														<Setter Property="OverridesDefaultStyle" Value="True" />
+														<Setter Property="IsTabStop" Value="False" />
+														<Setter Property="Focusable" Value="False" />
+														<Setter Property="ClickMode" Value="Press" />
+														<Setter Property="Template">
+															<Setter.Value>
+																<ControlTemplate TargetType="ToggleButton">
+																	<Border x:Name="templateRoot"
+																			BorderThickness="{TemplateBinding BorderThickness}"
+																			SnapsToDevicePixels="True"
+																			Background="{TemplateBinding Background}">
+																		<Border x:Name="splitBorder"
+																				BorderBrush="Transparent"
+																				BorderThickness="1"
+																				HorizontalAlignment="Right" Margin="0"
+																				SnapsToDevicePixels="True" Width="17">
+																			<Path x:Name="Arrow"
+																					Data="F1M0,0L2.667,2.66665 5.3334,0 5.3334,-1.78168 2.6667,0.88501 0,-1.78168 0,0z"
+																					Fill="#FF606060"
+																					HorizontalAlignment="Center"
+																					Margin="0,2,0,0"
+																					VerticalAlignment="Center" />
+																		</Border>
+																	</Border>
+																	<ControlTemplate.Triggers>
+																		<Trigger Property="IsMouseOver" Value="True">
+																			<Setter Property="Fill" TargetName="Arrow"
+																					Value="Black" />
+																			<Setter Property="Background"
+																					TargetName="templateRoot"
+																					Value="{DynamicResource RibbonMouseOver}" />
+																		</Trigger>
+																		<Trigger Property="IsPressed" Value="True">
+																			<Setter Property="Fill" TargetName="Arrow"
+																					Value="Black" />
+																			<Setter Property="Background"
+																					TargetName="templateRoot"
+																					Value="{DynamicResource RibbonPressed}" />
+																		</Trigger>
+																	</ControlTemplate.Triggers>
+																</ControlTemplate>
+															</Setter.Value>
+														</Setter>
+													</Style>
+												</ToggleButton.Style>
+											</ToggleButton>
+											<Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+													Margin="3,0,0,0" IsHitTestVisible="False">
+												<Image
+														Source="pack://application:,,,/Daytimer.Images;component/Images/spacing.png"
+														HorizontalAlignment="Center" Stretch="None" />
+											</Grid>
+										</Grid>
+										<ControlTemplate.Triggers>
+											<Trigger Property="IsKeyboardFocusWithin" Value="True">
+												<Setter Property="Foreground" Value="Black" />
+											</Trigger>
+											<Trigger Property="IsDropDownOpen" Value="True">
+												<Setter Property="Background" TargetName="toggleButton"
+														Value="{DynamicResource RibbonChecked}" />
+											</Trigger>
+											<Trigger Property="CanContentScroll" SourceName="DropDownScrollViewer"
+													Value="False">
+												<Setter Property="Canvas.Top" TargetName="OpaqueRect"
+														Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}" />
+												<Setter Property="Canvas.Left" TargetName="OpaqueRect"
+														Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}" />
+											</Trigger>
+											<Trigger Property="IsEnabled" Value="False">
+												<Setter Property="Opacity" TargetName="templateRoot" Value="0.5" />
+											</Trigger>
+										</ControlTemplate.Triggers>
+									</ControlTemplate>
+								</ComboBox.Template>
+								<ComboBoxItem Content="1.0" />
+								<ComboBoxItem Content="1.15" />
+								<ComboBoxItem Content="1.5" />
+								<ComboBoxItem Content="2.0" />
+								<ComboBoxItem Content="2.5" />
+								<ComboBoxItem Content="3.0" />
+							</ComboBox>
+							<Separator />
+							<Controls:SplitColorPicker x:Name="backgroundColor" Width="34" Height="23" Margin="0,4"
+									SelectedColor="{x:Null}" ShowNoColor="True" ShowAutomatic="False"
+									OnSelectedChangedEvent="backgroundColor_OnSelectedChangedEvent"
+									ButtonImage="pack://application:,,,/Daytimer.Images;component/Images/paintbucket.png">
+								<Controls:SplitColorPicker.ToolTip>
+									<Ribbon:RibbonToolTip Title="Background"
+											Description="Change the background color of your text." />
+								</Controls:SplitColorPicker.ToolTip>
+							</Controls:SplitColorPicker>
+							<Controls:SplitBorderSelector x:Name="borderType" Width="34" Height="23"
+									OnSelectedChangedEvent="borderType_OnSelectedChangedEvent">
+								<Controls:SplitBorderSelector.ToolTip>
+									<Ribbon:RibbonToolTip Title="Borders"
+											Description="Add or remove borders from your selection." />
+								</Controls:SplitBorderSelector.ToolTip>
+							</Controls:SplitBorderSelector>
+						</WrapPanel>
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Editing" IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/find.png">
+						<Ribbon:RibbonButton Label="Find" ToolTipTitle="Find (F4)"
+								ToolTipDescription="Find and replace text using advanced search options, including Match Case and Whole Words Only."
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/find.png"
+								Command="local:MainWindow.RtbFindCommand" />
+						<Ribbon:RibbonButton Label="Replace" ToolTipTitle="Replace (Ctrl+H)"
+								ToolTipDescription="Search for text you'd like to change, and replace it with something else."
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/replace.png"
+								Command="local:MainWindow.RtbReplaceCommand" />
+						<Ribbon:RibbonButton Label="Select All" ToolTipTitle="Select All (Ctrl+A)"
+								ToolTipDescription="Select all text and objects in your document."
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/selectall.png"
+								Click="selectAll_Click" />
+					</Ribbon:RibbonGroup>
+					<Ribbon:RibbonGroup Header="Insert" IsEnabled="{Binding IsEnabled, ElementName=increaseSize}"
+							SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/symbol.png">
+						<Controls:SymbolPicker x:Name="insertSymbol" Width="80" Height="23" Insert="insertSymbol_Insert">
+							<Controls:SymbolPicker.ToolTip>
+								<Ribbon:RibbonToolTip Title="Insert a Symbol"
+										Description="Add symbols that are not on your keyboard."
+										FooterDescription="Choose from a variety of options including mathematical, currency, and copyright symbols." />
+							</Controls:SymbolPicker.ToolTip>
+						</Controls:SymbolPicker>
+						<Ribbon:RibbonButton x:Name="insertLine" Label="Horizontal Line" ToolTipTitle="Horizontal Line"
+								ToolTipDescription="Add a horizontal line across the entire page, cell, or column."
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/horizontalline.png"
+								Click="insertLine_Click" />
+						<Ribbon:RibbonButton x:Name="insertHyperlink" Label="Hyperlink"
+								ToolTipTitle="Add a Hyperlink (Ctrl+K)"
+								ToolTipDescription="Create a link in your document for quick access to webpages and files."
+								SmallImageSource="pack://application:,,,/Daytimer.Images;component/Images/hyperlink.png"
+								Command="local:MainWindow.HyperlinkCommand" />
+					</Ribbon:RibbonGroup>
+				</Ribbon:RibbonTab>
+			</Ribbon:Ribbon>
+			<StackPanel x:Name="messageBar" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Vertical"
+					ext:WindowChrome.IsHitTestVisibleInChrome="True" ClipToBounds="True" Visibility="Collapsed" />
+			<Grid x:Name="mainGrid" Grid.Column="1" Grid.Row="2" ClipToBounds="True" Background="Transparent"
+					ext:WindowChrome.IsHitTestVisibleInChrome="True">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition />
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<Dock:DockTarget x:Name="leftDock" DockLocation="Left" Panel.ZIndex="10" />
+				<Grid x:Name="panelsGrid" ClipToBounds="True" Background="Transparent" Grid.Column="1">
+					<Grid x:Name="calendarGrid" Panel.ZIndex="1" ClipToBounds="True" />
+					<Image x:Name="copyViewGrid" Stretch="None" Visibility="Collapsed" Panel.ZIndex="2"
+							HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="LowQuality"
+							IsHitTestVisible="False" />
+				</Grid>
+				<Display:DockedPeekContainer x:Name="dockedPeeks" Grid.Column="2" Width="0" />
+				<Dock:DockTarget x:Name="rightDock" Grid.Column="3" DockLocation="Right" />
+			</Grid>
+			<Controls:MainTabsSortPanel x:Name="textRadios" Grid.Column="1" Grid.Row="3" Height="45"
+					Orientation="Horizontal" BorderBrush="{DynamicResource RibbonBorder}" BorderThickness="0,1,0,0"
+					Background="{DynamicResource TextRadioBackground}" Padding="10,0,0,2"
+					DragStart="textRadios_DragStart" ItemReordered="textRadios_ItemReordered" />
+			<Controls:MainTabsSortPanel x:Name="imageRadios" Grid.Row="2" Grid.RowSpan="2" Orientation="Vertical"
+					Padding="0,7" Visibility="Collapsed" BorderBrush="{DynamicResource RibbonBorder}"
+					BorderThickness="0,0,1,0" VerticalContentAlignment="Bottom" DragStart="imageRadios_DragStart"
+					ItemReordered="imageRadios_ItemReordered" />
+			<Controls:StatusStrip x:Name="statusStrip" Grid.ColumnSpan="2" Grid.Row="4"
+					OnSliderValueChangedEvent="statusStrip_OnSliderValueChangedEvent"
+					SyncCompleted="statusStrip_SyncCompleted" />
+		</Grid>
+		<Border x:Name="windowBorder" BorderThickness="1" BorderBrush="#FF828282" Panel.ZIndex="100"
+				RibbonControls:BackstageController.CollapseOnOpen="False" IsHitTestVisible="False" />
+		<!--<Image x:Name="copyWindowImg" Panel.ZIndex="10000" RenderOptions.BitmapScalingMode="LowQuality"
+				IsHitTestVisible="False" />-->
+	</Grid>
+</Window>

@@ -1,0 +1,50 @@
+﻿<FlowDocument x:Uid="FlowDocument_1" FontSize="14.667" FontFamily="Calibri" Background="White"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<FlowDocument.Resources>
+		<Style x:Uid="Style_1" TargetType="{x:Type Paragraph}">
+			<Setter x:Uid="Setter_1" Property="Margin" Value="0" />
+			<Setter x:Uid="Setter_2" Property="BorderBrush" Value="#FF040404" />
+		</Style>
+	</FlowDocument.Resources>
+	<Paragraph x:Uid="Title" x:Name="Title" FontFamily="Segoe UI Light" FontSize="29" Foreground="#FF809EC2" Margin="0,10,0,40" />
+	<Table x:Uid="Table_1">
+		<Table.Columns>
+			<TableColumn x:Uid="TableColumn_1" Width="150" />
+			<TableColumn x:Uid="TableColumn_2" Width="475" />
+		</Table.Columns>
+		<Table.Resources>
+			<Style x:Uid="Style_2" TargetType="TableCell">
+				<Setter x:Uid="Setter_3" Property="BorderThickness" Value="1" />
+				<Setter x:Uid="Setter_4" Property="BorderBrush" Value="White" />
+			</Style>
+		</Table.Resources>
+		<TableRowGroup x:Uid="TableRowGroup_1">
+			<TableRow x:Uid="TableRow_1">
+				<TableCell x:Uid="TableCell_1">
+					<Paragraph x:Uid="Paragraph_1">Created:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_2">
+					<Paragraph x:Uid="Created" x:Name="Created" />
+				</TableCell>
+			</TableRow>
+			<TableRow x:Uid="TableRow_2">
+				<TableCell x:Uid="TableCell_3">
+					<Paragraph x:Uid="Paragraph_2">Notebook:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_4">
+					<Paragraph x:Uid="Notebook" x:Name="Notebook" />
+				</TableCell>
+			</TableRow>
+			<TableRow x:Uid="TableRow_3">
+				<TableCell x:Uid="TableCell_5">
+					<Paragraph x:Uid="Paragraph_3">Section:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_6">
+					<Paragraph x:Uid="Section" x:Name="Section" />
+				</TableCell>
+			</TableRow>
+		</TableRowGroup>
+	</Table>
+	<Section x:Uid="Details" x:Name="Details" />
+</FlowDocument>

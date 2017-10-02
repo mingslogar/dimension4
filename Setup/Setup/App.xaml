@@ -1,0 +1,20 @@
+﻿<Application x:Class="Setup.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml">
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Daytimer.Styles\Resources\Button.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\CaptionButtons.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\CheckBox.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\ContextMenu.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\ProgressBar.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\RadioButton.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\ScrollBar.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\TextBox.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\ToolTip.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\ComboBox.xaml" />
+				<ResourceDictionary Source="Daytimer.Styles\Resources\ComboBoxItem.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>

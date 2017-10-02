@@ -1,0 +1,65 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary">
+	<Style TargetType="Ribbon:RibbonGallery">
+		<Setter Property="ContextMenu">
+			<Setter.Value>
+				<ContextMenu Height="0" Width="0" />
+			</Setter.Value>
+		</Setter>
+		<Setter Property="BorderThickness" Value="0" />
+		<Setter Property="Padding" Value="0" />
+		<Setter Property="Margin" Value="0,-2,0,0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Ribbon:RibbonGallery}">
+					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+							SnapsToDevicePixels="True">
+						<!--<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition />
+							</Grid.RowDefinitions>
+							<Grid x:Name="FilterHost">
+								<ContentPresenter x:Name="PART_FilterContentPane"
+										ContentTemplate="{TemplateBinding FilterPaneContentTemplate}"
+										Content="{TemplateBinding FilterPaneContent}" ContentSource="FilterPaneContent" />
+								<Ribbon:RibbonFilterMenuButton x:Name="PART_FilterMenuButton"
+										HorizontalContentAlignment="Left" Style="{TemplateBinding FilterMenuButtonStyle}"
+										Visibility="Collapsed" />
+							</Grid>-->
+						<ScrollViewer x:Name="PART_ScrollViewer" Focusable="False" Padding="{TemplateBinding Padding}"
+								Grid.Row="1" VerticalScrollBarVisibility="Auto">
+							<ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Continue"
+									HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+						</ScrollViewer>
+						<!--</Grid>-->
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Background" TargetName="Border"
+									Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+						</Trigger>
+						<!--<Trigger Property="CanUserFilter" Value="False">
+							<Setter Property="Visibility" TargetName="FilterHost" Value="Collapsed" />
+						</Trigger>
+						<MultiTrigger>
+							<MultiTrigger.Conditions>
+								<Condition Property="FilterPaneContent" Value="{x:Null}" />
+								<Condition Property="FilterPaneContentTemplate" Value="{x:Null}" />
+							</MultiTrigger.Conditions>
+							<Setter Property="Visibility" TargetName="PART_FilterMenuButton" Value="Visible" />
+							<Setter Property="Visibility" TargetName="PART_FilterContentPane" Value="Collapsed" />
+						</MultiTrigger>-->
+						<DataTrigger Binding="{Binding HighContrast}" Value="True">
+							<Setter Property="Background" TargetName="Border" Value="Transparent" />
+							<Setter Property="BorderBrush" TargetName="Border"
+									Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+						</DataTrigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

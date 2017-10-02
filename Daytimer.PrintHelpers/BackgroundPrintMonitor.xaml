@@ -1,0 +1,60 @@
+﻿<Button x:Class="Daytimer.PrintHelpers.BackgroundPrintMonitor"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:fundamentals="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals" mc:Ignorable="d"
+		d:DesignHeight="22" Foreground="#FFFCFDFE" MinWidth="0" MinHeight="0" FocusVisualStyle="{x:Null}">
+	<Button.Template>
+		<ControlTemplate TargetType="Button">
+			<Border x:Name="bg" Background="Transparent" Padding="12,0">
+				<ContentPresenter />
+			</Border>
+			<!--<ControlTemplate.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" TargetName="bg" Value="#30FFFFFF" />
+				</Trigger>
+				<Trigger Property="IsPressed" Value="True">
+					<Setter Property="Background" TargetName="bg" Value="#20000000" />
+				</Trigger>
+			</ControlTemplate.Triggers>-->
+		</ControlTemplate>
+	</Button.Template>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Image x:Name="exclamation"
+				Source="pack://application:,,,/Daytimer.Images;component/Images/yellowexclamation.png"
+				HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="None" Visibility="Collapsed"
+				Margin="0,0,4,0" />
+		<TextBlock x:Name="status" VerticalAlignment="Center" HorizontalAlignment="Left"
+				TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Text="PRINTING DOCUMENT" Grid.Column="1" />
+		<fundamentals:StatusStripProgressBar x:Name="progress" Grid.Column="2" Value="50" Minimum="0" Maximum="100"
+				IsIndeterminate="True" Margin="4,0,0,0" />
+		<Button x:Name="cancelButton" Grid.Column="3" Margin="11,0,0,0" VerticalAlignment="Center" Width="NaN"
+				Height="NaN" MinWidth="0" MinHeight="0" Click="cancelButton_Click">
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
+					<Border Padding="2" Background="Transparent">
+						<Grid>
+							<Path x:Name="circle" Data="M 12 6 A 6 6 0 1 1 12 5.9 Z" Stroke="#FFFCFDFE"
+									StrokeThickness="1" VerticalAlignment="Top" />
+							<Path x:Name="xMark" Data="M 3 3.5 8.5 8.5 M 3.5 8.5 8.5 3.5" Stroke="#FFFCFDFE"
+									StrokeThickness="1" VerticalAlignment="Top" />
+						</Grid>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Fill" TargetName="circle" Value="#FFFCFDFE" />
+							<Setter Property="Stroke" TargetName="xMark" Value="{DynamicResource StatusStripBackground}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
+	</Grid>
+</Button>

@@ -1,0 +1,131 @@
+﻿<Button x:Class="Daytimer.Controls.Panes.Weather.Place"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" Height="144" Width="354"
+		BorderThickness="2" Background="Transparent" Margin="0,10,0,0" HorizontalAlignment="Left"
+		FocusVisualStyle="{x:Null}">
+	<Button.Template>
+		<ControlTemplate TargetType="Button">
+			<Border BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+					RenderTransformOrigin="0.5,0.5">
+				<Border.RenderTransform>
+					<ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1" />
+				</Border.RenderTransform>
+				<Border.BorderBrush>
+					<SolidColorBrush x:Name="border" Color="#10000000" />
+				</Border.BorderBrush>
+				<ContentPresenter />
+				<VisualStateManager.VisualStateGroups>
+					<VisualStateGroup x:Name="CommonStates">
+						<VisualState x:Name="Normal">
+							<Storyboard>
+								<DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" To="1"
+										Duration="0:0:0.3">
+									<DoubleAnimation.EasingFunction>
+										<QuarticEase />
+									</DoubleAnimation.EasingFunction>
+								</DoubleAnimation>
+								<DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" To="1"
+										Duration="0:0:0.3">
+									<DoubleAnimation.EasingFunction>
+										<QuarticEase />
+									</DoubleAnimation.EasingFunction>
+								</DoubleAnimation>
+								<ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Color"
+										To="#10000000" Duration="0" />
+							</Storyboard>
+						</VisualState>
+						<VisualState x:Name="MouseOver">
+							<Storyboard>
+								<DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX" To="1"
+										Duration="0:0:0.3">
+									<DoubleAnimation.EasingFunction>
+										<QuarticEase />
+									</DoubleAnimation.EasingFunction>
+								</DoubleAnimation>
+								<DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY" To="1"
+										Duration="0:0:0.3">
+									<DoubleAnimation.EasingFunction>
+										<QuarticEase />
+									</DoubleAnimation.EasingFunction>
+								</DoubleAnimation>
+								<ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Color"
+										To="#50000000" Duration="0" />
+							</Storyboard>
+						</VisualState>
+						<VisualState x:Name="Pressed">
+							<Storyboard>
+								<DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleX"
+										To="0.95" Duration="0:0:0.3">
+									<DoubleAnimation.EasingFunction>
+										<QuarticEase />
+									</DoubleAnimation.EasingFunction>
+								</DoubleAnimation>
+								<DoubleAnimation Storyboard.TargetName="scale" Storyboard.TargetProperty="ScaleY"
+										To="0.95" Duration="0:0:0.3">
+									<DoubleAnimation.EasingFunction>
+										<QuarticEase />
+									</DoubleAnimation.EasingFunction>
+								</DoubleAnimation>
+								<ColorAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="Color"
+										To="#50000000" Duration="0" />
+							</Storyboard>
+						</VisualState>
+					</VisualStateGroup>
+				</VisualStateManager.VisualStateGroups>
+			</Border>
+		</ControlTemplate>
+	</Button.Template>
+	<Button.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="../../CancelEditButton.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Button.Resources>
+	<Grid Margin="19">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<TextBlock x:Name="city" Text="New York City, New York" FontSize="15" TextTrimming="CharacterEllipsis"
+				Margin="0,0,13,0" IsHitTestVisible="False" />
+		<Grid Grid.Row="1" x:Name="current" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"
+				IsHitTestVisible="False">
+			<Grid.RenderTransform>
+				<ScaleTransform x:Name="currentScale" />
+			</Grid.RenderTransform>
+			<Grid.CacheMode>
+				<BitmapCache />
+			</Grid.CacheMode>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<TextBlock x:Name="temp" Text="--&#176;" FontSize="55"
+					FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light" Margin="0,-5,0,0"
+					TextOptions.TextFormattingMode="Ideal" />
+			<TextBlock x:Name="clouds" Grid.Row="1" Text="Loading..." />
+		</Grid>
+		<Grid Grid.Row="1" x:Name="overview" Opacity="0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left"
+				IsHitTestVisible="False">
+			<Grid.RenderTransform>
+				<ScaleTransform x:Name="overviewScale" />
+			</Grid.RenderTransform>
+			<Grid.CacheMode>
+				<BitmapCache />
+			</Grid.CacheMode>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<TextBlock x:Name="hilo" Text="--&#176; / --&#176;" FontSize="55"
+					FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light" Margin="0,-5,0,0"
+					TextOptions.TextFormattingMode="Ideal" />
+			<TextBlock Grid.Row="1" Text="High/Low" />
+		</Grid>
+		<Button x:Name="deleteButton" Grid.RowSpan="2" Style="{StaticResource closeButton}" Margin="0,-10,-10,0"
+				ToolTip="Remove this location" Click="deleteButton_Click" />
+	</Grid>
+</Button>

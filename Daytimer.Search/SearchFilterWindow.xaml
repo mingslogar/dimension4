@@ -1,0 +1,19 @@
+﻿<fundamentals:BalloonTip  x:Class="Daytimer.Search.SearchFilterWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:fundamentals="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals"
+		Title="Search Filter Window" ContentWidth="NaN" ContentHeight="NaN" IsToolTip="False">
+	<ListBox  x:Name="ListBox" SelectionChanged="ListBox_SelectionChanged" LostKeyboardFocus="ListBox_LostKeyboardFocus">
+		<ListBox.Resources>
+			<Style  TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}">
+				<Setter  Property="HorizontalContentAlignment" Value="Stretch" />
+				<Setter  Property="Padding" Value="10,5" />
+			</Style>
+		</ListBox.Resources>
+		<ListBoxItem  Content="Appointments" />
+		<ListBoxItem  Content="Contacts" />
+		<ListBoxItem  Content="Tasks" />
+		<ListBoxItem  Content="Notes" />
+		<ListBoxItem  Content="All Items" />
+	</ListBox>
+</fundamentals:BalloonTip>

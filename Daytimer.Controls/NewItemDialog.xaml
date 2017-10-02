@@ -1,0 +1,136 @@
+﻿<dialog:DialogBase x:Class="Daytimer.Controls.NewItemDialog"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:dialog="clr-namespace:Daytimer.Dialogs;assembly=Daytimer.Dialogs"
+		xmlns:RibbonControls="clr-namespace:Daytimer.Controls.Ribbon" Title="New Item" Height="290" Width="575"
+		ShowInTaskbar="False" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" IsTitleVisible="False">
+	<Grid>
+		<Grid.Resources>
+			<Style x:Key="navButton" TargetType="Button">
+				<Setter Property="Width" Value="40" />
+				<Setter Property="Height" Value="40" />
+				<Setter Property="Margin" Value="10,-15,10,15" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="Background" Value="Transparent" />
+				<Setter Property="Cursor" Value="Hand" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="Button">
+							<Border BorderThickness="2" BorderBrush="#000" CornerRadius="20"
+									Background="{TemplateBinding Background}">
+								<Path StrokeThickness="0" Fill="#FF000000" HorizontalAlignment="Center"
+										IsHitTestVisible="False" VerticalAlignment="Center"
+										Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
+										Data="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="Background" Value="#10000000" />
+								</Trigger>
+								<Trigger Property="IsPressed" Value="True">
+									<Setter Property="Background" Value="#50000000" />
+								</Trigger>
+								<Trigger Property="IsEnabled" Value="False">
+									<Setter Property="Opacity" Value="0.2" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</Grid.Resources>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid x:Name="slideContainer" Grid.Column="1" ClipToBounds="True" IsHitTestVisible="False">
+			<Grid Background="Transparent"
+					Tag="pack://application:,,,/Daytimer.Images;component/Images/newappointment.png">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<Image Grid.RowSpan="2"
+						Source="pack://application:,,,/Daytimer.Images;component/Images/newappointment.png"
+						RenderOptions.BitmapScalingMode="NearestNeighbor" Width="201" VerticalAlignment="Top" />
+				<TextBlock Foreground="{DynamicResource DialogTitle}" FontSize="29" Margin="25,15,25,10"
+						TextWrapping="Wrap" Text="Appointment" Grid.Column="1" />
+				<TextBlock Grid.Row="1" Grid.Column="1" Margin="25,15,25,15"
+						Foreground="{DynamicResource DialogContent}" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+						FontSize="12" LineHeight="17px"
+						Text="Create your appointment, add details like time and location, and set a reminder so you don't forget about it." />
+			</Grid>
+			<Grid Background="Transparent" Visibility="Collapsed"
+					Tag="pack://application:,,,/Daytimer.Images;component/Images/newcontact.png">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<Image Grid.RowSpan="2" Source="pack://application:,,,/Daytimer.Images;component/Images/contact_xl.png"
+						Width="201" VerticalAlignment="Top" />
+				<TextBlock Foreground="{DynamicResource DialogTitle}" FontSize="29" Margin="25,15,25,10"
+						TextWrapping="Wrap" Text="Contact" Grid.Column="1" />
+				<TextBlock Grid.Row="1" Grid.Column="1" Margin="25,15,25,15"
+						Foreground="{DynamicResource DialogContent}" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+						FontSize="12" LineHeight="17px"
+						Text="Write down the important things about the people you know, such as birthdays, addresses, and phone numbers." />
+			</Grid>
+			<Grid Background="Transparent" Visibility="Collapsed"
+					Tag="pack://application:,,,/Daytimer.Images;component/Images/newtask.png">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<Image Grid.RowSpan="2" Source="pack://application:,,,/Daytimer.Images;component/Images/task_xl.png"
+						Width="201" VerticalAlignment="Top" />
+				<TextBlock Foreground="{DynamicResource DialogTitle}" FontSize="29" Margin="25,15,25,10"
+						TextWrapping="Wrap" Text="Task" Grid.Column="1" />
+				<TextBlock Grid.Row="1" Grid.Column="1" Margin="25,15,25,15"
+						Foreground="{DynamicResource DialogContent}" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+						FontSize="12" LineHeight="17px"
+						Text="Keep a prioritized list of the things you want to finish, so you never run late on another deadline." />
+			</Grid>
+			<Grid Background="Transparent" Visibility="Collapsed"
+					Tag="pack://application:,,,/Daytimer.Images;component/Images/newnote.png">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<Image Grid.RowSpan="2" Source="pack://application:,,,/Daytimer.Images;component/Images/note_xl.png"
+						RenderOptions.BitmapScalingMode="NearestNeighbor" Width="201" VerticalAlignment="Top" />
+				<TextBlock Foreground="{DynamicResource DialogTitle}" FontSize="29" Margin="25,15,25,10"
+						TextWrapping="Wrap" Text="Note" Grid.Column="1" />
+				<TextBlock Grid.Row="1" Grid.Column="1" Margin="25,15,25,15"
+						Foreground="{DynamicResource DialogContent}" TextWrapping="Wrap" TextTrimming="WordEllipsis"
+						FontSize="12" LineHeight="17px"
+						Text="Create a new note, which can be organized into sections and notebooks." />
+			</Grid>
+			<Image x:Name="screenshot" />
+		</Grid>
+		<RibbonControls:BackstageSquareButton x:Name="createButton" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1"
+				HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"
+				Image="pack://application:,,,/Daytimer.Images;component/Images/newappointment.png" Text="Create"
+				Click="createButton_Click" />
+		<Button x:Name="prevButton" Style="{StaticResource navButton}" Click="prevButton_Click"
+				Content="M 10 0 0 7 10 14 Z" Tag="-2,0,2,0" IsEnabled="False" />
+		<Button x:Name="nextButton" Grid.Column="2" Style="{StaticResource navButton}" Click="nextButton_Click"
+				Content="M 0 0 10 7 0 14 Z" Tag="1.5,0,-1.5,0" />
+	</Grid>
+</dialog:DialogBase>

@@ -1,0 +1,654 @@
+﻿<Grid x:Class="Daytimer.Controls.Ribbon.OptionsControl"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+		xmlns:local="clr-namespace:Daytimer.Controls" mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="700"
+		ClipToBounds="True" Background="Transparent" TextElement.Foreground="{DynamicResource Black}"
+		Margin="40,0,58,38">
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition />
+	</Grid.ColumnDefinitions>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition />
+	</Grid.RowDefinitions>
+	<TextBlock Text="Options" FontSize="40" FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light"
+			Foreground="{DynamicResource BackstageSubHeaderForeground}" />
+	<TabControl x:Name="tabControl" Grid.Row="1" TabStripPlacement="Left" Margin="0,42,0,0" SelectedIndex="0"
+			SelectionChanged="tabControl_SelectionChanged">
+		<TabControl.Resources>
+			<Style TargetType="TabItem">
+				<Setter Property="Width" Value="136" />
+				<Setter Property="Height" Value="27" />
+				<Setter Property="HorizontalContentAlignment" Value="Left" />
+				<Setter Property="VerticalContentAlignment" Value="Top" />
+				<Setter Property="Foreground" Value="{DynamicResource Black}" />
+				<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="TabItem">
+							<Border x:Name="Border" Background="Transparent" BorderThickness="1"
+									BorderBrush="Transparent">
+								<ContentPresenter Content="{TemplateBinding Header}" HorizontalAlignment="Left"
+										VerticalAlignment="Center" Margin="10,0" IsHitTestVisible="False" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsSelected" Value="False" />
+										<Condition Property="IsMouseOver" SourceName="Border" Value="True" />
+									</MultiTrigger.Conditions>
+									<Setter Property="Background" TargetName="Border"
+											Value="{DynamicResource RibbonMouseOver}" />
+									<Setter Property="BorderBrush" TargetName="Border"
+											Value="{DynamicResource RibbonMouseOver}" />
+								</MultiTrigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsSelected" Value="True" />
+										<Condition Property="IsMouseOver" SourceName="Border" Value="True" />
+									</MultiTrigger.Conditions>
+									<Setter Property="Background" TargetName="Border"
+											Value="{DynamicResource RibbonMouseOver}" />
+									<Setter Property="BorderBrush" TargetName="Border"
+											Value="{DynamicResource RibbonPressed}" />
+								</MultiTrigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsSelected" Value="True" />
+										<Condition Property="IsMouseOver" SourceName="Border" Value="False" />
+									</MultiTrigger.Conditions>
+									<Setter Property="Background" TargetName="Border"
+											Value="{DynamicResource RibbonPressed}" />
+									<Setter Property="BorderBrush" TargetName="Border"
+											Value="{DynamicResource RibbonPressed}" />
+								</MultiTrigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+			<Style TargetType="Image" x:Key="InfoTip">
+				<Setter Property="Source" Value="pack://application:,,,/Daytimer.Images;component/Images/infotip.png" />
+				<Setter Property="Stretch" Value="None" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="HorizontalAlignment" Value="Left" />
+				<Setter Property="Margin" Value="5,0,0,0" />
+				<Setter Property="IsHitTestVisible" Value="False" />
+			</Style>
+		</TabControl.Resources>
+		<TabControl.Template>
+			<ControlTemplate TargetType="{x:Type TabControl}">
+				<Grid ClipToBounds="True" SnapsToDevicePixels="False" UseLayoutRounding="True"
+						KeyboardNavigation.TabNavigation="Local">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
+					<TabPanel IsItemsHost="True" Margin="2,2,1,2" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1" />
+					<Line Stroke="#FFE1E1E1" StrokeThickness="1" Width="1" HorizontalAlignment="Right" Y2="1"
+							Stretch="Fill" IsHitTestVisible="False" />
+					<Border x:Name="ContentPanel" Grid.Column="1" KeyboardNavigation.DirectionalNavigation="Contained"
+							KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local"
+							SnapsToDevicePixels="False" RenderTransformOrigin="0.5,0.5">
+						<Border.RenderTransform>
+							<TranslateTransform x:Name="ContentPanelTransform" />
+						</Border.RenderTransform>
+						<Border.CacheMode>
+							<BitmapCache SnapsToDevicePixels="False" />
+						</Border.CacheMode>
+						<ContentPresenter Content="{TemplateBinding SelectedContent}" ContentSource="SelectedContent"
+								Margin="35,8" SnapsToDevicePixels="False" />
+					</Border>
+				</Grid>
+			</ControlTemplate>
+		</TabControl.Template>
+		<TabItem x:Name="generalTab" Header="General">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/general.png" Stretch="None"
+							Margin="0,0,8,0" />
+					<TextBlock Text="General" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0"
+						Text="General options for working with Dimension 4" />
+				<StackPanel Orientation="Horizontal" Grid.Row="4" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Auto save:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Auto Save"
+								Description="Save recovery information automatically at a set interval." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<local:MinutesDropDown x:Name="editAutoSave" EnableZero="False" Grid.Row="4" Grid.Column="1" Height="22"
+						Width="120" SelectionChanged="editAutoSave_SelectionChanged">
+					<ComboBoxItem Content="None" />
+					<ComboBoxItem Content="5 minutes" />
+					<ComboBoxItem Content="10 minutes" />
+					<ComboBoxItem Content="15 minutes" />
+					<ComboBoxItem Content="30 minutes" />
+					<ComboBoxItem Content="1 hour" />
+					<ComboBoxItem Content="2 hours" />
+					<ComboBoxItem Content="0.5 days" />
+					<ComboBoxItem Content="18 hours" />
+					<ComboBoxItem Content="1 day" />
+				</local:MinutesDropDown>
+				<TextBlock Grid.Row="5" Text="Reminder sound:" />
+				<ComboBox x:Name="editReminderSound" Grid.Row="5" Grid.Column="1" Width="120" Height="22"
+						HorizontalAlignment="Left" VerticalAlignment="Center"
+						SelectionChanged="editReminderSound_SelectionChanged" />
+				<Button x:Name="playReminderSound" Grid.Column="2" Grid.Row="5" MinWidth="0" Width="22" Height="22"
+						Click="playReminderSound_Click" Tag="Play" Margin="5,0,0,0" Padding="0">
+					<!--<Path Stroke="{DynamicResource Black}" Data="M 0.5 0 5.5 5 0.5 10 Z" Margin="1,0,-1,0" />-->
+					<Path x:Name="playPauseData" Stroke="{DynamicResource Black}" Data="M 1.5 0 6.5 5 1.5 10 Z"
+							Fill="{DynamicResource Black}" />
+					<Button.ToolTip>
+						<ribbon:RibbonToolTip Title="Play" Description="Preview the selected reminder sound." />
+					</Button.ToolTip>
+				</Button>
+				<MediaElement x:Name="reminderSoundMedia" Visibility="Collapsed" Volume="1" LoadedBehavior="Manual"
+						MediaEnded="reminderSoundMedia_MediaEnded" Unloaded="reminderSoundMedia_Unloaded" />
+				<StackPanel Orientation="Horizontal" Grid.Row="6" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Reminder volume:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Reminder Volume"
+								Description="Speakers will be unmuted and set to 100% when a reminder is played." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="editAlwaysReminder" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Content="Force 100%" />
+				<StackPanel Orientation="Horizontal" Grid.Row="7" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Time format:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Time Format"
+								Description="Midnight in 12-hour time would be displayed as 12:00 AM and in 24-hour time as 00:00." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<ComboBox x:Name="editTimeFormat" Grid.Row="7" Grid.Column="1" Width="120" Height="22"
+						HorizontalAlignment="Left" VerticalAlignment="Center"
+						SelectionChanged="editTimeFormat_SelectionChanged">
+					<ComboBoxItem Content="12 hour (AM/PM)" />
+					<ComboBoxItem Content="24 hour (Universal)" />
+				</ComboBox>
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="appearanceTab" Header="Appearance">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/colors.png" Stretch="None"
+							Margin="0,0,8,0" />
+					<TextBlock Text="Appearance" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0" Text="Customize how Dimension 4 looks" />
+				<TextBlock Grid.Row="4" Text="Animations:" />
+				<CheckBox x:Name="editAnimationsEnabled" Grid.Column="1" Grid.Row="4" Content="Enabled"
+						VerticalAlignment="Center" HorizontalAlignment="Left" Checked="editAnimationsEnabled_Checked"
+						Unchecked="editAnimationsEnabled_Unchecked" />
+				<TextBlock Grid.Row="5" Text="Theme color:" />
+				<local:ColorPicker x:Name="editTheme" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Width="50" Height="22" Margin="0,2"
+						SelectionChanged="editTheme_SelectionChanged" />
+				<TextBlock Grid.Row="6" Text="Background:" />
+				<ComboBox x:Name="editBackground" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Width="120" Height="22"
+						SelectionChanged="editBackground_SelectionChanged">
+					<ComboBoxItem Content="None" />
+					<ComboBoxItem Content="Calligraphy" />
+					<ComboBoxItem Content="Circles and Stripes" />
+					<ComboBoxItem Content="Circuit" />
+					<ComboBoxItem Content="Clouds" />
+					<ComboBoxItem Content="Doodle Circles" />
+					<ComboBoxItem Content="Doodle Diamonds" />
+					<ComboBoxItem Content="Geometry" />
+					<ComboBoxItem Content="Lunchbox" />
+					<!--<ComboBoxItem Content="Mechanical" />-->
+					<ComboBoxItem Content="School Supplies" />
+					<ComboBoxItem Content="Spring" />
+					<ComboBoxItem Content="Stars" />
+					<ComboBoxItem Content="Straws" />
+					<ComboBoxItem Content="Tree Rings" />
+					<ComboBoxItem Content="Underwater" />
+				</ComboBox>
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="calendarTab" Header="Calendar">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/calendar.png" Stretch="None"
+							Margin="0,0,8,0" />
+					<TextBlock Text="Calendar" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0"
+						Text="Change settings for the calendar pane" />
+				<TextBlock Grid.Row="4" Text="Default reminders:" />
+				<local:MinutesDropDown x:Name="editReminder" Grid.Column="1" Grid.Row="4" Height="22" Width="120">
+					<ComboBoxItem Content="None" />
+					<ComboBoxItem Content="At start time" />
+					<ComboBoxItem Content="5 minutes" />
+					<ComboBoxItem Content="15 minutes" />
+					<ComboBoxItem Content="30 minutes" />
+					<ComboBoxItem Content="1 hour" />
+					<ComboBoxItem Content="2 hours" />
+					<ComboBoxItem Content="4 hours" />
+					<ComboBoxItem Content="0.5 days" />
+					<ComboBoxItem Content="18 hours" />
+					<ComboBoxItem Content="1 day" />
+					<ComboBoxItem Content="2 days" />
+					<ComboBoxItem Content="4 days" />
+					<ComboBoxItem Content="1 week" />
+					<ComboBoxItem Content="2 weeks" />
+				</local:MinutesDropDown>
+				<StackPanel Orientation="Horizontal" Grid.Row="5" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Snap to grid:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Snap to Grid"
+								Description="Lock appointments to fixed intervals when dragging." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="editSnaptoGrid" Grid.Row="5" Grid.Column="1" Content="Enabled"
+						VerticalAlignment="Center" HorizontalAlignment="Left" />
+				<TextBlock Grid.Row="6" Text="Work start time:" />
+				<local:TimeDropDown x:Name="editWorkStart" Height="22" Width="120" Grid.Column="1" Grid.Row="6"
+						HorizontalAlignment="Left" SelectionChanged="editWorkStart_SelectionChanged" />
+				<TextBlock Grid.Row="7" Text="Work end time:" />
+				<local:TimeDropDown x:Name="editWorkEnd" Height="22" Width="120" Grid.Column="1" Grid.Row="7"
+						HorizontalAlignment="Left" SelectionChanged="editWorkEnd_SelectionChanged" />
+				<TextBlock Grid.Row="8" Text="Work week:" />
+				<StackPanel x:Name="workWeekGrid" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Orientation="Horizontal">
+					<StackPanel.Resources>
+						<Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+							<Setter Property="Margin" Value="0,0,15,0" />
+							<EventSetter Event="Click" Handler="workWeek_Click" />
+						</Style>
+					</StackPanel.Resources>
+					<CheckBox Content="Sun" />
+					<CheckBox Content="Mon" />
+					<CheckBox Content="Tue" />
+					<CheckBox Content="Wed" />
+					<CheckBox Content="Thu" />
+					<CheckBox Content="Fri" />
+					<CheckBox Content="Sat" />
+				</StackPanel>
+				<StackPanel Orientation="Horizontal" Grid.Row="9" Background="Transparent" HorizontalAlignment="Left"
+						Visibility="{Binding Visibility, ElementName=editQuotesButton}">
+					<TextBlock Text="Quotes source:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Quotes Source"
+								Description="Edit the topics used to show quotes on the calendar." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<Button x:Name="editQuotesButton" Grid.Column="1" Grid.Row="9" HorizontalAlignment="Left" Height="25"
+						Width="85" VerticalAlignment="Center" Content="_Edit" Click="editQuotesButton_Click" />
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="peopleTab" Header="People">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/newcontact.png"
+							Stretch="None" Margin="0,0,8,0" />
+					<TextBlock Text="People" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0"
+						Text="Change how you work with your contacts" />
+				<StackPanel Orientation="Horizontal" Grid.Row="4" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Check for duplicates:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Check For Duplicates"
+								Description="Check for duplicates when saving new contacts." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="editPeopleCheckDuplicate" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Content="Enable" />
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="tasksTab" Header="Tasks">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/newtask.png" Stretch="None"
+							Margin="0,0,8,0" />
+					<TextBlock Text="Tasks" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0"
+						Text="Change the setings that track your tasks and to-do items" />
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="weatherTab" Header="Weather">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/weather.png" Stretch="None"
+							Margin="0,0,8,0" />
+					<TextBlock Text="Weather" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0"
+						Text="Change how you want to view your weather" />
+				<TextBlock Text="Display units:" Grid.Row="4" />
+				<ComboBox x:Name="editWeatherMetric" Grid.Row="4" Grid.Column="1" Width="120" Height="22"
+						HorizontalAlignment="Left" VerticalAlignment="Center"
+						SelectionChanged="editWeatherMetric_SelectionChanged">
+					<ComboBoxItem Content="Standard (U.S.)" />
+					<ComboBoxItem Content="Metric (S.I.)" />
+				</ComboBox>
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="searchTab" Header="Search">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/searchoptns.png"
+							Stretch="None" Margin="0,0,8,0" />
+					<TextBlock Text="Search" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0"
+						Text="Change how items are searched with Instant Search" />
+				<StackPanel Orientation="Horizontal" Grid.Row="4" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Max results:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Max Results"
+								Description="The number of results shown at a time; more results will always be available if applicable." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<local:IntegerDropDown x:Name="editMaxSearchResults" Grid.Column="1" Grid.Row="4"
+						HorizontalAlignment="Left" VerticalAlignment="Center" Width="120" Height="22" />
+				<StackPanel Orientation="Horizontal" Grid.Row="5" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Limit instant search:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Limit Instant Search"
+								Description="Place a limit on the length of a search query for which instant results will be retrieved."
+								FooterDescription="The maximum query length is based off of your system capabilities." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="editInstantSearchCap" Grid.Column="1" Grid.Row="5" VerticalAlignment="Center"
+						HorizontalAlignment="Left" Content="Enable" />
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="proofingTab" Header="Proofing">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/text.png" Stretch="None"
+							Margin="0,0,8,0" />
+					<TextBlock Text="Proofing" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0" Text="Change how Dimension 4 handles text" />
+				<TextBlock Grid.Row="4" Text="Spell checking:" />
+				<CheckBox x:Name="editSpellChecking" Grid.Row="4" Grid.Column="1" Content="Enable"
+						HorizontalAlignment="Left" VerticalAlignment="Center" />
+				<TextBlock Grid.Row="5" Text="Custom dictionary:" />
+				<Button x:Name="editButton" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Height="25"
+						Width="85" VerticalAlignment="Center" Content="_Edit"
+						IsEnabled="{Binding IsChecked, ElementName=editSpellChecking}" Click="editButton_Click" />
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="experimentsTab" Header="Experiments">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/experimentsoptns.png"
+							Stretch="None" Margin="0,0,8,0" />
+					<TextBlock Text="Experiments" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0"
+						Text="Enable features which have not yet been fully tested" />
+				<StackPanel Orientation="Horizontal" Grid.Row="4" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Mini toolbar:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Mini Toolbar"
+								Description="Show the experimental Mini Toolbar when you select text."
+								FooterDescription="The Mini Toolbar provides quick access to formatting tools." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="miniToolbar" Grid.Row="4" Grid.Column="1" Content="Enable" HorizontalAlignment="Left"
+						VerticalAlignment="Center" />
+				<StackPanel Orientation="Horizontal" Grid.Row="5" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Maps integration:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Google Maps Integration"
+								Description="Enable experimental UI which opens a map to the event location." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="googleMaps" Grid.Row="5" Grid.Column="1" Content="Enable" />
+				<StackPanel Orientation="Horizontal" Grid.Row="6" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Printing:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Printing" Description="Enable experimental printing UI." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="printing" Grid.Row="6" Grid.Column="1" Content="Enable" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Click="printing_Click" />
+				<StackPanel Orientation="Horizontal" Grid.Row="7" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Document search:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Document Search"
+								Description="Enable experimental UI which allows text to be searched inside a Rich Text box." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="documentSearch" Grid.Row="7" Grid.Column="1" Content="Enable"
+						HorizontalAlignment="Left" VerticalAlignment="Center" />
+				<StackPanel Orientation="Horizontal" Grid.Row="8" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Notes dock:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Notes Dock"
+								Description="Enable experimental UI which allows a mini-Notes pane to be docked to the side of the desktop." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="notesDock" Grid.Row="8" Grid.Column="1" Content="Enable" HorizontalAlignment="Left"
+						VerticalAlignment="Center" />
+				<StackPanel Orientation="Horizontal" Grid.Row="9" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Quotes:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Quotes"
+								Description="Enable experimental UI which allows daily quotes to be shown on the calendar." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="quotes" Grid.Row="9" Grid.Column="1" Content="Enable" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Click="quotes_Click" />
+			</Grid>
+		</TabItem>
+		<TabItem x:Name="advancedTab" Header="Advanced">
+			<Grid TextElement.FontSize="12">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="10" />
+					<RowDefinition Height="20" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+					<RowDefinition Height="30" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,4" Height="32"
+						IsHitTestVisible="False">
+					<Image Source="pack://application:,,,/Daytimer.Images;component/Images/shield.png" Stretch="None"
+							Margin="0,0,8,0" />
+					<TextBlock Text="Advanced" FontSize="18" Foreground="{DynamicResource RibbonTabHeaderActive}" />
+				</StackPanel>
+				<BulletDecorator Grid.Row="2" />
+				<TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="25,0,0,0"
+						Text="Adjust settings which affect the core of Dimension 4" />
+				<StackPanel Orientation="Horizontal" Grid.Row="4" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="CEIP:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Customer Experience Improvement Program (CEIP)"
+								Description="Dimension 4 can collect statistics about stability problems, system configuration, and features you use most frequently. This information is sent to Ming Slogar to help improve Dimension 4." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<CheckBox x:Name="editCEIP" Grid.Row="4" Grid.Column="1" Content="Sign up" HorizontalAlignment="Left"
+						VerticalAlignment="Center" Click="editCEIP_Click" />
+				<StackPanel Orientation="Horizontal" Grid.Row="5" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Reset settings:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Reset Settings"
+								Description="Set all options to their default values." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<Button x:Name="resetButton" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Height="25"
+						Width="85" VerticalAlignment="Center" Content="_Reset" Click="resetButton_Click" />
+				<StackPanel Orientation="Horizontal" Grid.Row="6" Background="Transparent" HorizontalAlignment="Left">
+					<TextBlock Text="Full reset:" />
+					<Image Style="{StaticResource InfoTip}" />
+					<StackPanel.ToolTip>
+						<ribbon:RibbonToolTip Title="Full Reset"
+								Description="Revert Dimension 4 to a clean, post install state." />
+					</StackPanel.ToolTip>
+				</StackPanel>
+				<Button x:Name="powerwashButton" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Height="25"
+						Width="85" VerticalAlignment="Center" Content="_Powerwash" Click="powerwashButton_Click" />
+			</Grid>
+		</TabItem>
+	</TabControl>
+</Grid>

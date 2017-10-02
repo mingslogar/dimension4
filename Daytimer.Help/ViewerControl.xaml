@@ -1,0 +1,188 @@
+﻿<Grid x:Class="Daytimer.Help.ViewerControl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:friction="clr-namespace:Daytimer.Controls.Friction;assembly=Daytimer.Controls"
+		xmlns:fundamentals="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals"
+		xmlns:local="clr-namespace:Daytimer.Help" mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300"
+		Margin="19,14,0,0">
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition />
+	</Grid.ColumnDefinitions>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition />
+	</Grid.RowDefinitions>
+	<Grid.Resources>
+		<Style TargetType="Button">
+			<Setter Property="Width" Value="24" />
+			<Setter Property="Height" Value="22" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ButtonBase">
+						<Border x:Name="Border" Background="Transparent">
+							<ContentPresenter />
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" TargetName="Border"
+										Value="{DynamicResource RibbonMouseOver}" />
+							</Trigger>
+							<Trigger Property="IsPressed" Value="True">
+								<Setter Property="Background" TargetName="Border"
+										Value="{DynamicResource RibbonPressed}" />
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Opacity" TargetName="Border" Value="0.5" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style TargetType="ToggleButton">
+			<Setter Property="Width" Value="24" />
+			<Setter Property="Height" Value="22" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ToggleButton">
+						<Border x:Name="Border" Background="Transparent" BorderThickness="1"
+								BorderBrush="{Binding Background, RelativeSource={RelativeSource Self}}">
+							<ContentPresenter />
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" TargetName="Border"
+										Value="{DynamicResource RibbonMouseOver}" />
+							</Trigger>
+							<Trigger Property="IsPressed" Value="True">
+								<Setter Property="Background" TargetName="Border"
+										Value="{DynamicResource RibbonPressed}" />
+							</Trigger>
+							<Trigger Property="IsChecked" Value="True">
+								<Setter Property="Background" TargetName="Border"
+										Value="{DynamicResource RibbonChecked}" />
+							</Trigger>
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}"
+											Value="True" />
+									<Condition Binding="{Binding IsChecked, RelativeSource={RelativeSource Self}}"
+											Value="True" />
+									<Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}"
+											Value="False" />
+								</MultiDataTrigger.Conditions>
+								<Setter Property="Background" TargetName="Border"
+										Value="{DynamicResource RibbonMouseOver}" />
+								<Setter Property="BorderBrush" TargetName="Border"
+										Value="{DynamicResource RibbonChecked}" />
+							</MultiDataTrigger>
+							<Trigger Property="IsEnabled" Value="False">
+								<Setter Property="Opacity" TargetName="Border" Value="0.5" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Grid.Resources>
+	<Button x:Name="backButton" Grid.Column="0">
+		<Button.Style>
+			<Style TargetType="{x:Type Button}">
+				<Setter Property="OverridesDefaultStyle" Value="True" />
+				<Setter Property="Command" Value="NavigationCommands.BrowseBack" />
+				<Setter Property="CommandTarget" Value="{Binding ElementName=webBrowser}" />
+				<Setter Property="Focusable" Value="False" />
+				<Setter Property="ToolTip" Value="Back" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="{x:Type Button}">
+							<Border Width="24" Height="22" Background="Transparent">
+								<Grid Background="Transparent" Height="16" Width="16" HorizontalAlignment="Center"
+										VerticalAlignment="Center">
+									<Ellipse x:Name="Circle" StrokeThickness="1" Stroke="#FF4A7DB1" Fill="Transparent" />
+									<Path x:Name="Arrow" Data="M 4 0 0 4 4 8 M 0 4 9 4" HorizontalAlignment="Center"
+											StrokeThickness="2" VerticalAlignment="Center" Stroke="#FF4A7DB1"
+											Margin="1,1,0,0" />
+								</Grid>
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger Property="IsEnabled" Value="False">
+									<Setter Property="Stroke" TargetName="Circle" Value="#FFB0AEB0" />
+									<Setter Property="Stroke" TargetName="Arrow" Value="#FFB0AEB0" />
+								</Trigger>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="Fill" TargetName="Circle" Value="#FFDDE7F0" />
+								</Trigger>
+								<Trigger Property="IsPressed" Value="True">
+									<Setter Property="Fill" TargetName="Circle" Value="#FF4A7DB1" />
+									<Setter Property="Stroke" TargetName="Arrow" Value="#FFFFFFFF" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</Button.Style>
+	</Button>
+	<Button x:Name="forwardButton" Grid.Column="1">
+		<Button.Style>
+			<Style TargetType="{x:Type Button}">
+				<Setter Property="OverridesDefaultStyle" Value="True" />
+				<Setter Property="Command" Value="NavigationCommands.BrowseForward" />
+				<Setter Property="CommandTarget" Value="{Binding ElementName=webBrowser}" />
+				<Setter Property="Focusable" Value="False" />
+				<Setter Property="ToolTip" Value="Forward" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="{x:Type Button}">
+							<Border Width="24" Height="22" Background="Transparent">
+								<Grid Background="Transparent" Height="16" Width="16" HorizontalAlignment="Center"
+										VerticalAlignment="Center">
+									<Ellipse x:Name="Circle" StrokeThickness="1" Stroke="#FF4A7DB1" Fill="Transparent" />
+									<Path x:Name="Arrow" Data="M 5 0 9 4 5 8 M 0 4 9 4" HorizontalAlignment="Center"
+											StrokeThickness="2" VerticalAlignment="Center" Stroke="#FF4A7DB1"
+											Margin="0,1,0,0" />
+								</Grid>
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger Property="IsEnabled" Value="False">
+									<Setter Property="Stroke" TargetName="Circle" Value="#FFB0AEB0" />
+									<Setter Property="Stroke" TargetName="Arrow" Value="#FFB0AEB0" />
+								</Trigger>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="Fill" TargetName="Circle" Value="#FFDDE7F0" />
+								</Trigger>
+								<Trigger Property="IsPressed" Value="True">
+									<Setter Property="Fill" TargetName="Circle" Value="#FF4A7DB1" />
+									<Setter Property="Stroke" TargetName="Arrow" Value="#FFFFFFFF" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</Button.Style>
+	</Button>
+	<Button Grid.Column="2" Command="NavigationCommands.BrowseHome" ToolTip="Home">
+		<Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
+				Source="pack://application:,,,/Daytimer.Images;component/Images/home_nav.png" />
+	</Button>
+	<Button Grid.Column="3" ToolTip="Print" Command="ApplicationCommands.Print">
+		<Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
+				Source="pack://application:,,,/Daytimer.Images;component/Images/printer.png" />
+	</Button>
+	<ToggleButton x:Name="largeTextButton" Grid.Column="4" ToolTip="Use Large Text" Click="largeTextButton_Click">
+		<Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"
+				Source="pack://application:,,,/Daytimer.Images;component/Images/increasesize.png" />
+	</ToggleButton>
+	<fundamentals:PlaceholderTextBox x:Name="searchBox" Grid.Column="5" Margin="4,0,23,0" FontSize="11" Height="22"
+			Background="Transparent" PlaceholderText="Search help" KeyDown="searchBox_KeyDown" />
+	<local:WpfWebBrowserWrapper x:Name="webBrowser" Grid.Row="1" Grid.ColumnSpan="6" HorizontalAlignment="Stretch"
+			VerticalAlignment="Stretch" Margin="4,25,0,0" />
+</Grid>

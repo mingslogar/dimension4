@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E45DFCA-D3F2-46FD-936E-A11CBA89B0A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SetupDependencies</RootNamespace>
+    <AssemblyName>SetupDependencies</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Daytimer\Properties\GlobalAssemlyInfo.cs">
+      <Link>Properties\GlobalAssemlyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key.pfx" />
+    <None Include="Resources\Daytimer.Backgrounds.dll" />
+    <None Include="Resources\FirstRun.exe.config" />
+    <None Include="Resources\UpdateManager.exe.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.Controls.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.DatabaseHelpers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.Dialogs.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.exe.config" />
+    <None Include="Resources\Daytimer.Functions.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.Fundamentals.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.Images.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.Search.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daytimer.Styles.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Metro\150x150Logo.png.dat" />
+    <None Include="Resources\Metro\70x70Logo.png.dat" />
+    <None Include="Resources\Microsoft.Windows.Shell.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Resources\Files\DefaultNote" />
+    <None Include="Resources\RibbonControlsLibrary.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Themes\BlueTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Themes\BrownTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Themes\GreenTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Themes\MaroonTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Themes\PurpleTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Themes\SilverTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\colorpickerlib.dll" />
+    <None Include="Resources\Gma.UserActivityMonitor.dll" />
+    <None Include="Resources\CharMap.dll" />
+    <None Include="Resources\Daytimer.Fonts.dll" />
+    <None Include="Resources\Daytimer.GoogleCalendarHelpers.dll" />
+    <None Include="Resources\Google.GData.Extensions.dll" />
+    <None Include="Resources\Google.GData.Client.dll" />
+    <None Include="Resources\Google.GData.Calendar.dll" />
+    <None Include="Resources\Google.GData.AccessControl.dll" />
+    <None Include="Resources\Daytimer.Help.dll" />
+    <None Include="Resources\Daytimer.ICalendarHelpers.dll" />
+    <None Include="Resources\DDay.Collections.dll" />
+    <None Include="Resources\DDay.iCal.dll" />
+    <None Include="Resources\antlr.runtime.dll" />
+    <None Include="Resources\CoreAudioApi.dll" />
+    <None Include="Resources\AddressParser.dll" />
+    <None Include="Resources\FirstRun.exe" />
+    <None Include="Resources\Daytimer.GoogleMapHelpers.dll" />
+    <None Include="Resources\Daytimer.PrintHelpers.dll" />
+    <!--<None Include="Resources\en-US\CharMap.resources.dll" />
+    <None Include="Resources\en-US\colorpickerlib.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.Controls.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.DatabaseHelpers.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.Dialogs.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.FileSystem.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.Fundamentals.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.GoogleCalendarHelpers.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.Help.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.PrintHelpers.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.Search.resources.dll" />
+    <None Include="Resources\en-US\FirstRun.resources.dll" />
+    <None Include="Resources\en-US\Daytimer.Toasts.resources.dll" />
+    <None Include="Resources\en-US\UpdateManager.resources.dll" />-->
+    <None Include="Resources\Daytimer.DockableDialogs.dll" />
+    <None Include="Resources\Demo.Main.dll" />
+    <None Include="Resources\Daytimer.WikiQuoteHelper.dll" />
+    <Content Include="Resources\JumpTaskImages.dll" />
+    <None Include="Resources\UpdateManager.exe" />
+    <None Include="Resources\RecurrenceGenerator.dll" />
+    <None Include="Resources\System.Net.Json.dll" />
+    <None Include="Resources\Daytimer.Toasts.dll" />
+    <None Include="Resources\Newtonsoft.Json.dll" />
+    <None Include="Resources\License.txt" />
+    <None Include="Resources\Resources\Media\Birds.mp3" />
+    <None Include="Resources\Resources\Media\Generic1.mp3" />
+    <None Include="Resources\Resources\Media\Generic2.mp3" />
+    <None Include="Resources\Resources\Media\Generic3.mp3" />
+    <None Include="Resources\Resources\Media\Google.mp3" />
+    <None Include="Resources\Resources\Media\iPhone.mp3" />
+    <None Include="Resources\Resources\Media\Nokia.mp3" />
+    <None Include="Resources\Resources\Media\Windows.mp3" />
+    <None Include="Resources\Metro\Daytimer.VisualElementsManifest.xml" />
+    <None Include="Resources\System.Threading.Tasks.dll" />
+    <None Include="Resources\System.Runtime.dll" />
+    <None Include="Resources\Microsoft.Threading.Tasks.dll" />
+    <None Include="Resources\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+    <None Include="Resources\Microsoft.Threading.Tasks.Extensions.dll" />
+    <None Include="Resources\Thought.vCards.dll" />
+    <None Include="Resources\Modern.FileBrowser.dll" />
+    <None Include="Resources\Microsoft.WindowsAPICodePack.Shell.dll" />
+    <None Include="Resources\Microsoft.WindowsAPICodePack.dll" />
+    <None Include="Resources\Wintellect.Threading.dll" />
+    <Content Include="Resources\WpfAnimatedGif.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Themes\HighContrastTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

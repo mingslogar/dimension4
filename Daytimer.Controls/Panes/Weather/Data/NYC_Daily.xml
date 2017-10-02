@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<weatherdata>
+	<location>
+		<name>New York</name>
+		<type/>
+		<country>United States of America</country>
+		<timezone/>
+		<location altitude="0" latitude="40.7146" longitude="-74.0071" geobase="geonames" geobaseid="0"/>
+	</location>
+	<credit/>
+	<meta>
+		<lastupdate/>
+		<calctime>0.3375</calctime>
+		<nextupdate/>
+	</meta>
+	<sun rise="2015-01-11T12:19:03" set="2015-01-11T21:49:10"/>
+	<forecast>
+		<time day="2015-01-10">
+			<symbol number="800" name="sky is clear" var="01n"/>
+			<precipitation/>
+			<windDirection deg="238" code="WSW" name="West-southwest"/>
+			<windSpeed mps="1.91" name="Light breeze"/>
+			<temperature day="262.02" min="259.6" max="262.02" night="259.6" eve="262.02" morn="262.02"/>
+			<pressure unit="hPa" value="1025.77"/>
+			<humidity value="57" unit="%"/>
+			<clouds value="clear sky" all="0" unit="%"/>
+		</time>
+		<time day="2015-01-11">
+			<symbol number="803" name="broken clouds" var="04d"/>
+			<precipitation/>
+			<windDirection deg="207" code="SSW" name="South-southwest"/>
+			<windSpeed mps="2.01" name="Light breeze"/>
+			<temperature day="268.68" min="259.55" max="269.65" night="268.31" eve="266.27" morn="259.55"/>
+			<pressure unit="hPa" value="1029.62"/>
+			<humidity value="45" unit="%"/>
+			<clouds value="broken clouds" all="56" unit="%"/>
+		</time>
+		<time day="2015-01-12">
+			<symbol number="601" name="snow" var="13d"/>
+			<precipitation value="4" type="snow"/>
+			<windDirection deg="151" code="SSE" name="South-southeast"/>
+			<windSpeed mps="1.42" name="Calm"/>
+			<temperature day="273.26" min="269.1" max="273.74" night="272.08" eve="273.47" morn="269.1"/>
+			<pressure unit="hPa" value="1019.79"/>
+			<humidity value="100" unit="%"/>
+			<clouds value="overcast clouds" all="92" unit="%"/>
+		</time>
+		<time day="2015-01-13">
+			<symbol number="800" name="sky is clear" var="01d"/>
+			<precipitation/>
+			<windDirection deg="6" code="N" name="North"/>
+			<windSpeed mps="3.11" name="Light breeze"/>
+			<temperature day="271.15" min="263.73" max="271.15" night="263.73" eve="266.63" morn="269.7"/>
+			<pressure unit="hPa" value="1025.45"/>
+			<humidity value="59" unit="%"/>
+			<clouds value="clear sky" all="0" unit="%"/>
+		</time>
+		<time day="2015-01-14">
+			<symbol number="800" name="sky is clear" var="01d"/>
+			<precipitation/>
+			<windDirection deg="5" code="N" name="North"/>
+			<windSpeed mps="1.92" name="Light breeze"/>
+			<temperature day="267.53" min="260.03" max="267.53" night="260.54" eve="263.45" morn="260.03"/>
+			<pressure unit="hPa" value="1030.04"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="clear sky" all="0" unit="%"/>
+		</time>
+		<time day="2015-01-15">
+			<symbol number="600" name="light snow" var="13d"/>
+			<precipitation value="0.12" type="snow"/>
+			<windDirection deg="346" code="NNW" name="North-northwest"/>
+			<windSpeed mps="1.53" name=""/>
+			<temperature day="269.3" min="258.98" max="269.3" night="265.02" eve="264.55" morn="258.98"/>
+			<pressure unit="hPa" value="1020.95"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="scattered clouds" all="49" unit="%"/>
+		</time>
+		<time day="2015-01-16">
+			<symbol number="800" name="sky is clear" var="01d"/>
+			<precipitation/>
+			<windDirection deg="325" code="NW" name="Northwest"/>
+			<windSpeed mps="3.17" name="Light breeze"/>
+			<temperature day="270.83" min="262.84" max="270.83" night="267.38" eve="266.85" morn="262.84"/>
+			<pressure unit="hPa" value="1017.15"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="clear sky" all="0" unit="%"/>
+		</time>
+		<time day="2015-01-17">
+			<symbol number="800" name="sky is clear" var="01d"/>
+			<precipitation/>
+			<windDirection deg="309" code="NW" name="Northwest"/>
+			<windSpeed mps="2.7" name="Light breeze"/>
+			<temperature day="276.2" min="266.04" max="276.2" night="266.04" eve="268.81" morn="267.4"/>
+			<pressure unit="hPa" value="1021.74"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="few clouds" all="10" unit="%"/>
+		</time>
+		<time day="2015-01-18">
+			<symbol number="800" name="sky is clear" var="01d"/>
+			<precipitation/>
+			<windDirection deg="63" code="ENE" name="East-northeast"/>
+			<windSpeed mps="1.7" name="Light breeze"/>
+			<temperature day="274.88" min="266.43" max="274.88" night="271" eve="273.44" morn="266.43"/>
+			<pressure unit="hPa" value="1031.61"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="broken clouds" all="81" unit="%"/>
+		</time>
+		<time day="2015-01-19">
+			<symbol number="800" name="sky is clear" var="01d"/>
+			<precipitation/>
+			<windDirection deg="355" code="" name=""/>
+			<windSpeed mps="1.22" name="Calm"/>
+			<temperature day="280.63" min="268.31" max="280.63" night="271.27" eve="274.41" morn="268.31"/>
+			<pressure unit="hPa" value="1030.15"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="clear sky" all="0" unit="%"/>
+		</time>
+		<time day="2015-01-20">
+			<symbol number="800" name="sky is clear" var="01d"/>
+			<precipitation/>
+			<windDirection deg="225" code="SW" name="Southwest"/>
+			<windSpeed mps="1.42" name="Calm"/>
+			<temperature day="282.81" min="270.34" max="282.81" night="271.86" eve="275.8" morn="270.34"/>
+			<pressure unit="hPa" value="1031.17"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="clear sky" all="8" unit="%"/>
+		</time>
+		<time day="2015-01-21">
+			<symbol number="500" name="light rain" var="10d"/>
+			<precipitation value="1.63" type="rain"/>
+			<windDirection deg="166" code="SSE" name="South-southeast"/>
+			<windSpeed mps="3.33" name=""/>
+			<temperature day="285.85" min="273.26" max="287.01" night="287.01" eve="286.11" morn="273.26"/>
+			<pressure unit="hPa" value="1027.11"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="broken clouds" all="66" unit="%"/>
+		</time>
+		<time day="2015-01-22">
+			<symbol number="500" name="light rain" var="10d"/>
+			<precipitation value="2.7" type="rain"/>
+			<windDirection deg="272" code="W" name="West"/>
+			<windSpeed mps="3.27" name="Light breeze"/>
+			<temperature day="284.92" min="278.52" max="286.15" night="278.52" eve="279.83" morn="286.15"/>
+			<pressure unit="hPa" value="1020.96"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="clear sky" all="0" unit="%"/>
+		</time>
+		<time day="2015-01-23">
+			<symbol number="500" name="light rain" var="10d"/>
+			<precipitation/>
+			<windDirection deg="300" code="WNW" name="West-northwest"/>
+			<windSpeed mps="4.8" name="Gentle Breeze"/>
+			<temperature day="283.41" min="273.18" max="283.41" night="273.18" eve="279.02" morn="278.85"/>
+			<pressure unit="hPa" value="1023.01"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="scattered clouds" all="42" unit="%"/>
+		</time>
+		<time day="2015-01-24">
+			<symbol number="800" name="sky is clear" var="01d"/>
+			<precipitation/>
+			<windDirection deg="276" code="W" name="West"/>
+			<windSpeed mps="1.91" name="Light breeze"/>
+			<temperature day="283.73" min="272.46" max="283.73" night="276.91" eve="279.03" morn="272.46"/>
+			<pressure unit="hPa" value="1026.35"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="scattered clouds" all="30" unit="%"/>
+		</time>
+		<time day="2015-01-25">
+			<symbol number="501" name="moderate rain" var="10d"/>
+			<precipitation value="10.63" type="rain"/>
+			<windDirection deg="55" code="NE" name="NorthEast"/>
+			<windSpeed mps="1.24" name="Calm"/>
+			<temperature day="280.04" min="277.53" max="280.04" night="279.48" eve="279.48" morn="277.53"/>
+			<pressure unit="hPa" value="1018.89"/>
+			<humidity value="0" unit="%"/>
+			<clouds value="overcast clouds" all="100" unit="%"/>
+		</time>
+	</forecast>
+</weatherdata>

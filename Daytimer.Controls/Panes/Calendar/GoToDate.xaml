@@ -1,0 +1,38 @@
+﻿<Window  x:Class="Daytimer.Controls.GoToDate" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Go to Date" Height="80" Width="250"
+		AllowsTransparency="True" SnapsToDevicePixels="True" UseLayoutRounding="True" Background="Transparent"
+		WindowStyle="None" ResizeMode="NoResize" ShowActivated="True" ShowInTaskbar="False"
+		FontFamily="Segoe UI, /Daytimer.Fonts;component/#Open Sans" FontSize="12" FontWeight="Normal"
+		TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" Opacity="0"
+		Loaded="Window_Loaded">
+	<Border  x:Name="border">
+		<Border.CacheMode>
+			<BitmapCache  SnapsToDevicePixels="True" />
+		</Border.CacheMode>
+		<Border.Effect>
+			<DropShadowEffect  Color="#FFBBBBBB" ShadowDepth="0" Opacity="0.5" />
+		</Border.Effect>
+		<Grid  x:Name="grid" Margin="5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition  Width="*" />
+				<ColumnDefinition  Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<Rectangle  Fill="{DynamicResource White}" Grid.ColumnSpan="2" Stroke="{DynamicResource WindowBorderFocused}" StrokeThickness="1" />
+			<TextBox  x:Name="dateText" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+					Margin="10,0,5,0" BorderThickness="0" Height="39" FontSize="17" />
+			<!--M 7.5 1.5 0.5 7.5 7.5 14.5 M 0.5 7.5 15.5 7.5-->
+			<Button  x:Name="goButton" Grid.Column="1" Padding="2" Margin="10" Height="39" Width="39"
+					HorizontalAlignment="Center" VerticalAlignment="Center"
+					Content="F1 M 0.5 5.25 0.5 7.75 13.5 7.75 8 13 11.5 13 18 6.5 11.5 0 8 0 13.5 5.25 0.5 5.25 Z"
+					Style="{StaticResource RoundMetroButton}" Click="goButton_Click" IsDefault="True"
+					Foreground="{DynamicResource WindowBorderFocused}" Background="{DynamicResource White}" />
+			<!--M 1.5 7.5 16.5 7.5 M 9.5 1.5 16.5 7.5 9.5 14.5-->
+			<!--<Button x:Name="goButton" Grid.Column="1" VerticalAlignment="Stretch" Width="25" Height="NaN" Margin="0,1,1,1"
+					BorderThickness="1,0,0,0" Click="goButton_Click" IsDefault="True">
+				<Button.Content>
+					<Path Stroke="Black" StrokeThickness="2" Data="M 0 0 10 10 0 20" />
+				</Button.Content>
+			</Button>-->
+		</Grid>
+	</Border>
+</Window>

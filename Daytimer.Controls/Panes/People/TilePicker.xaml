@@ -1,0 +1,76 @@
+﻿<Office:OfficeWindow x:Name="window" x:Class="Daytimer.Controls.Panes.People.TilePicker"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Office="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals" Title="Change Tile"
+		Height="260" Width="380" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Border x:Name="border" ClipToBounds="True" Width="96" Height="96" Margin="20" HorizontalAlignment="Left"
+				VerticalAlignment="Top">
+			<Image x:Name="image" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="SizeAll"
+					SnapsToDevicePixels="False" UseLayoutRounding="False" RenderOptions.BitmapScalingMode="Fant"
+					Source="{Binding ImageSource, Mode=OneWay, ElementName=window}"
+					MouseLeftButtonDown="image_MouseLeftButtonDown" MouseLeftButtonUp="image_MouseLeftButtonUp"
+					MouseMove="image_MouseMove" Stretch="UniformToFill" />
+		</Border>
+		<Button x:Name="clearButton" Margin="95,20,0,0" Click="clearButton_Click">
+			<Button.Style>
+				<Style TargetType="Button">
+					<Setter Property="Padding" Value="5" />
+					<Setter Property="Margin" Value="0" />
+					<Setter Property="Focusable" Value="False" />
+					<Setter Property="ToolTip" Value="Reset to default" />
+					<Setter Property="Foreground" Value="Black" />
+					<Setter Property="Background" Value="#80FFFFFF" />
+					<Setter Property="BorderBrush" Value="#FF000000" />
+					<Setter Property="Content">
+						<Setter.Value>
+							<Path
+									Stroke="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}"
+									StrokeThickness="2" Data="M 0 0 8 8 M 0 8 8 0" Margin="1,1,0,0" />
+						</Setter.Value>
+					</Setter>
+					<Setter Property="HorizontalAlignment" Value="Left" />
+					<Setter Property="VerticalAlignment" Value="Top" />
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="Button">
+								<Border Padding="{TemplateBinding Padding}" BorderThickness="1,0,0,1"
+										BorderBrush="{TemplateBinding BorderBrush}"
+										Background="{TemplateBinding Background}">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+								</Border>
+								<ControlTemplate.Triggers>
+									<Trigger Property="IsMouseOver" Value="True">
+										<Setter Property="Background" Value="#C0FFFFFF" />
+									</Trigger>
+									<Trigger Property="IsPressed" Value="True">
+										<Setter Property="Background" Value="#70000000" />
+										<Setter Property="Foreground" Value="#FFFFFFFF" />
+										<Setter Property="BorderBrush" Value="#FFFFFFFF" />
+									</Trigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</Button.Style>
+		</Button>
+		<Slider x:Name="slider" Grid.Row="1" Margin="20,0" Width="96" HorizontalAlignment="Left"
+				ValueChanged="slider_ValueChanged" SmallChange="0.01" Maximum="2" LargeChange="0.1"
+				IsMoveToPointEnabled="True" />
+		<TextBlock x:Name="header" Margin="150,20,20,20" TextWrapping="Wrap" HorizontalAlignment="Left"
+				VerticalAlignment="Top" Text="Choose an image to show on {Contact Name's} tile."
+				IsHitTestVisible="False" />
+		<Button x:Name="browseButton" Grid.Row="2" Content="_Use another picture" HorizontalAlignment="Left"
+				VerticalAlignment="Bottom" Margin="20,10,0,20" Width="130" Height="25" Click="browseButton_Click" />
+		<Button x:Name="okButton" Grid.Row="2" Content="_OK" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+				Margin="0,10,110,20" Click="okButton_Click" IsDefault="True" Width="80" Height="25" />
+		<Button x:Name="cancelButton" Grid.Row="2" Content="_Cancel" HorizontalAlignment="Right"
+				VerticalAlignment="Bottom" Margin="0,10,20,20" IsCancel="True" Width="80" Height="25" />
+	</Grid>
+</Office:OfficeWindow>

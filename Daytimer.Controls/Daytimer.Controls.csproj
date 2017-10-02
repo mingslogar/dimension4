@@ -1,0 +1,972 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4FA85921-A657-4967-BEAB-81CBCE27554F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Daytimer.Controls</RootNamespace>
+    <AssemblyName>Daytimer.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>3501b29f</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.GData.Calendar, Version=2.2.0.0, Culture=neutral, PublicKeyToken=aa6748391206b888, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External Libraries\Google.GData.Calendar.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External Libraries\Google.GData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External Libraries\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Json">
+      <HintPath>..\External Libraries\System.Net.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Daytimer\Properties\GlobalAssemlyInfo.cs">
+      <Link>Properties\GlobalAssemlyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\UpdateManager\Data.cs">
+      <Link>Data.cs</Link>
+    </Compile>
+    <Compile Include="ExportHelpers.cs" />
+    <Compile Include="Extensions.Fonts.cs" />
+    <Compile Include="Friction\Friction.cs" />
+    <Compile Include="Friction\SearchUI.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ImageRadio.cs" />
+    <Compile Include="ImportHelpers.cs" />
+    <Compile Include="MinutesDropDown.cs" />
+    <Compile Include="NavigationRadio.cs" />
+    <Compile Include="Panes\Calendar\CalendarView.cs" />
+    <Compile Include="Panes\Calendar\DayOfWeekHeader.cs" />
+    <Compile Include="Panes\Calendar\Month\MonthDay.cs" />
+    <Compile Include="Panes\Calendar\QuoteButton.cs" />
+    <Compile Include="Panes\Calendar\ReminderChangedEventArgs.cs" />
+    <Compile Include="Panes\Notes\NotesAppBar.xaml.cs">
+      <DependentUpon>NotesAppBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Notes\NotesFunctions.cs" />
+    <Compile Include="Panes\PanelBrushes.cs" />
+    <Compile Include="Panes\People\ContactDetailBlockDate.xaml.cs">
+      <DependentUpon>ContactDetailBlockDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Start\Homescreen.cs" />
+    <Compile Include="Panes\Start\Tile.cs" />
+    <Compile Include="Recovery\AppointmentGraphic.xaml.cs">
+      <DependentUpon>AppointmentGraphic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recovery\Autorecover.xaml.cs">
+      <DependentUpon>Autorecover.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryEditor.xaml.cs">
+      <DependentUpon>CategoryEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContextTextFormatter.xaml.cs">
+      <DependentUpon>ContextTextFormatter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\DragDropRendering.cs" />
+    <Compile Include="Panes\Notes\ChangeNoteDateDialog.xaml.cs">
+      <DependentUpon>ChangeNoteDateDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Notes\ChangeNoteTimeDialog.xaml.cs">
+      <DependentUpon>ChangeNoteTimeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Notes\HiddenTabsFlyout.xaml.cs">
+      <DependentUpon>HiddenTabsFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Notes\NotesPeek.xaml.cs">
+      <DependentUpon>NotesPeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Notes\NotesPeekContent.xaml.cs">
+      <DependentUpon>NotesPeekContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Notes\TabHeaderSortPanel.cs" />
+    <Compile Include="MessageBar.cs" />
+    <Compile Include="Recovery\ContactGraphic.xaml.cs">
+      <DependentUpon>ContactGraphic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Recovery\TaskGraphic.xaml.cs">
+      <DependentUpon>TaskGraphic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\BackstageComboBox.cs" />
+    <Compile Include="Ribbon\BackstageComboBoxItem.cs" />
+    <Compile Include="Ribbon\BackstageSquareButton.cs" />
+    <Compile Include="Ribbon\BackstageSquareDropdown.cs" />
+    <Compile Include="Ribbon\BackstageSquareDropdownItem.cs" />
+    <Compile Include="Ribbon\BackstageWideButton.cs" />
+    <Compile Include="Ribbon\Credits.xaml.cs">
+      <DependentUpon>Credits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomStatusStrip.cs" />
+    <Compile Include="Panes\Calendar\AppointmentEditor.xaml.cs">
+      <DependentUpon>AppointmentEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BackgroundUpdater.xaml.cs">
+      <DependentUpon>BackgroundUpdater.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarControl.xaml.cs">
+      <DependentUpon>CalendarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters.cs" />
+    <Compile Include="CustomDictionaryEditor.xaml.cs">
+      <DependentUpon>CustomDictionaryEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyObjectExtensionMethods.cs" />
+    <Compile Include="Panes\Calendar\CalendarPeek.xaml.cs">
+      <DependentUpon>CalendarPeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\CalendarPeekContent.xaml.cs">
+      <DependentUpon>CalendarPeekContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\Month\DateControlStackPanel.xaml.cs">
+      <DependentUpon>DateControlStackPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\Day\DayView.xaml.cs">
+      <DependentUpon>DayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\Month\MonthView.xaml.cs">
+      <DependentUpon>MonthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\DockedPeek.cs" />
+    <Compile Include="Panes\DockedPeekContainer.cs" />
+    <Compile Include="Panes\Notes\NotesView.xaml.cs">
+      <DependentUpon>NotesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Peek.cs" />
+    <Compile Include="Panes\People\ClarifyAddress.xaml.cs">
+      <DependentUpon>ClarifyAddress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\People\PeoplePeekContent.xaml.cs">
+      <DependentUpon>PeoplePeekContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Tasks\TasksPeekContent.xaml.cs">
+      <DependentUpon>TasksPeekContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\UndockedPeek.cs" />
+    <Compile Include="Panes\People\ClarifyName.xaml.cs">
+      <DependentUpon>ClarifyName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\People\ContactDetailBlock.xaml.cs">
+      <DependentUpon>ContactDetailBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\People\ContactDetailBlockHyperlink.xaml.cs">
+      <DependentUpon>ContactDetailBlockHyperlink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\People\ContactDetailHeader.xaml.cs">
+      <DependentUpon>ContactDetailHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\People\PeoplePeek.xaml.cs">
+      <DependentUpon>PeoplePeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\People\PeopleView.xaml.cs">
+      <DependentUpon>PeopleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\People\TilePicker.xaml.cs">
+      <DependentUpon>TilePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\Week\WeekView.xaml.cs">
+      <DependentUpon>WeekView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Tasks\TasksPeek.xaml.cs">
+      <DependentUpon>TasksPeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Weather\ChangeLocation.xaml.cs">
+      <DependentUpon>ChangeLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Weather\ChangeLocationDialog.xaml.cs">
+      <DependentUpon>ChangeLocationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Weather\CurrentWeather.cs" />
+    <Compile Include="Panes\Weather\ForecastControl.xaml.cs">
+      <DependentUpon>ForecastControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Weather\Location.cs" />
+    <Compile Include="Panes\Weather\Place.xaml.cs">
+      <DependentUpon>Place.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Weather\WeatherFunctions.cs" />
+    <Compile Include="Panes\Weather\WeatherPeek.xaml.cs">
+      <DependentUpon>WeatherPeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Weather\WeatherPeekContent.xaml.cs">
+      <DependentUpon>WeatherPeekContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Weather\WeatherView.xaml.cs">
+      <DependentUpon>WeatherView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventRecurrence.xaml.cs">
+      <DependentUpon>EventRecurrence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventRecurrenceSkip.xaml.cs">
+      <DependentUpon>EventRecurrenceSkip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Feedback.xaml.cs">
+      <DependentUpon>Feedback.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HyperlinkCreator.xaml.cs">
+      <DependentUpon>HyperlinkCreator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainTabsSortPanel.cs" />
+    <Compile Include="NavigationOptionsFlyout.xaml.cs">
+      <DependentUpon>NavigationOptionsFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewCategory.xaml.cs">
+      <DependentUpon>NewCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewItemDialog.xaml.cs">
+      <DependentUpon>NewItemDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\AccountDisplay.xaml.cs">
+      <DependentUpon>AccountDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\AccountEdit.xaml.cs">
+      <DependentUpon>AccountEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\AccountsControl.xaml.cs">
+      <DependentUpon>AccountsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\CustomMarginDialog.xaml.cs">
+      <DependentUpon>CustomMarginDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\CustomPaperSizeDialog.xaml.cs">
+      <DependentUpon>CustomPaperSizeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\ImportControl.xaml.cs">
+      <DependentUpon>ImportControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\PrintControl.xaml.cs">
+      <DependentUpon>PrintControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\QAT\QatHelper.cs" />
+    <Compile Include="Ribbon\QAT\QatItem.cs" />
+    <Compile Include="Ribbon\QAT\QatItemCollection.cs" />
+    <Compile Include="RolloverText.cs" />
+    <Compile Include="RoutedEvents.cs" />
+    <Compile Include="ServerConnectivityMonitor.xaml.cs">
+      <DependentUpon>ServerConnectivityMonitor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleLineTextBox.cs" />
+    <Compile Include="SortPanel.cs" />
+    <Compile Include="SplitBorderSelector.xaml.cs">
+      <DependentUpon>SplitBorderSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplitColorPicker.xaml.cs">
+      <DependentUpon>SplitColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplitButton.xaml.cs">
+      <DependentUpon>SplitButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Friction\FrictionRichTextBox.cs" />
+    <Compile Include="Friction\FrictionRichTextBoxControl.xaml.cs">
+      <DependentUpon>FrictionRichTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Friction\FrictionScrollViewer.cs" />
+    <Compile Include="Friction\FrictionScrollViewerControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Friction\FrictionTextBox.cs" />
+    <Compile Include="Friction\FrictionTextBoxControl.xaml.cs">
+      <DependentUpon>FrictionTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GenericFunctions.cs" />
+    <Compile Include="Panes\Calendar\GoToDate.xaml.cs">
+      <DependentUpon>GoToDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\CommonActions.cs" />
+    <Compile Include="Ribbon\ExportControl.xaml.cs">
+      <DependentUpon>ExportControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\BackstageEvents.cs" />
+    <Compile Include="Ribbon\Backstage.xaml.cs">
+      <DependentUpon>Backstage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\BackstageController.cs" />
+    <Compile Include="Ribbon\Events.cs" />
+    <Compile Include="Ribbon\FeedbackControl.xaml.cs">
+      <DependentUpon>FeedbackControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\InfoControl.xaml.cs">
+      <DependentUpon>InfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\OptionsControl.xaml.cs">
+      <DependentUpon>OptionsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Tasks\DomainUpDown.xaml.cs">
+      <DependentUpon>DomainUpDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\Day\HourlyClockChartDay.xaml.cs">
+      <DependentUpon>HourlyClockChartDay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\DayDetail.xaml.cs">
+      <DependentUpon>DayDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IntegerDropDown.xaml.cs">
+      <DependentUpon>IntegerDropDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\ApptToolTip.xaml.cs">
+      <DependentUpon>ApptToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\AppointmentNavButton.xaml.cs">
+      <DependentUpon>AppointmentNavButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Panes\Calendar\Month\MonthDetail.xaml.cs">
+      <DependentUpon>MonthDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SliderControl.xaml.cs">
+      <DependentUpon>SliderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplitHighlightPicker.xaml.cs">
+      <DependentUpon>SplitHighlightPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatusStrip.xaml.cs">
+      <DependentUpon>StatusStrip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Tasks\DraggableTreeView.xaml.cs">
+      <DependentUpon>DraggableTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Tasks\Extensions.cs" />
+    <Compile Include="Panes\Tasks\TasksView.xaml.cs">
+      <DependentUpon>TasksView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SymbolPicker.xaml.cs">
+      <DependentUpon>SymbolPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextControl.cs" />
+    <Compile Include="TextEditing.cs" />
+    <Compile Include="TextRadio.cs" />
+    <Compile Include="TimeDropDown.xaml.cs">
+      <DependentUpon>TimeDropDown.xaml</DependentUpon>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Panes\Calendar\Week\ClockGrid.xaml.cs">
+      <DependentUpon>ClockGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DatePickerControl.xaml.cs">
+      <DependentUpon>DatePickerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\Week\HourlyClockChartWeek.xaml.cs">
+      <DependentUpon>HourlyClockChartWeek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\Week\SingleDay.xaml.cs">
+      <DependentUpon>SingleDay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Panes\Calendar\ZoomDialog.xaml.cs">
+      <DependentUpon>ZoomDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewMode.xaml.cs">
+      <DependentUpon>ViewMode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Scratchpad.xaml.cs">
+      <DependentUpon>_Scratchpad.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Panes\Notes\NotesAppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\ContactDetailBlockDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recovery\AppointmentGraphic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recovery\Autorecover.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CategoryEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContextTextFormatter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recovery\ContactGraphic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recovery\TaskGraphic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\Credits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\AppointmentEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BackgroundUpdater.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CalendarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CancelEditButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomDictionaryEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\CalendarPeek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\CalendarPeekContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\Month\DateControlStackPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Calendar\Day\DayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Calendar\Month\MonthView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Calendar\ShowAsFill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Notes\ChangeNoteDateDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Notes\ChangeNoteTimeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Notes\HiddenTabsFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Notes\NotesPeek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Notes\NotesPeekContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Notes\NotesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\People\ClarifyAddress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\ClarifyName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\ContactDetailBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\ContactDetailBlockHyperlink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\ContactDetailHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\PeoplePeek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\PeoplePeekContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\PeopleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\People\TilePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\Week\WeekView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Tasks\TasksPeek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Tasks\TasksPeekContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Weather\ChangeLocation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Weather\ChangeLocationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Weather\ForecastControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Weather\GenericTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Weather\Place.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Weather\WeatherPeek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Weather\WeatherPeekContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Weather\WeatherView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventRecurrence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventRecurrenceSkip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Feedback.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HyperlinkCreator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavigationOptionsFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewItemDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\AccountDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\AccountEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\AccountsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\CustomMarginDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\CustomPaperSizeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\ImportControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="Ribbon\Licenses\CoreAudioApi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\CPOL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\MIT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\CreativeCommons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\DDay.iCal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\GPL3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\GPL2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\Apache2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\MS-PL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Resource Include="Ribbon\Licenses\AskGeo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Page Include="Ribbon\PrintControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServerConnectivityMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplitBorderSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplitColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplitButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Friction\FrictionRichTextBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Friction\FrictionTextBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\GoToDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\Backstage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ribbon\BackstageTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\ExportControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\FeedbackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\InfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ribbon\OptionsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Tasks\DomainUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\Day\HourlyClockChartDay.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Calendar\DayDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IntegerDropDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\Month\MonthDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Calendar\ApptToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\AppointmentNavButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SliderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplitHighlightPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatusStrip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Tasks\DraggableTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Tasks\TasksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SymbolPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeDropDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Calendar\Week\ClockGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DatePickerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\Week\HourlyClockChartWeek.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Panes\Calendar\Week\SingleDay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Panes\Calendar\ZoomDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="_Scratchpad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CharMap\CharMap.csproj">
+      <Project>{5f899333-2dc2-4b9c-8db5-005185f8cd73}</Project>
+      <Name>CharMap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Color Picker\colorpickerlib\colorpickerlib.csproj">
+      <Project>{99e90579-62fc-4898-b168-24f7dbd3a34d}</Project>
+      <Name>colorpickerlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Color Picker\Gma.UserActivityMonitor\Gma.UserActivityMonitor.csproj">
+      <Project>{f52aa97e-180a-40ed-8f2b-09080171d6c7}</Project>
+      <Name>Gma.UserActivityMonitor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.DatabaseHelpers\Daytimer.DatabaseHelpers.csproj">
+      <Project>{b8e9a90c-49c4-4816-80ce-3cf15b28fbd9}</Project>
+      <Name>Daytimer.DatabaseHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Dialogs\Daytimer.Dialogs.csproj">
+      <Project>{74ca8cfa-bb30-48ea-8832-546d659d8468}</Project>
+      <Name>Daytimer.Dialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Functions\Daytimer.Functions.csproj">
+      <Project>{98731c67-3c15-4790-99b9-97ec65fce1ad}</Project>
+      <Name>Daytimer.Functions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Fundamentals\Daytimer.Fundamentals.csproj">
+      <Project>{fc0ad608-7d06-4c71-a54a-ccba82450abf}</Project>
+      <Name>Daytimer.Fundamentals</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.GoogleCalendarHelpers\Daytimer.GoogleCalendarHelpers.csproj">
+      <Project>{44b5710e-6faf-42a3-ac71-12831523fedf}</Project>
+      <Name>Daytimer.GoogleCalendarHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.GoogleMapHelpers\Daytimer.GoogleMapHelpers.csproj">
+      <Project>{778adbe9-5123-4cd6-8695-97f29b6e228a}</Project>
+      <Name>Daytimer.GoogleMapHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Images\Daytimer.Images.csproj">
+      <Project>{74eb4a97-a7ec-4d51-9fab-80e15ae52605}</Project>
+      <Name>Daytimer.Images</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.PrintHelpers\Daytimer.PrintHelpers.csproj">
+      <Project>{06a1d65e-0a5f-456c-89b9-68a2cc614eef}</Project>
+      <Name>Daytimer.PrintHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Search\Daytimer.Search.csproj">
+      <Project>{03cd418a-c1e8-4ec3-8c9d-760060b49b23}</Project>
+      <Name>Daytimer.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.WikiQuoteHelper\Daytimer.WikiQuoteHelper.csproj">
+      <Project>{dd8c3148-d7ba-4159-a5cd-bc7e1a0d49b7}</Project>
+      <Name>Daytimer.WikiQuoteHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modern\Modern.FileBrowser\Modern.FileBrowser.csproj">
+      <Project>{049d9540-d5ff-40eb-a7f9-a1e7dc5b5c6b}</Project>
+      <Name>Modern.FileBrowser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RecurrenceGenerator\RecurrenceGenerator.csproj">
+      <Project>{cb580cb9-6597-4edb-aa6c-b44f5aed87ce}</Project>
+      <Name>RecurrenceGenerator</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\RibbonControlsLibrary\v4.0\RibbonControlsLibrary.csproj">
+      <Project>{2ca5e547-4567-45c9-8240-a408bca5c714}</Project>
+      <Name>RibbonControlsLibrary</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="key.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Panes\Weather\Data\NYC_Daily.xml" />
+    <Resource Include="Panes\Weather\Data\NYC_Weather.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

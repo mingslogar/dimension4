@@ -1,0 +1,67 @@
+﻿<RadioButton x:Class="Daytimer.Controls.WeekView.SingleDay"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:Friction="clr-namespace:Daytimer.Controls.Friction" xmlns:local="clr-namespace:Daytimer.Controls.WeekView"
+		xmlns:Controls="clr-namespace:Daytimer.Controls" xmlns:Calendar="clr-namespace:Daytimer.Controls.Panes.Calendar"
+		mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="250" Background="Transparent" Focusable="False"
+		ClickMode="Press" GroupName="_weekGridRadios">
+	<RadioButton.Template>
+		<ControlTemplate TargetType="RadioButton">
+			<Border x:Name="templateRoot" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+				<ContentPresenter x:Name="contentPresenter" />
+			</Border>
+		</ControlTemplate>
+	</RadioButton.Template>
+	<VisualStateManager.VisualStateGroups>
+		<VisualStateGroup Name="QuoteButtonStates">
+			<VisualState Name="Normal">
+				<Storyboard>
+					<DoubleAnimation Storyboard.TargetName="PART_QuoteButton" Storyboard.TargetProperty="Opacity" To="0"
+							Duration="0:0:0.5" />
+				</Storyboard>
+			</VisualState>
+			<VisualState Name="MouseOver">
+				<Storyboard>
+					<DoubleAnimation Storyboard.TargetName="PART_QuoteButton" Storyboard.TargetProperty="Opacity" To="1"
+							Duration="0:0:0.2" />
+				</Storyboard>
+			</VisualState>
+			<VisualState Name="Checked">
+				<Storyboard>
+					<DoubleAnimation Storyboard.TargetName="PART_QuoteButton" Storyboard.TargetProperty="Opacity" To="1"
+							Duration="0" />
+				</Storyboard>
+			</VisualState>
+		</VisualStateGroup>
+	</VisualStateManager.VisualStateGroups>
+	<Grid x:Name="multiGrid">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Border Background="{DynamicResource NormalDayOfWeek}" Panel.ZIndex="10" IsHitTestVisible="False" />
+		<Calendar:DayOfWeekHeader x:Name="dayHeader" Panel.ZIndex="11" Margin="0,0,1,0" />
+		<Border x:Name="bg" Grid.Row="1" Grid.RowSpan="2" Background="Transparent" IsHitTestVisible="False" />
+		<Controls:TextControl x:Name="dateNumber" Grid.Row="1" IsHitTestVisible="False" />
+		<Calendar:QuoteButton x:Name="PART_QuoteButton" Visibility="Collapsed" HorizontalAlignment="Right"
+				VerticalAlignment="Center" Margin="0,0,5,0" Grid.Row="1" Opacity="0" />
+		<Border x:Name="allDayGrid" Grid.Row="2" MinHeight="35" MouseLeftButtonDown="allDayGrid_MouseLeftButtonDown"
+				BorderBrush="#FFE1E1E1" BorderThickness="0,0,0,1">
+			<Friction:FrictionScrollViewer x:Name="allDayScroller" Focusable="False"
+					VerticalScrollBarVisibility="Hidden" ScrollChanged="allDayScroller_ScrollChanged"
+					PreviewMouseWheel="allDayScroller_PreviewMouseWheel" LayoutUpdated="allDayScroller_LayoutUpdated">
+				<StackPanel x:Name="stackPanel" Focusable="False" SizeChanged="stackPanel_SizeChanged" Margin="0,0,10,0" />
+			</Friction:FrictionScrollViewer>
+		</Border>
+		<local:HourlyClockChartWeek x:Name="clockGrid" Grid.Row="3" RadioButtonChecked="clockGrid_RadioButtonChecked"
+				RadioButtonPreviewMouseLeftButtonDown="clockGrid_RadioButtonPreviewMouseLeftButtonDown" />
+		<Line x:Name="leftLine" Grid.RowSpan="4" Stroke="#FFE1E1E1" Stretch="Fill" Width="1" HorizontalAlignment="Left"
+				Visibility="Collapsed" Y2="1" IsHitTestVisible="False" />
+		<Line Grid.RowSpan="4" Stroke="#FFE1E1E1" Stretch="Fill" Width="1" HorizontalAlignment="Right" Y2="1"
+				IsHitTestVisible="False" />
+	</Grid>
+</RadioButton>

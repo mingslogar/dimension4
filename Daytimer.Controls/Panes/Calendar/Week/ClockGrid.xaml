@@ -1,0 +1,22 @@
+﻿<Grid x:Class="Daytimer.Controls.WeekView.ClockGrid" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="1056"
+		d:DesignWidth="300" IsHitTestVisible="False">
+	<Grid.Resources>
+		<Style x:Key="HourLine" TargetType="Line">
+			<Setter Property="Stroke" Value="#FFE1E1E1" />
+			<Setter Property="VerticalAlignment" Value="Bottom" />
+			<Setter Property="X2" Value="1" />
+			<Setter Property="Stretch" Value="Fill" />
+		</Style>
+		<Style x:Key="HalfHourLine" TargetType="Line">
+			<Setter Property="Stroke" Value="{StaticResource DashedLine}" />
+			<Setter Property="VerticalAlignment" Value="Bottom" />
+			<Setter Property="X2" Value="1" />
+			<Setter Property="Stretch" Value="Fill" />
+		</Style>
+	</Grid.Resources>
+	<Grid x:Name="bgGrid" />
+	<Grid x:Name="clockGrid" />
+</Grid>

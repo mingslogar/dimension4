@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1FD2E7E5-5DC5-4B7C-9D0C-65A633578D58}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FirstRun</RootNamespace>
+    <AssemblyName>FirstRun</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>e4b6c018</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Daytimer\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Setup\SetupDependencies\Resources\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\Daytimer.Images\Images\logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="..\Daytimer\Properties\GlobalAssemlyInfo.cs">
+      <Link>Properties\GlobalAssemlyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Setup\Setup\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Setup\Setup\Install\CEIP.xaml.cs">
+      <Link>CEIP.xaml.cs</Link>
+      <DependentUpon>CEIP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Complete.xaml.cs">
+      <DependentUpon>Complete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Personalize.xaml.cs">
+      <DependentUpon>Personalize.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ThemeHelpers.cs" />
+    <Compile Include="Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
+    </Compile>
+    <Page Include="..\Setup\Setup\Install\CEIP.xaml">
+      <Link>CEIP.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Complete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Personalize.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Welcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Daytimer.Controls\Daytimer.Controls.csproj">
+      <Project>{4fa85921-a657-4967-beab-81cbce27554f}</Project>
+      <Name>Daytimer.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Fonts\Daytimer.Fonts.csproj">
+      <Project>{96be94cb-f3e5-4d4d-b391-75584d17fee3}</Project>
+      <Name>Daytimer.Fonts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Functions\Daytimer.Functions.csproj">
+      <Project>{98731c67-3c15-4790-99b9-97ec65fce1ad}</Project>
+      <Name>Daytimer.Functions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Fundamentals\Daytimer.Fundamentals.csproj">
+      <Project>{fc0ad608-7d06-4c71-a54a-ccba82450abf}</Project>
+      <Name>Daytimer.Fundamentals</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Styles\Daytimer.Styles.csproj">
+      <Project>{8ac733a1-ff56-4ddf-a0cd-5e0ae9744e58}</Project>
+      <Name>Daytimer.Styles</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Daytimer.Images\Images\logo.ico">
+      <Link>logo.ico</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Daytimer.Images\Images\logo_128.png">
+      <Link>logo_128.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Daytimer.Backgrounds\Images\calligraphy.png">
+      <Link>Backgrounds\calligraphy.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\circlesandstripes.png">
+      <Link>Backgrounds\circlesandstripes.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\circuit.png">
+      <Link>Backgrounds\circuit.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\clouds.png">
+      <Link>Backgrounds\clouds.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\doodlecircles.png">
+      <Link>Backgrounds\doodlecircles.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\doodlediamonds.png">
+      <Link>Backgrounds\doodlediamonds.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\geometry.png">
+      <Link>Backgrounds\geometry.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\lunchbox.png">
+      <Link>Backgrounds\lunchbox.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\schoolsupplies.png">
+      <Link>Backgrounds\schoolsupplies.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\spring.png">
+      <Link>Backgrounds\spring.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\stars.png">
+      <Link>Backgrounds\stars.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\straws.png">
+      <Link>Backgrounds\straws.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\treerings.png">
+      <Link>Backgrounds\treerings.png</Link>
+    </Resource>
+    <Resource Include="..\Daytimer.Backgrounds\Images\underwater.png">
+      <Link>Backgrounds\underwater.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Setup\Setup\logo_32.png">
+      <Link>logo_32.png</Link>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

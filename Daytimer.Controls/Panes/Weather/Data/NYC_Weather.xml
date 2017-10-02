@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<current>
+	<city id="5128581" name="New York">
+		<coord lon="-74.01" lat="40.71"/>
+		<country>United States of America</country>
+		<sun rise="2015-01-11T12:19:03" set="2015-01-11T21:49:12"/>
+	</city>
+	<temperature value="261.921" min="261.921" max="261.921" unit="kelvin"/>
+	<humidity value="64" unit="%"/>
+	<pressure value="1032.1" unit="hPa"/>
+	<wind>
+		<speed value="2.61" name="Light breeze"/>
+		<direction value="249.5" code="WSW" name="West-southwest"/>
+	</wind>
+	<clouds value="0" name="clear sky"/>
+	<visibility/>
+	<precipitation mode="no"/>
+	<weather number="800" value="Sky is Clear" icon="01n"/>
+	<lastupdate value="2015-01-11T01:28:04"/>
+</current>

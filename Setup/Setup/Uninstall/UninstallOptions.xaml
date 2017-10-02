@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Setup.Uninstall.UninstallOptions"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="412"
+		d:DesignWidth="898" Background="Transparent" TextOptions.TextRenderingMode="ClearType"
+		TextOptions.TextFormattingMode="Display">
+	<UserControl.CacheMode>
+		<BitmapCache />
+	</UserControl.CacheMode>
+	<Grid Margin="40,50,40,20">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock Text="Uninstall Options" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" FontSize="40"
+				FontFamily="/#WeblySleek UI Light" TextWrapping="Wrap" Foreground="#FF0097D1" IsHitTestVisible="False" />
+		<CheckBox x:Name="selectAll" Content="Select all" HorizontalAlignment="Left" VerticalAlignment="Center"
+				Grid.Row="1" Click="selectAll_Click" Margin="10" />
+		<CheckBox x:Name="deleteSettings" Content="Delete settings/customizations" HorizontalAlignment="Left"
+				VerticalAlignment="Center" Grid.Row="2" Click="optionCheckBox_Click" Margin="10" />
+		<CheckBox x:Name="deleteAccounts" Content="Delete cloud accounts" HorizontalAlignment="Left"
+				VerticalAlignment="Center" Grid.Row="3" Click="optionCheckBox_Click" Margin="10" />
+		<CheckBox x:Name="deleteDatabase" Content="Delete database files" HorizontalAlignment="Left"
+				VerticalAlignment="Center" Grid.Row="4" Click="optionCheckBox_Click" Margin="10" />
+		<CheckBox x:Name="deleteDictionary" Content="Delete custom dictionary" HorizontalAlignment="Left"
+				VerticalAlignment="Center" Grid.Row="5" Click="optionCheckBox_Click" Margin="10" />
+	</Grid>
+</UserControl>

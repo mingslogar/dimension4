@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BFD27DB0-3D73-481B-B52F-1DA091FC13C0}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Daytimer.Help</RootNamespace>
+    <AssemblyName>Daytimer.Help</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>d04f2c09</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Daytimer\Properties\GlobalAssemlyInfo.cs">
+      <Link>Properties\GlobalAssemlyInfo.cs</Link>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="HelpManager.cs" />
+    <Compile Include="HelpViewer.xaml.cs">
+      <DependentUpon>HelpViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="SearchEngine\HtmlGenerator.cs" />
+    <Compile Include="SearchEngine\Search.cs" />
+    <Compile Include="SearchEngine\SearchHelpers.cs" />
+    <Compile Include="SearchEngine\SearchResult.cs" />
+    <Compile Include="Server\StatusCodes.cs" />
+    <Compile Include="Server\HttpProcessor.cs" />
+    <Compile Include="Server\HttpResourceServer.cs" />
+    <Compile Include="Server\HttpServer.cs" />
+    <Compile Include="StaticData.cs" />
+    <Compile Include="ViewerControl.xaml.cs">
+      <DependentUpon>ViewerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WpfWebBrowserWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="HelpViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\include\footer.html" />
+    <Resource Include="Documentation\include\header.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\default.html" />
+    <Resource Include="Documentation\include\styles.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\show_progress.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\send_receive_all_folders.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\cancel_all.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\work_offline.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\new_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\today.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\next_7_days.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\date.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\day.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\week.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\month.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\search_pane.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\save_and_close_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\save_and_close_task.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\discard_changes_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\delete_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\recurrence_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\categorize_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\private_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\high_importance_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\low_importance_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\new_task.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\show_completed.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\discard_changes_task.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\delete_task.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\mark_complete.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\categorize_task.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\private_task.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\high_importance_task.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\low_importance_task.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\new_contact.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\show_all_contact.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\show_favorites_contact.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\save_and_close_contact.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\discard_changes_contact.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\delete_contact.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\private_contact.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\home_weather.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\change_location.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\refresh_weather.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\paste.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\cut.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\copy.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\format_painter.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\undo.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\redo.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\font.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\font_size.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\increase_size.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\decrease_size.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\change_case.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\clear_formatting.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\bold.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\italic.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\underline.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\strikethrough.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\subscript.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\superscript.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\text_highlight_color.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\font_color.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\bullets.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\numbering.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\decrease_indent.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\increase_indent.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\align_left.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\center.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\align_right.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\justify.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\paragraph_spacing.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\background_color.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\border_type.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\insert_symbol.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\horizontal_line.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\add_a_hyperlink.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Daytimer.Controls\Daytimer.Controls.csproj">
+      <Project>{4fa85921-a657-4967-beab-81cbce27554f}</Project>
+      <Name>Daytimer.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Functions\Daytimer.Functions.csproj">
+      <Project>{98731c67-3c15-4790-99b9-97ec65fce1ad}</Project>
+      <Name>Daytimer.Functions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Daytimer.Fundamentals\Daytimer.Fundamentals.csproj">
+      <Project>{fc0ad608-7d06-4c71-a54a-ccba82450abf}</Project>
+      <Name>Daytimer.Fundamentals</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\todo_bar.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\normal_view.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\read_mode.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\show_as_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\new_note.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SHDocVw">
+      <Guid>{EAB22AC0-30C1-11CF-A7EB-0000C05BAE0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\reminder_appointment.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\find.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\replace.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\select_all.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Server\errortemplate.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documentation\ribbon\dock_to_desktop_notes.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

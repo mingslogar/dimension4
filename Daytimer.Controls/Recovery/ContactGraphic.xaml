@@ -1,0 +1,22 @@
+﻿<Grid x:Class="Daytimer.Controls.Recovery.ContactGraphic"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="NaN"
+		d:DesignWidth="400">
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="*" />
+	</Grid.ColumnDefinitions>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
+	</Grid.RowDefinitions>
+	<Image x:Name="contactTile" Source="pack://application:,,,/Daytimer.Images;component/Images/defaulttile.png"
+			Width="96" Height="96" Stretch="None" Grid.RowSpan="3" />
+	<TextBlock x:Name="contactName" Grid.Column="1" Text="Default" FontSize="24" VerticalAlignment="Center"
+			HorizontalAlignment="Left" Margin="19,0,0,0" FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light" />
+	<TextBlock x:Name="contactJobTitle" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Text="JobTitle, Company"
+			VerticalAlignment="Top" HorizontalAlignment="Left" Margin="19,5,0,0" />
+</Grid>

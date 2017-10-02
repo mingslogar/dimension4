@@ -1,0 +1,144 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Daytimer.DockableDialogs"
+		xmlns:system="clr-namespace:System;assembly=mscorlib"
+		xmlns:ext="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell">
+	<local:DockTargetSizeConverter x:Key="DockTargetSizeConverter" />
+	<Style TargetType="{x:Type local:DockedWindow}">
+		<Setter Property="MinWidth" Value="130" />
+		<Setter Property="MinHeight" Value="175" />
+		<Setter Property="MaxWidth"
+				Value="{Binding MaxWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=local:DockTarget}}" />
+		<Setter Property="Opacity" Value="0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type local:DockedWindow}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+						<Border x:Name="PART_Caption" Background="Transparent" Cursor="SizeAll" Grid.ColumnSpan="3" />
+						<Button x:Name="PART_CloseButton" Style="{DynamicResource CaptionButton}" Grid.ColumnSpan="3"
+								HorizontalAlignment="Right" VerticalAlignment="Top"
+								Content="{DynamicResource CloseButtonKey}"
+								Foreground="{DynamicResource WindowCaptionFocused}" ToolTip="Close" Margin="0,4" Tag="2"
+								Command="Close" />
+						<Thumb x:Name="PART_ResizeLeft" Background="Transparent" Grid.RowSpan="2" Cursor="SizeWE"
+								VerticalAlignment="Stretch">
+							<Thumb.Template>
+								<ControlTemplate TargetType="Thumb">
+									<Border Background="Transparent">
+										<Border BorderBrush="{DynamicResource RibbonBorder}" BorderThickness="1"
+												Width="1" Margin="0,0,10,0" />
+									</Border>
+								</ControlTemplate>
+							</Thumb.Template>
+						</Thumb>
+						<Thumb x:Name="PART_ResizeRight" Background="Transparent" Grid.RowSpan="2" Cursor="SizeWE"
+								VerticalAlignment="Stretch" Grid.Column="2">
+							<Thumb.Template>
+								<ControlTemplate TargetType="Thumb">
+									<Border Background="Transparent">
+										<Border BorderBrush="{DynamicResource RibbonBorder}" BorderThickness="1"
+												Width="1" Margin="10,0,0,0" />
+									</Border>
+								</ControlTemplate>
+							</Thumb.Template>
+						</Thumb>
+						<ContentPresenter Grid.Row="1" Grid.Column="1" Margin="0,0,0,11" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="DockLocation" Value="Left">
+							<Setter Property="Visibility" TargetName="PART_ResizeLeft" Value="Hidden" />
+						</Trigger>
+						<Trigger Property="DockLocation" Value="Right">
+							<Setter Property="Visibility" TargetName="PART_ResizeRight" Value="Hidden" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style TargetType="{x:Type local:UndockedWindow}">
+		<Setter Property="Background" Value="White" />
+		<Setter Property="ShowInTaskbar" Value="False" />
+		<Setter Property="MinWidth" Value="130" />
+		<Setter Property="MinHeight" Value="175" />
+		<Setter Property="ext:WindowChrome.WindowChrome">
+			<Setter.Value>
+				<ext:WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"
+						UseAeroCaptionButtons="False" />
+			</Setter.Value>
+		</Setter>
+		<Setter Property="BorderBrush" Value="{DynamicResource WindowBorderUnfocused}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type local:UndockedWindow}">
+					<Border Background="{TemplateBinding Background}" BorderThickness="1"
+							BorderBrush="{TemplateBinding BorderBrush}">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition />
+							</Grid.RowDefinitions>
+							<Border x:Name="PART_Caption" Background="Transparent" Cursor="SizeAll" />
+							<Button x:Name="PART_CloseButton" Style="{DynamicResource CaptionButton}"
+									HorizontalAlignment="Right" VerticalAlignment="Top"
+									Content="{DynamicResource CloseButtonKey}"
+									Foreground="{DynamicResource WindowCaptionUnfocused}" ToolTip="Close" Margin="0,4"
+									Tag="2" Command="Close" />
+							<ContentPresenter Grid.Row="1" Margin="11,0,11,11" />
+						</Grid>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsActive" Value="True">
+							<Setter Property="Foreground" TargetName="PART_CloseButton"
+									Value="{DynamicResource WindowCaptionFocused}" />
+							<Setter Property="BorderBrush" Value="{DynamicResource WindowBorderFocused}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style TargetType="{x:Type local:DockTarget}">
+		<Setter Property="MaxWidth"
+				Value="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Converter={StaticResource DockTargetSizeConverter}}" />
+		<Setter Property="Width" Value="0" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type local:DockTarget}">
+					<Grid Background="{DynamicResource White}">
+						<Border x:Name="PART_LeftBorder" BorderBrush="{DynamicResource RibbonBorder}"
+								BorderThickness="1" Width="1" HorizontalAlignment="Left" />
+						<Grid x:Name="PART_ItemsHost" IsItemsHost="True" />
+						<Border x:Name="PART_RightBorder" BorderBrush="{DynamicResource RibbonBorder}"
+								BorderThickness="1" Width="1" HorizontalAlignment="Right" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="DockLocation" Value="Left">
+							<Setter Property="Visibility" TargetName="PART_LeftBorder" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="DockLocation" Value="Right">
+							<Setter Property="Visibility" TargetName="PART_RightBorder" Value="Collapsed" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style TargetType="{x:Type local:DockContent}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type local:DockContent}">
+					<ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

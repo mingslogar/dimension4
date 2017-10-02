@@ -1,0 +1,16 @@
+﻿<Application x:Uid="Application_1" x:Class="UpdateManager.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		DispatcherUnhandledException="Application_DispatcherUnhandledException">
+	<Application.Resources>
+		<ResourceDictionary x:Uid="ResourceDictionary_1">
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary x:Uid="ResourceDictionary_2" Source="Daytimer/Themes/BlueTheme.xaml" />
+				<ResourceDictionary x:Uid="ResourceDictionary_3" Source="Daytimer.Styles/Resources/Button.xaml" />
+				<ResourceDictionary x:Uid="ResourceDictionary_4" Source="Daytimer.Styles/Resources/CaptionButtons.xaml" />
+				<ResourceDictionary x:Uid="ResourceDictionary_5" Source="Daytimer.Styles/Resources/ProgressBar.xaml" />
+				<ResourceDictionary x:Uid="ResourceDictionary_6" Source="Daytimer.Styles/Resources/ScrollBar.xaml" />
+				<ResourceDictionary x:Uid="ResourceDictionary_7" Source="Daytimer.Styles/Resources/ToolTip.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>

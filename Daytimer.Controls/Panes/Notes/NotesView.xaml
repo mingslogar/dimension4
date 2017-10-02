@@ -1,0 +1,675 @@
+﻿<Grid x:Class="Daytimer.Controls.Panes.Notes.NotesView"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:friction="clr-namespace:Daytimer.Controls.Friction"
+		xmlns:local="clr-namespace:Daytimer.Controls.Panes.Notes" xmlns:controls="clr-namespace:Daytimer.Controls"
+		xmlns:note="clr-namespace:Daytimer.DatabaseHelpers.Note" mc:Ignorable="d" d:DesignHeight="500"
+		d:DesignWidth="900" ClipToBounds="True" Background="Transparent">
+	<Grid.Resources>
+		<local:UtcDateConverter x:Key="UtcDateConverter" />
+		<local:UtcTimeConverter x:Key="UtcTimeConverter" />
+		<local:StringToBrushConverter x:Key="StringToBrushConverter" />
+	</Grid.Resources>
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="30*" MinWidth="140" />
+		<ColumnDefinition Width="130*" MinWidth="330" />
+		<ColumnDefinition Width="30*" MinWidth="100" />
+	</Grid.ColumnDefinitions>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="39" />
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="Auto" />
+		<RowDefinition />
+	</Grid.RowDefinitions>
+	<!--<Rectangle Width="5" HorizontalAlignment="Left" Grid.RowSpan="4">
+		<Rectangle.Fill>
+			<SolidColorBrush
+					Color="{Binding SelectedNotebook.Color, RelativeSource={RelativeSource FindAncestor, AncestorType=local:NotesView}, FallbackValue=#FFE8E8E8}" />
+		</Rectangle.Fill>
+	</Rectangle>
+	<Rectangle Height="5" VerticalAlignment="Bottom" Grid.Row="3">
+		<Rectangle.Fill>
+			<SolidColorBrush
+					Color="{Binding SelectedNotebook.Color, RelativeSource={RelativeSource FindAncestor, AncestorType=local:NotesView}, FallbackValue=#FFE8E8E8}" />
+		</Rectangle.Fill>
+	</Rectangle>-->
+	<Grid Grid.Row="1" Grid.RowSpan="3">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Button x:Name="addNotebookButton" Content="Add Notebook" Foreground="#FF595959" Margin="5,0"
+				Click="addNotebookButton_Click" HorizontalAlignment="Stretch" Width="NaN" Height="NaN" MinWidth="0">
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
+					<Border x:Name="PART_Border" Background="Transparent">
+						<Grid IsHitTestVisible="False">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<Ellipse x:Name="PART_Ellipse" Width="16" Height="16" VerticalAlignment="Center"
+									StrokeThickness="1" Stroke="#FF6C6C6C" Fill="White" Margin="10,7,4,7" />
+							<Path x:Name="PART_Path" HorizontalAlignment="Center" VerticalAlignment="Center"
+									StrokeThickness="2" Stroke="#FF909090" Data="M 4 0 4 8 M 0 4 8 4" Margin="10,7,4,7" />
+							<ContentPresenter Grid.Column="1" VerticalAlignment="Center" />
+						</Grid>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" TargetName="PART_Border" Value="#FFF0F0F0" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
+		<friction:FrictionScrollViewerControl x:Name="notebookTabsScroller" Grid.Row="1"
+				VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="4,5,4,0"
+				FocusVisualStyle="{x:Null}">
+			<controls:SortPanel x:Name="notebookTabs" Orientation="Vertical" ClipToBounds="False" ZoomOnDrag="False"
+					Margin="0,0,0,20" FocusVisualStyle="{x:Null}" ItemReordered="notebookTabs_ItemReordered">
+				<controls:SortPanel.Resources>
+					<Style TargetType="RadioButton">
+						<Setter Property="GroupName" Value="notebookTabsRadios" />
+						<Setter Property="Height" Value="45" />
+						<Setter Property="Background" Value="Transparent" />
+						<Setter Property="BorderBrush" Value="Transparent" />
+						<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+						<Setter Property="Foreground" Value="{DynamicResource Black}" />
+						<EventSetter Event="Checked" Handler="notebookTabs_SelectionChanged" />
+						<EventSetter Event="ContextMenuOpening" Handler="notebook_ContextMenuOpening" />
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="RadioButton">
+									<Border x:Name="PART_Border" ClipToBounds="True" Background="Transparent">
+										<Grid x:Name="PART_Grid" ClipToBounds="True" Background="Transparent"
+												Margin="5,0,0,0">
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+											<Path VerticalAlignment="Center" IsHitTestVisible="False"
+													Fill="{TemplateBinding Background}" Margin="5,0,0,0"
+													Data="M 0 27 0 1 1 0 21 0 22 1 22 25 2 25 Z  M 5 6 17 6 17 11 5 11 Z  M 1 27 21 27 21 28 1 28 Z  M 23 4 25 4 25 7 23 7 Z  M 23 9 25 9 25 12 23 12 Z  M 23 14 25 14 25 17 23 17 Z  M 23 19 25 19 25 22 23 22 Z" />
+											<Grid ClipToBounds="True" Grid.Column="1" VerticalAlignment="Center"
+													Margin="11,0,10,0">
+												<TextBlock x:Name="PART_TextBlock" Text="{TemplateBinding Content}"
+														TextWrapping="NoWrap" Margin="2,-2,2,2"
+														TextTrimming="CharacterEllipsis" FontSize="18"
+														VerticalAlignment="Center" IsHitTestVisible="False" />
+												<TextBox x:Name="PART_TextBox" Text="{TemplateBinding Content}"
+														Padding="1,2" BorderThickness="0" VerticalAlignment="Center"
+														Height="NaN" Visibility="Collapsed" MinWidth="30"
+														Background="{DynamicResource White}"
+														LostKeyboardFocus="NotebookTabTextBox_LostKeyboardFocus"
+														PreviewKeyUp="NotebookTabTextBox_PreviewKeyUp" />
+											</Grid>
+											<Grid.ContextMenu>
+												<ContextMenu>
+													<MenuItem Header="_Rename" Click="NotebookRename_Click" />
+													<MenuItem x:Name="PART_NotebookColors" Header="Notebook _Color">
+														<MenuItem.Resources>
+															<Style TargetType="{x:Type MenuItem}"
+																	BasedOn="{StaticResource MenuItemKey}">
+																<EventSetter Event="Click" Handler="NotebookColor_Click" />
+															</Style>
+															<Style x:Key="ColorMenu" TargetType="MenuItem">
+																<Setter Property="OverridesDefaultStyle" Value="True" />
+																<Setter Property="Height" Value="24" />
+																<Setter Property="IsCheckable" Value="True" />
+																<EventSetter Event="Click" Handler="NotebookColor_Click" />
+																<Setter Property="Template">
+																	<Setter.Value>
+																		<ControlTemplate TargetType="{x:Type MenuItem}">
+																			<Border x:Name="Border"
+																					Background="Transparent">
+																				<Grid>
+																					<Grid.ColumnDefinitions>
+																						<ColumnDefinition Width="Auto"
+																								SharedSizeGroup="Icon" />
+																						<ColumnDefinition Width="*" />
+																						<ColumnDefinition Width="Auto"
+																								SharedSizeGroup="Shortcut" />
+																						<ColumnDefinition Width="15" />
+																					</Grid.ColumnDefinitions>
+																					<Border x:Name="CheckMark"
+																							Visibility="Hidden"
+																							Width="20" Height="20"
+																							BorderThickness="1"
+																							BorderBrush="{DynamicResource ContextMenuIconCheckBorder}"
+																							Background="{DynamicResource ContextMenuIconCheckBackground}"
+																							VerticalAlignment="Center" />
+																					<Border Margin="8,2,8,2"
+																							BorderBrush="#FF727272"
+																							BorderThickness="1"
+																							Height="12" Width="12"
+																							VerticalAlignment="Center"
+																							Background="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToBrushConverter}}" />
+																					<ContentPresenter
+																							x:Name="HeaderHost"
+																							Grid.Column="1"
+																							VerticalAlignment="Center"
+																							ContentSource="Header"
+																							RecognizesAccessKey="True" />
+																				</Grid>
+																			</Border>
+																			<ControlTemplate.Triggers>
+																				<Trigger Property="IsHighlighted"
+																						Value="True">
+																					<Setter Property="Background"
+																							TargetName="Border"
+																							Value="{DynamicResource ContextMenuHoverBackground}" />
+																				</Trigger>
+																				<Trigger Property="IsChecked"
+																						Value="True">
+																					<Setter TargetName="CheckMark"
+																							Property="Visibility"
+																							Value="Visible" />
+																				</Trigger>
+																			</ControlTemplate.Triggers>
+																		</ControlTemplate>
+																	</Setter.Value>
+																</Setter>
+															</Style>
+														</MenuItem.Resources>
+														<MenuItem Header="_Blue" Tag="#FF8AB6E2"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Yellow" Tag="#FFF1CA5D"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Green" Tag="#FF7ACC93"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Red" Tag="#FFF39B9B"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Purple" Tag="#FFD399CF"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Cyan" Tag="#FF87C9D9"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Orange" Tag="#FFF1B86F"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Magenta" Tag="#FFEB9FC9"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="Blue Mi_st" Tag="#FF96ABDE"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="P_urple Mist" Tag="#FFAAA5DB"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Tan" Tag="#FFCDA485"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Lemon Lime" Tag="#FFB4D367"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="_Apple" Tag="#FF9DCD78"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="T_eal" Tag="#FF75CDB8"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="Re_d Chalk" Tag="#FFF0AAAA"
+																Style="{StaticResource ColorMenu}" />
+														<MenuItem Header="Sil_ver" Tag="#FFB9C0C7"
+																Style="{StaticResource ColorMenu}" />
+														<Separator />
+														<MenuItem Header="_None" Tag="#FFE0E0E0" IsCheckable="True" />
+													</MenuItem>
+													<MenuItem Header="_Delete" Click="NotebookDelete_Click">
+														<MenuItem.Icon>
+															<Image
+																	Source="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png" />
+														</MenuItem.Icon>
+													</MenuItem>
+												</ContextMenu>
+											</Grid.ContextMenu>
+										</Grid>
+									</Border>
+									<ControlTemplate.Triggers>
+										<Trigger Property="IsMouseOver" Value="True">
+											<Setter Property="Background" TargetName="PART_Border" Value="#10000000" />
+										</Trigger>
+										<Trigger Property="IsChecked" Value="True">
+											<Setter Property="Background" TargetName="PART_Border"
+													Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" />
+											<Setter Property="Background" TargetName="PART_Grid" Value="#C0FFFFFF" />
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</controls:SortPanel.Resources>
+			</controls:SortPanel>
+		</friction:FrictionScrollViewerControl>
+	</Grid>
+	<Rectangle x:Name="PART_Background" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2"
+			IsHitTestVisible="False">
+		<Rectangle.Fill>
+			<SolidColorBrush
+					Color="{Binding SelectedSection.Color, RelativeSource={RelativeSource FindAncestor, AncestorType=local:NotesView}, FallbackValue=#FFE8E8E8}" />
+		</Rectangle.Fill>
+	</Rectangle>
+	<Rectangle Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="1" Fill="#10000000" VerticalAlignment="Top"
+			IsHitTestVisible="False" />
+	<local:TabHeaderSortPanel x:Name="sectionTabs" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal"
+			Margin="7,1,0,-1" ClipToBounds="False" ZoomOnDrag="False" ItemReordered="sectionTabs_ItemReordered"
+			LayoutUpdated="sectionTabs_LayoutUpdated">
+		<local:TabHeaderSortPanel.Resources>
+			<Style TargetType="RadioButton">
+				<Setter Property="Height" Value="22" />
+				<Setter Property="GroupName" Value="sectionTabsRadios" />
+				<Setter Property="VerticalAlignment" Value="Bottom" />
+				<Setter Property="Padding" Value="13,0" />
+				<Setter Property="BorderBrush" Value="#10000000" />
+				<Setter Property="MaxWidth" Value="150" />
+				<Setter Property="Margin" Value="0" />
+				<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+				<EventSetter Event="Checked" Handler="sectionTabs_SelectionChanged" />
+				<EventSetter Event="ContextMenuOpening" Handler="radioButton_ContextMenuOpening" />
+				<EventSetter Event="PreviewMouseDoubleClick" Handler="sectionTab_PreviewMouseDoubleClick" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="RadioButton">
+							<Border ClipToBounds="True" Background="Transparent">
+								<Grid x:Name="PART_Grid" Margin="0,0,0,1" ClipToBounds="True" Background="Transparent">
+									<Border x:Name="PART_Background" Background="{TemplateBinding Background}"
+											CornerRadius="4,4,0,0" IsHitTestVisible="False" />
+									<Border BorderThickness="1,1,1,0" BorderBrush="{TemplateBinding BorderBrush}"
+											CornerRadius="4,4,0,0">
+										<Grid ClipToBounds="True">
+											<TextBlock x:Name="PART_TextBlock" Text="{TemplateBinding Content}"
+													VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+													Margin="{TemplateBinding Padding}" IsHitTestVisible="False" />
+											<TextBox x:Name="PART_TextBox" Text="{TemplateBinding Content}" Margin="4,0"
+													Padding="1,2" BorderThickness="0" VerticalAlignment="Center"
+													Height="NaN" Visibility="Collapsed" MinWidth="18"
+													Background="{DynamicResource White}"
+													LostKeyboardFocus="SectionTabTextBox_LostKeyboardFocus"
+													PreviewKeyUp="SectionTabTextBox_PreviewKeyUp" />
+										</Grid>
+									</Border>
+									<Grid.ContextMenu>
+										<ContextMenu>
+											<MenuItem Header="_Rename" Click="SectionRename_Click" />
+											<MenuItem x:Name="PART_SectionColors" Header="Section _Color">
+												<MenuItem.Resources>
+													<Style x:Key="ColorMenu" TargetType="MenuItem">
+														<Setter Property="OverridesDefaultStyle" Value="True" />
+														<Setter Property="Height" Value="24" />
+														<Setter Property="IsCheckable" Value="True" />
+														<Setter Property="Template">
+															<Setter.Value>
+																<ControlTemplate TargetType="{x:Type MenuItem}">
+																	<Border x:Name="Border" Background="Transparent">
+																		<Grid>
+																			<Grid.ColumnDefinitions>
+																				<ColumnDefinition Width="Auto"
+																						SharedSizeGroup="Icon" />
+																				<ColumnDefinition Width="*" />
+																				<ColumnDefinition Width="Auto"
+																						SharedSizeGroup="Shortcut" />
+																				<ColumnDefinition Width="15" />
+																			</Grid.ColumnDefinitions>
+																			<Border x:Name="CheckMark"
+																					Visibility="Hidden" Width="20"
+																					Height="20" BorderThickness="1"
+																					BorderBrush="{DynamicResource ContextMenuIconCheckBorder}"
+																					Background="{DynamicResource ContextMenuIconCheckBackground}"
+																					VerticalAlignment="Center" />
+																			<Border Margin="8,2,8,2"
+																					BorderBrush="#FF727272"
+																					BorderThickness="1" Height="12"
+																					Width="12"
+																					VerticalAlignment="Center"
+																					Background="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToBrushConverter}}" />
+																			<ContentPresenter x:Name="HeaderHost"
+																					Grid.Column="1"
+																					VerticalAlignment="Center"
+																					ContentSource="Header"
+																					RecognizesAccessKey="True" />
+																		</Grid>
+																	</Border>
+																	<ControlTemplate.Triggers>
+																		<Trigger Property="IsHighlighted" Value="True">
+																			<Setter Property="Background"
+																					TargetName="Border"
+																					Value="{DynamicResource ContextMenuHoverBackground}" />
+																		</Trigger>
+																		<Trigger Property="IsChecked" Value="True">
+																			<Setter TargetName="CheckMark"
+																					Property="Visibility"
+																					Value="Visible" />
+																		</Trigger>
+																	</ControlTemplate.Triggers>
+																</ControlTemplate>
+															</Setter.Value>
+														</Setter>
+														<EventSetter Event="Click" Handler="SectionColor_Click" />
+													</Style>
+												</MenuItem.Resources>
+												<MenuItem Header="_Blue" Tag="#FF9AC0E6"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Yellow" Tag="#FFF3D275"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Green" Tag="#FF8AD2A0"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Red" Tag="#FFF4A6A6"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Purple" Tag="#FFD6A6D3"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Cyan" Tag="#FF99D0DF"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Orange" Tag="#FFF1B87F"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Magenta" Tag="#FFF2A8D1"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="Blue Mi_st" Tag="#FF9FB2E1"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="P_urple Mist" Tag="#FFB4AFDF"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Tan" Tag="#FFD4B298"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Lemon Lime" Tag="#FFC1DA82"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="_Apple" Tag="#FFABD58B"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="T_eal" Tag="#FF88D4C2"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="Re_d Chalk" Tag="#FFF1B5B5"
+														Style="{StaticResource ColorMenu}" />
+												<MenuItem Header="Sil_ver" Tag="#FFC3C9CF"
+														Style="{StaticResource ColorMenu}" />
+												<Separator />
+												<MenuItem Header="_None" Tag="#FFE8E8E8" IsCheckable="True"
+														Click="SectionColor_Click" />
+											</MenuItem>
+											<MenuItem Header="_Delete" Click="SectionDelete_Click">
+												<MenuItem.Icon>
+													<Image
+															Source="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png" />
+												</MenuItem.Icon>
+											</MenuItem>
+										</ContextMenu>
+									</Grid.ContextMenu>
+								</Grid>
+							</Border>
+							<ControlTemplate.Triggers>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="IsMouseOver" Value="True" />
+										<Condition Property="IsChecked" Value="False" />
+									</MultiTrigger.Conditions>
+									<Setter Property="Opacity" TargetName="PART_Background" Value="0.6" />
+								</MultiTrigger>
+								<MultiTrigger>
+									<MultiTrigger.Conditions>
+										<Condition Property="Background" Value="White" />
+										<Condition Property="IsMouseOver" Value="True" />
+										<Condition Property="IsChecked" Value="False" />
+									</MultiTrigger.Conditions>
+									<Setter Property="Background" TargetName="PART_Background" Value="#FFF0F0F0" />
+									<Setter Property="Opacity" TargetName="PART_Background" Value="1" />
+								</MultiTrigger>
+								<Trigger Property="IsChecked" Value="True">
+									<Setter Property="Height" Value="27" />
+									<Setter Property="Margin" TargetName="PART_Grid" Value="0" />
+									<Setter Property="Panel.ZIndex" Value="10" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</local:TabHeaderSortPanel.Resources>
+		<Button x:Name="addSectionButton" ToolTip="Create a New Section" Background="White"
+				controls:SortPanel.DragEnabled="False" IsEnabled="False" MinWidth="0" Click="addSectionButton_Click">
+			<Path Stroke="#FF848484" StrokeThickness="2" Data="M 0 4 8 4 M 4 0 4 8" IsHitTestVisible="False" />
+			<Button.Style>
+				<Style TargetType="Button">
+					<Setter Property="Height" Value="20" />
+					<Setter Property="VerticalAlignment" Value="Bottom" />
+					<Setter Property="Padding" Value="13,0" />
+					<Setter Property="BorderBrush" Value="#FFC6C6C6" />
+					<Setter Property="Margin" Value="0" />
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="Button">
+								<Grid x:Name="PART_Grid" Margin="0,0,0,1" ClipToBounds="True">
+									<Border x:Name="PART_Background" Background="{TemplateBinding Background}"
+											CornerRadius="4,4,0,0" />
+									<Border BorderThickness="1,1,1,0" BorderBrush="{TemplateBinding BorderBrush}"
+											CornerRadius="4,4,0,0">
+										<ContentPresenter x:Name="PART_ContentPresenter" VerticalAlignment="Center"
+												Margin="{TemplateBinding Padding}" />
+									</Border>
+								</Grid>
+								<ControlTemplate.Triggers>
+									<Trigger Property="IsMouseOver" Value="True">
+										<Setter Property="Background" TargetName="PART_Background" Value="#FFF0F0F0" />
+									</Trigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</Button.Style>
+		</Button>
+		<Button x:Name="sectionOverflowButton" FontSize="10" Content="•••" FontFamily="Consolas" Padding="13,0"
+				Width="NaN" Height="21" VerticalAlignment="Bottom" controls:SortPanel.DragEnabled="False"
+				ToolTip="View Hidden Sections" Visibility="Hidden" MinWidth="0" Click="sectionOverflowButton_Click">
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
+					<Border Background="Transparent">
+						<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
+								Margin="{TemplateBinding Padding}" IsHitTestVisible="False" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Foreground">
+								<Setter.Value>
+									<SolidColorBrush Color="{DynamicResource TextRadioChecked}" />
+								</Setter.Value>
+							</Setter>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
+	</local:TabHeaderSortPanel>
+	<Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="3">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Button x:Name="addPageButton" Content="Add Page" Foreground="#FF595959" Margin="7,7,6,5"
+				Click="addPageButton_Click" HorizontalAlignment="Stretch" Width="NaN" Height="NaN" IsEnabled="False"
+				MinWidth="0" ToolTip="Add a page at the end of the section.">
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
+					<Border x:Name="PART_Border" Background="Transparent" BorderThickness="1">
+						<Grid IsHitTestVisible="False">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<Ellipse x:Name="PART_Ellipse" Width="16" Height="16" VerticalAlignment="Center"
+									StrokeThickness="1" Stroke="#FF6C6C6C" Fill="White" Margin="6,1,4,1" />
+							<Path x:Name="PART_Path" HorizontalAlignment="Center" VerticalAlignment="Center"
+									StrokeThickness="2" Stroke="#FF909090" Data="M 4 0 4 8 M 0 4 8 4" Margin="6,1,4,1" />
+							<ContentPresenter Grid.Column="1" VerticalAlignment="Center" />
+						</Grid>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" TargetName="PART_Border" Value="#80FFFFFF" />
+							<Setter Property="BorderBrush" TargetName="PART_Border" Value="#10000000" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False">
+							<Setter Property="Opacity" TargetName="PART_Path" Value="0.5" />
+							<Setter Property="Opacity" TargetName="PART_Ellipse" Value="0.5" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Button.Template>
+		</Button>
+		<Border Grid.Row="1" Margin="1,0,0,0" Background="#C2FFFFFF" IsHitTestVisible="False" />
+		<friction:FrictionScrollViewerControl x:Name="pageTabsScroller" Grid.Row="1" VerticalScrollBarVisibility="Auto"
+				HorizontalScrollBarVisibility="Disabled">
+			<controls:SortPanel x:Name="pageTabs" Orientation="Vertical" Margin="0,21,6,22" ClipToBounds="False"
+					ZoomOnDrag="False" ItemReordered="pageTabs_ItemReordered">
+				<controls:SortPanel.Resources>
+					<Style TargetType="RadioButton">
+						<Setter Property="Height" Value="23" />
+						<Setter Property="GroupName" Value="pageTabsRadios" />
+						<Setter Property="Padding" Value="12,0,13,0" />
+						<Setter Property="Background" Value="Transparent" />
+						<Setter Property="BorderBrush" Value="Transparent" />
+						<Setter Property="Margin" Value="0,-1" />
+						<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+						<EventSetter Event="Checked" Handler="pageTabs_SelectionChanged" />
+						<EventSetter Event="ContextMenuOpening" Handler="radioButton_ContextMenuOpening" />
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="RadioButton">
+									<Border ClipToBounds="True" Background="Transparent">
+										<Border x:Name="PART_Border" Background="{TemplateBinding Background}"
+												BorderThickness="0,1,1,1" BorderBrush="{TemplateBinding BorderBrush}"
+												Margin="1,0,0,0" ClipToBounds="True">
+											<TextBlock Text="{TemplateBinding Content}" TextTrimming="CharacterEllipsis"
+													VerticalAlignment="Center" Margin="{TemplateBinding Padding}"
+													IsHitTestVisible="False" />
+											<Border.ContextMenu>
+												<ContextMenu>
+													<MenuItem Header="_Rename" Click="PageRename_Click" />
+													<MenuItem Header="_Delete" Click="PageDelete_Click">
+														<MenuItem.Icon>
+															<Image
+																	Source="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png" />
+														</MenuItem.Icon>
+													</MenuItem>
+												</ContextMenu>
+											</Border.ContextMenu>
+										</Border>
+									</Border>
+									<ControlTemplate.Triggers>
+										<Trigger Property="IsMouseOver" Value="True">
+											<Setter Property="Background" Value="#70FFFFFF" />
+										</Trigger>
+										<Trigger Property="IsChecked" Value="True">
+											<Setter Property="Background" Value="#FFFFFFFF" />
+											<Setter Property="BorderBrush"
+													Value="{Binding Fill, ElementName=PART_Background}" />
+											<Setter Property="Panel.ZIndex" Value="1" />
+											<Setter Property="Padding" Value="13,0,13,0" />
+											<Setter Property="Margin" TargetName="PART_Border" Value="0" />
+										</Trigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style>
+				</controls:SortPanel.Resources>
+			</controls:SortPanel>
+		</friction:FrictionScrollViewerControl>
+	</Grid>
+	<Button x:Name="background" Background="#FFF0F0F0" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Margin="1,6,0,0"
+			Width="NaN" Height="NaN" MinWidth="0" IsEnabled="False" Click="background_Click"
+			SizeChanged="background_SizeChanged">
+		<Button.Template>
+			<ControlTemplate TargetType="Button">
+				<Border Background="{TemplateBinding Background}" />
+			</ControlTemplate>
+		</Button.Template>
+	</Button>
+	<Grid x:Name="messageGrid" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Margin="103,109,100,0"
+			IsHitTestVisible="False">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Image Source="pack://application:,,,/Daytimer.Images;component/Images/info.png" Stretch="None"
+				Margin="0,1,10,-1" HorizontalAlignment="Left" VerticalAlignment="Top" />
+		<TextBlock x:Name="messageHeader" Grid.Column="1" Text="Loading..." VerticalAlignment="Center" FontSize="22"
+				Foreground="#FF474747" HorizontalAlignment="Left" TextWrapping="Wrap" />
+		<TextBlock x:Name="messageFooter" Grid.Column="1" Grid.Row="1" Text="Hang on while we fetch your notes..."
+				FontSize="14" Margin="0,20,0,0" Foreground="#FF474747" HorizontalAlignment="Left"
+				VerticalAlignment="Top" TextWrapping="Wrap" />
+	</Grid>
+	<TextBox x:Name="pageTitleBox" Grid.Column="1" Grid.Row="1" Margin="35,26,0,0" Padding="10,2,36,2"
+			BorderThickness="0,0,0,1" BorderBrush="#FFE1E1E1"
+			FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light" FontSize="20pt" Width="Auto"
+			HorizontalAlignment="Left" TextWrapping="Wrap" MaxWidth="639" MinWidth="288" Height="NaN" MaxHeight="300"
+			VerticalScrollBarVisibility="Auto" Visibility="{Binding Visibility, ElementName=document}"
+			Text="{Binding SelectedPage.Title, RelativeSource={RelativeSource FindAncestor, AncestorType=local:NotesView}, UpdateSourceTrigger=PropertyChanged}"
+			PreviewKeyUp="pageTitleBox_PreviewKeyUp" />
+	<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="47,3,0,0"
+			Visibility="{Binding Visibility, ElementName=document}">
+		<StackPanel.Resources>
+			<Style TargetType="Button">
+				<Setter Property="HorizontalAlignment" Value="Left" />
+				<Setter Property="Width" Value="NaN" />
+				<Setter Property="Height" Value="NaN" />
+				<Setter Property="Background" Value="Transparent" />
+				<Setter Property="MinWidth" Value="0" />
+				<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="Button">
+							<Border x:Name="PART_Border" Background="{TemplateBinding Background}">
+								<TextBlock Text="{TemplateBinding Content}" Foreground="#FF828282" FontFamily="Calibri"
+										FontSize="10pt" IsHitTestVisible="False" />
+							</Border>
+							<ControlTemplate.Triggers>
+								<Trigger Property="IsMouseOver" Value="True">
+									<Setter Property="Background" Value="#FFEFEFEF" />
+								</Trigger>
+								<Trigger Property="IsPressed" Value="True">
+									<Setter Property="Background" Value="#FFC6C6C6" />
+								</Trigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
+		</StackPanel.Resources>
+		<Button x:Name="dateCreatedDate" Click="dateCreatedDate_Click" ToolTip="Change Date" MinWidth="0"
+				Content="{Binding SelectedPage.Created, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=local:NotesView}, Converter={StaticResource UtcDateConverter}}" />
+		<Button x:Name="dateCreatedTime" Margin="30,0,0,0" Click="dateCreatedTime_Click" ToolTip="Change Time"
+				MinWidth="0"
+				Content="{Binding SelectedPage.Created, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=local:NotesView}, Converter={StaticResource UtcTimeConverter}}" />
+	</StackPanel>
+	<friction:FrictionRichTextBoxControl x:Name="document" Grid.Column="1" Grid.Row="3" BorderThickness="0"
+			Padding="42,25" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" FontFamily="Calibri"
+			FontSize="14.667" IsDocumentEnabled="True" Foreground="Black" AcceptsTab="True"
+			IsReadOnlyCaretVisible="True" Visibility="Hidden" SpellCheck.IsEnabled="True" Margin="1,0,0,0">
+		<friction:FrictionRichTextBoxControl.Resources>
+			<Style TargetType="{x:Type Paragraph}">
+				<Setter Property="Margin" Value="0" />
+				<Setter Property="BorderBrush" Value="#FF040404" />
+			</Style>
+			<controls:UriToolTipConverter x:Key="UriToolTipConverter" />
+			<Style TargetType="{x:Type Hyperlink}">
+				<EventSetter Event="Click" Handler="Hyperlink_Click" />
+				<EventSetter Event="MouseEnter" Handler="Hyperlink_MouseEnter" />
+				<EventSetter Event="MouseLeave" Handler="Hyperlink_MouseLeave" />
+				<Setter Property="ToolTip"
+						Value="{Binding NavigateUri, RelativeSource={RelativeSource Self}, Converter={StaticResource UriToolTipConverter}}" />
+			</Style>
+		</friction:FrictionRichTextBoxControl.Resources>
+	</friction:FrictionRichTextBoxControl>
+	<GridSplitter Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Left" VerticalAlignment="Stretch"
+			Width="4" ResizeBehavior="PreviousAndCurrent" ResizeDirection="Columns">
+		<GridSplitter.Template>
+			<ControlTemplate TargetType="GridSplitter">
+				<Border Background="Transparent" />
+			</ControlTemplate>
+		</GridSplitter.Template>
+	</GridSplitter>
+	<GridSplitter Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" Margin="0,6,0,0" HorizontalAlignment="Left"
+			VerticalAlignment="Stretch" Width="4" ResizeBehavior="PreviousAndCurrent" ResizeDirection="Columns">
+		<GridSplitter.Template>
+			<ControlTemplate TargetType="GridSplitter">
+				<Border Background="Transparent" />
+			</ControlTemplate>
+		</GridSplitter.Template>
+	</GridSplitter>
+</Grid>

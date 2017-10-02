@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DD70B715-D894-4563-AA46-0DA8D1DB57B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Daytimer.Backgrounds</RootNamespace>
+    <AssemblyName>Daytimer.Backgrounds</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Daytimer\Properties\GlobalAssemlyInfo.cs">
+      <Link>Properties\GlobalAssemlyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\circlesandstripes.png" />
+    <Resource Include="Images\circuit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\straws.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calligraphy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\treerings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\clouds.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\doodlecircles.png" />
+    <Resource Include="Images\doodlediamonds.png" />
+    <Resource Include="Images\geometry.png" />
+    <Resource Include="Images\lunchbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\schoolsupplies.png" />
+    <Resource Include="Images\spring.png" />
+    <Resource Include="Images\stars.png" />
+    <Resource Include="Images\underwater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wallpaper.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

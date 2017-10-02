@@ -1,0 +1,113 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="PresentationOptions">
+	<!-- General -->
+	<SolidColorBrush x:Key="Blue" Color="#FF99C8E9" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="TodayText" Color="#FF2B8DD4" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="Black" Color="#FF3C3C3C" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="White" Color="#FFFFFFFF" PresentationOptions:Freeze="True" />
+	<Color x:Key="WhiteColor">#FFFFFFFF</Color>
+	<SolidColorBrush x:Key="Gray" Color="#FFE1E1E1" PresentationOptions:Freeze="True" />
+	<Visibility x:Key="BackgroundVisibility">Visible</Visibility>
+	<SolidColorBrush x:Key="DialogFooter" Color="#FFF1F1F1" PresentationOptions:Freeze="True" />
+	<!-- Calendar -->
+	<SolidColorBrush x:Key="Appointment" Color="#FFCDE6F7" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="AppointmentToolTipBackground" Color="#FFCCE5F6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="AppointmentToolTipForeground" Color="#FF656565" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="AppointmentToolTipForegroundBold" Color="#FF434343" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="NormalDayOfWeek" Color="#FFE1F2FA" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="AppointmentMoreButton" Color="#FF0072C6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="LinkTextForeground" Color="#FF5A60D8" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="CheckedDate" Color="#FF0072C6" PresentationOptions:Freeze="True" />
+	<!-- Time slider -->
+	<SolidColorBrush x:Key="TimeSliderBackground" Color="#FF2C8ED4" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="TimeSliderBorder" Color="#FFB2D7F0" PresentationOptions:Freeze="True" />
+	<!-- Nav buttons -->
+	<Color x:Key="NavHover">#FFE1F2FA</Color>
+	<SolidColorBrush x:Key="AppointmentNavForeground" Color="#FF292929" PresentationOptions:Freeze="True" />
+	<!-- Ribbon -->
+	<SolidColorBrush x:Key="RibbonBorder" Color="#FFD4D4D4" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="RibbonMouseOver" Color="#FFCDE6F7" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="RibbonPressed" Color="#FF92C0E0" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="RibbonChecked" Color="#FFB1D6F0" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="RibbonAppMenu" Color="#FF0072C6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="RibbonAppMenuMouseOver" Color="#FF2A8AD4" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="RibbonAppMenuChecked" Color="#FF1268B3" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="RibbonTabHeaderActive" Color="#FF0474C7" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="RibbonToolTipForeground" Color="#FF5D5D5D" PresentationOptions:Freeze="True" />
+	<!-- Backstage -->
+	<SolidColorBrush x:Key="BackstageSubHeaderForeground" Color="#FF474747" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="BackstageRadioChecked" Color="#FF2A8DD4" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="BackstageRadioMouseOver" Color="#FF0067B0" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="BackstageRadioDisabled" Color="#FF298DD4" PresentationOptions:Freeze="True" />
+	<!-- Print UI -->
+	<SolidColorBrush x:Key="PrintSubHeader" Color="#FF0474C7" PresentationOptions:Freeze="True" />
+	<!-- Window caption -->
+	<Color x:Key="CaptionMouseOver">#FFCDE6F7</Color>
+	<Color x:Key="CaptionPressed">#FF92C0E0</Color>
+	<Color x:Key="CaptionMouseOverForeground">#FF2D8ED5</Color>
+	<Color x:Key="CaptionPressedForeground">#FF0268B1</Color>
+	<SolidColorBrush x:Key="WindowBorderFocused" Color="#FF0072C6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="WindowBorderUnfocused" Color="#FF828282" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="WindowCaptionFocused" Color="#FF474747" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="WindowCaptionUnfocused" Color="#FFB2B2B2" PresentationOptions:Freeze="True" />
+	<!-- Appointment -->
+	<SolidColorBrush x:Key="AppointmentCloseMouseOverBackground" Color="#FFD0E7FE" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="AppointmentCloseMouseOverBorder" Color="#FF65A6E7" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="SmallDetailClosePressed" Color="#FF2D2DCD" PresentationOptions:Freeze="True" />
+	<!-- Alert -->
+	<SolidColorBrush x:Key="AlertBackground" Color="#FF042252" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="AlertBorder" Color="#FF30486E" PresentationOptions:Freeze="True" />
+	<Color x:Key="AlertCloseMouseOver">#FF203A64</Color>
+	<Color x:Key="AlertClosePressed">#FF001E4E</Color>
+	<!-- Buttons -->
+	<SolidColorBrush x:Key="ButtonForeground" Color="#FF444444" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ButtonNormalBackground" Color="#FFFDFDFD" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FFABABAB" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ButtonMouseOverBackground" Color="#FFCDE6F7" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ButtonMouseOverBorder" Color="#FFB1D6F0" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ButtonPressedBackground" Color="#FFB1D6F0" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ButtonPressedBorder" Color="#FF2A8DD4" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ButtonDefaultBorder" Color="#FFB1D6F0" PresentationOptions:Freeze="True" />
+	<!-- CheckBox -->
+	<SolidColorBrush x:Key="CheckBoxBorder" Color="#FF707070" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="CheckBoxMark" Color="#FF212121" PresentationOptions:Freeze="True" />
+	<!-- ProgressBar -->
+	<SolidColorBrush x:Key="ProgressBarIndeterminateForeground" Color="#FF0071C4" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ProgressBarForeground" Color="#FFCDE6F7" PresentationOptions:Freeze="True" />
+	<!-- Context Menu -->
+	<!--<SolidColorBrush x:Key="ContextMenuHover" Color="#FFCDE6F7" />-->
+	<SolidColorBrush x:Key="ContextMenuBackground" Color="#FFFFFFFF" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ContextMenuBorder" Color="#FFC6C6C6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ContextMenuHoverBackground" Color="#FFCDE6F7" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ContextMenuDisabledForeground" Color="#FFB1B1B1" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ContextMenuSeparator" Color="#FFE0E3E6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ContextMenuIconCheckBorder" Color="#FF92C0E0" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="ContextMenuIconCheckBackground" Color="#FFE6F2FA" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="GlyphColor" Color="#FF777777" PresentationOptions:Freeze="True" />
+	<!-- Status Strip -->
+	<SolidColorBrush x:Key="StatusStripBackground" Color="#FF0072C6" PresentationOptions:Freeze="True" />
+	<!-- Zoom Slider -->
+	<SolidColorBrush x:Key="ZoomSliderOver" Color="#FF92B7D1" PresentationOptions:Freeze="True" />
+	<Color x:Key="ZoomSliderOverColor">#FF92B7D1</Color>
+	<SolidColorBrush x:Key="ZoomSliderPressed" Color="#FF92B7D1" PresentationOptions:Freeze="True" />
+	<Color x:Key="ZoomSliderPressedColor">#FF92B7D1</Color>
+	<!-- Bottom Text Radios -->
+	<Color x:Key="TextRadioChecked">#FF3A95D6</Color>
+	<SolidColorBrush x:Key="TextRadioBackground" Color="#1B000000" PresentationOptions:Freeze="True" />
+	<Color x:Key="ImageRadioHover">#FFCDE6F7</Color>
+	<Color x:Key="ImageRadioPressed">#FF92C0E0</Color>
+	<!-- Tasks Pane / TreeViewItem -->
+	<SolidColorBrush x:Key="TreeViewItemMouseOver" Color="#FFE6F2FA" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="TreeViewItemSelected" Color="#FFCDE6F7" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="TreeViewTriangleOver" Color="#FF2A8DD4" PresentationOptions:Freeze="True" />
+	<!-- Dialogs -->
+	<SolidColorBrush x:Key="DialogTitle" Color="#FF0273C6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="DialogContent" Color="#FF686868" PresentationOptions:Freeze="True" />
+	<!-- CalendarControl -->
+	<SolidColorBrush x:Key="CalendarControlMouseOver" Color="#FFE5F3FB" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="CalendarControlPressed" Color="#FFCBE8F6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="CalendarControlChecked" Color="#FFCBE8F6" PresentationOptions:Freeze="True" />
+	<SolidColorBrush x:Key="CalendarControlToday" Color="#FF0072C6" PresentationOptions:Freeze="True" />
+</ResourceDictionary>

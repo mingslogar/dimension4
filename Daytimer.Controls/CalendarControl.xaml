@@ -1,0 +1,135 @@
+﻿<UserControl  x:Class="Daytimer.Controls.CalendarControl"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="210"
+		d:DesignWidth="180" Background="{DynamicResource White}" Foreground="{DynamicResource Black}">
+	<UserControl.Resources>
+		<Style  TargetType="TextBlock">
+			<Setter  Property="HorizontalAlignment" Value="Center" />
+			<Setter  Property="VerticalAlignment" Value="Center" />
+		</Style>
+		<Style  x:Key="navButton" TargetType="RepeatButton">
+			<Setter  Property="Interval" Value="35" />
+			<Setter  Property="ClickMode" Value="Press" />
+			<Setter  Property="HorizontalAlignment" Value="Center" />
+			<Setter  Property="VerticalAlignment" Value="Center" />
+			<Setter  Property="Focusable" Value="False" />
+		</Style>
+		<ControlTemplate  x:Key="navButtonTemplate" TargetType="{x:Type RepeatButton}">
+			<Border  x:Name="border" BorderBrush="Transparent" Background="Transparent"
+					Padding="{TemplateBinding Padding}">
+				<ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center" />
+			</Border>
+			<ControlTemplate.Triggers>
+				<Trigger  Property="IsMouseOver" Value="True">
+					<Setter  Property="Background" TargetName="border">
+						<Setter.Value>
+							<SolidColorBrush  Color="{DynamicResource NavHover}" />
+						</Setter.Value>
+					</Setter>
+				</Trigger>
+				<Trigger  Property="IsPressed" Value="True">
+					<Setter  Property="Background" TargetName="border" Value="#FFBBBBBB" />
+				</Trigger>
+				<Trigger  Property="IsEnabled" Value="False">
+					<Setter  Property="Background" TargetName="border" Value="Transparent" />
+					<Setter  Property="Opacity" TargetName="border" Value="0.4" />
+				</Trigger>
+			</ControlTemplate.Triggers>
+		</ControlTemplate>
+		<Style  x:Key="backButton" TargetType="RepeatButton" BasedOn="{StaticResource navButton}">
+			<Setter  Property="Template" Value="{DynamicResource navButtonTemplate}" />
+			<Setter  Property="Content">
+				<Setter.Value>
+					<Path  StrokeThickness="0" Fill="#FF5A5B5C" RenderOptions.EdgeMode="Aliased" Data="M 5 0 0 4 5 8 Z" />
+				</Setter.Value>
+			</Setter>
+			<Setter  Property="Padding" Value="5,5,7,5" />
+			<Setter  Property="ToolTip">
+				<Setter.Value>
+					<Ribbon:RibbonToolTip  Title="Last Month" Description="Show last month in the calendar." />
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style  x:Key="forwardButton" TargetType="RepeatButton" BasedOn="{StaticResource navButton}">
+			<Setter  Property="Template" Value="{DynamicResource navButtonTemplate}" />
+			<Setter  Property="Content">
+				<Setter.Value>
+					<Path  StrokeThickness="0" Fill="#FF5A5B5C" RenderOptions.EdgeMode="Aliased" Data="M 0 0 5 4 0 8 Z" />
+				</Setter.Value>
+			</Setter>
+			<Setter  Property="Padding" Value="7,5,5,5" />
+			<Setter  Property="ToolTip">
+				<Setter.Value>
+					<Ribbon:RibbonToolTip  Title="Next Month" Description="Show next month in the calendar." />
+				</Setter.Value>
+			</Setter>
+			<Setter  Property="Grid.Column" Value="1" />
+		</Style>
+		<Style  x:Key="DateButton" TargetType="RadioButton">
+			<Setter  Property="Background" Value="Transparent" />
+			<Setter  Property="Template">
+				<Setter.Value>
+					<ControlTemplate  TargetType="RadioButton">
+						<Border  x:Name="border" Background="{TemplateBinding Background}">
+							<ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center" />
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger  Property="IsMouseOver" Value="True">
+								<Setter  Property="Background" Value="{DynamicResource CalendarControlMouseOver}" />
+							</Trigger>
+							<Trigger  Property="IsPressed" Value="True">
+								<Setter  Property="Background" Value="{DynamicResource CalendarControlPressed}" />
+							</Trigger>
+							<Trigger  Property="IsChecked" Value="True">
+								<Setter  Property="Background" Value="{DynamicResource CalendarControlChecked}" />
+							</Trigger>
+							<Trigger  Property="IsEnabled" Value="False">
+								<Setter  Property="Opacity" Value="0.5" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+	<Grid  x:Name="grid">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition  Width="*" />
+			<ColumnDefinition  Width="*" />
+			<ColumnDefinition  Width="*" />
+			<ColumnDefinition  Width="*" />
+			<ColumnDefinition  Width="*" />
+			<ColumnDefinition  Width="*" />
+			<ColumnDefinition  Width="*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition  Height="28" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+			<RowDefinition  Height="*" />
+		</Grid.RowDefinitions>
+		<!-- Header -->
+		<RepeatButton  x:Name="prevButton" Click="prevButton_Click" Style="{StaticResource backButton}" />
+		<TextBlock  x:Name="title" Grid.Column="1" Grid.ColumnSpan="5" Text="Month Year" HorizontalAlignment="Center"
+				VerticalAlignment="Center" />
+		<RepeatButton  x:Name="nextButton" Grid.Column="6" Click="nextButton_Click"
+				Style="{StaticResource forwardButton}" />
+		<!-- Day names -->
+		<TextBlock  Text="SU" Grid.Row="1" />
+		<TextBlock  Text="MO" Grid.Row="1" Grid.Column="1" />
+		<TextBlock  Text="TU" Grid.Row="1" Grid.Column="2" />
+		<TextBlock  Text="WE" Grid.Row="1" Grid.Column="3" />
+		<TextBlock  Text="TH" Grid.Row="1" Grid.Column="4" />
+		<TextBlock  Text="FR" Grid.Row="1" Grid.Column="5" />
+		<TextBlock  Text="SA" Grid.Row="1" Grid.Column="6" />
+		<Line  X2="1" Stretch="Fill" StrokeThickness="1" Stroke="#FFF5F5F5" Grid.Row="1" Grid.ColumnSpan="7"
+				VerticalAlignment="Bottom" />
+	</Grid>
+</UserControl>

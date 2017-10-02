@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+		xmlns:ext="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell">
+	<Style TargetType="Ribbon:RibbonTabHeader">
+		<Setter Property="Foreground" Value="#FF666666" />
+		<Setter Property="Height" Value="24" />
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="ext:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+		<Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+		<Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+		<Setter Property="FontFamily" Value="Segoe UI, /Daytimer.Fonts;component/#WeblySleek UI Normal" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="CheckedBorderBrush" Value="{DynamicResource RibbonTabHeaderActive}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Ribbon:RibbonTabHeader">
+					<Grid SnapsToDevicePixels="True">
+						<Border x:Name="PART_Background" Margin="3,-1,3.5,1" Background="{TemplateBinding Background}" />
+						<Border x:Name="PART_OuterBorder" BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="1,1,1,0" Padding="{TemplateBinding Padding}" Margin="3,-1,3.5,0"
+								IsHitTestVisible="False">
+							<ContentPresenter Margin="4,-1,3.5,1" HorizontalAlignment="Center"
+									VerticalAlignment="Center" />
+						</Border>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsContextualTab" Value="True">
+							<Setter Property="Margin" TargetName="PART_OuterBorder" Value="1,-1,1.5,0" />
+							<Setter Property="Margin" TargetName="PART_Background" Value="1,-1,1.5,1" />
+							<Setter Property="CheckedBorderBrush"
+									Value="{Binding RelativeSource={RelativeSource Self}, Path=ContextualTabGroup.Foreground, Mode=OneWay}" />
+							<Setter Property="Background"
+									Value="{Binding RelativeSource={RelativeSource Self}, Path=ContextualTabGroup.Background, Mode=OneWay}" />
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="TextElement.Foreground" TargetName="PART_OuterBorder"
+									Value="{Binding CheckedBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+						</Trigger>
+						<MultiDataTrigger>
+							<MultiDataTrigger.Conditions>
+								<Condition
+										Binding="{Binding Ribbon.IsDropDownOpen, RelativeSource={RelativeSource Self}}"
+										Value="True" />
+								<Condition Binding="{Binding IsRibbonTabSelected, RelativeSource={RelativeSource Self}}"
+										Value="True" />
+							</MultiDataTrigger.Conditions>
+							<Setter Property="TextElement.Foreground" TargetName="PART_OuterBorder"
+									Value="{Binding CheckedBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+							<Setter Property="BorderBrush" TargetName="PART_OuterBorder" Value="#FFD4D4D4" />
+							<Setter Property="Background" TargetName="PART_OuterBorder" Value="{DynamicResource White}" />
+						</MultiDataTrigger>
+						<MultiDataTrigger>
+							<MultiDataTrigger.Conditions>
+								<Condition Binding="{Binding Ribbon.IsMinimized, RelativeSource={RelativeSource Self}}"
+										Value="False" />
+								<Condition Binding="{Binding IsRibbonTabSelected, RelativeSource={RelativeSource Self}}"
+										Value="True" />
+							</MultiDataTrigger.Conditions>
+							<Setter Property="TextElement.Foreground" TargetName="PART_OuterBorder"
+									Value="{Binding CheckedBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+							<Setter Property="BorderBrush" TargetName="PART_OuterBorder" Value="#FFD4D4D4" />
+							<Setter Property="Background" TargetName="PART_OuterBorder" Value="{DynamicResource White}" />
+						</MultiDataTrigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

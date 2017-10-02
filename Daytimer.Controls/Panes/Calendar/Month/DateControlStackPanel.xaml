@@ -1,0 +1,11 @@
+﻿<Grid x:Class="Daytimer.Controls.DateControlStackPanel"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="100"
+		d:DesignWidth="200" Focusable="False" SnapsToDevicePixels="True">
+	<StackPanel x:Name="stackPanel" Focusable="False" Margin="0,5" />
+	<Button x:Name="moreButton" Style="{StaticResource moreButton}" Visibility="Collapsed" Focusable="False"
+			Click="moreButton_Click" />
+</Grid>

@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1160FD7C-B151-4EF9-8CF4-147F81360026}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Setup</RootNamespace>
+    <AssemblyName>Setup</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\..\Daytimer.Images\Images\logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Page Include="..\..\Daytimer.Styles\Resources\ComboBox.xaml">
+      <Link>Daytimer.Styles\Resources\ComboBox.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\ComboBoxItem.xaml">
+      <Link>Daytimer.Styles\Resources\ComboBoxItem.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\Daytimer\Themes\BlueTheme.xaml">
+      <Link>Daytimer\Themes\BlueTheme.xaml</Link>
+      <Localizable>False</Localizable>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\Button.xaml">
+      <Link>Daytimer.Styles\Resources\Button.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\CaptionButtons.xaml">
+      <Link>Daytimer.Styles\Resources\CaptionButtons.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\CheckBox.xaml">
+      <Link>Daytimer.Styles\Resources\CheckBox.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\ProgressBar.xaml">
+      <Link>Daytimer.Styles\Resources\ProgressBar.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\RadioButton.xaml">
+      <Link>Daytimer.Styles\Resources\RadioButton.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\TextBox.xaml">
+      <Link>Daytimer.Styles\Resources\TextBox.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\ScrollBar.xaml">
+      <Link>Daytimer.Styles\Resources\ScrollBar.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\ToolTip.xaml">
+      <Link>Daytimer.Styles\Resources\ToolTip.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Styles\Resources\ContextMenu.xaml">
+      <Link>Daytimer.Styles\Resources\ContextMenu.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Dialogs\TaskDialog.xaml">
+      <Link>Daytimer.Dialogs\TaskDialog.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Controls\Friction\FrictionRichTextBoxControl.xaml">
+      <Link>Daytimer.Controls\Friction\FrictionRichTextBoxControl.xaml</Link>
+    </Page>
+    <Page Include="..\..\Daytimer.Fundamentals\Themes\generic.xaml">
+      <Link>Themes\generic.xaml</Link>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Daytimer.Controls\Friction\Friction.cs">
+      <Link>Daytimer.Controls\Friction\Friction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Controls\Friction\SearchUI.cs">
+      <Link>Daytimer.Controls\Friction\SearchUI.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Dialogs\DialogHelpers.cs">
+      <Link>Daytimer.Dialogs\DialogHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\Experiments.cs">
+      <Link>Daytimer.Functions\Experiments.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\FlowDocumentSearch.cs">
+      <Link>Daytimer.Functions\FlowDocumentSearch.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\GlobalData.cs">
+      <Link>Daytimer.Functions\GlobalData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\OSVersions.cs">
+      <Link>Daytimer.Functions\OSVersions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\RandomFunctions.cs">
+      <Link>Daytimer.Functions\RandomFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\TextRangeMarker.cs">
+      <Link>Daytimer.Functions\TextRangeMarker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\TextRangeStack.cs">
+      <Link>Daytimer.Functions\TextRangeStack.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\Theme\Theme.cs">
+      <Link>Daytimer.Functions\Theme\Theme.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\TimeFormat.cs">
+      <Link>Daytimer.Functions\TimeFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\AppBar.cs">
+      <Link>Daytimer.Fundamentals\AppBar.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\BalloonTip.cs">
+      <Link>Daytimer.Fundamentals\BalloonTip.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Interop.cs">
+      <Link>Daytimer.Fundamentals\Interop.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\MetroProgress\Dot.cs">
+      <Link>Daytimer.Fundamentals\MetroProgress\Dot.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\MetroProgress\IndeterminateProgressBar.cs">
+      <Link>Daytimer.Fundamentals\MetroProgress\IndeterminateProgressBar.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\MetroProgress\ProgressBase.cs">
+      <Link>Daytimer.Fundamentals\MetroProgress\ProgressBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\NoActivateWindow.cs">
+      <Link>Daytimer.Fundamentals\NoActivateWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\PlaceholderTextBox.cs">
+      <Link>Daytimer.Fundamentals\PlaceholderTextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Shadow.cs">
+      <Link>Daytimer.Fundamentals\Shadow.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\StatusStripProgressBar.cs">
+      <Link>Daytimer.Fundamentals\StatusStripProgressBar.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Win32\GWL.cs">
+      <Link>Daytimer.Fundamentals\Win32\GWL.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Win32\HitTestValues.cs">
+      <Link>Daytimer.Fundamentals\Win32\HitTestValues.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Win32\NativeMethods.cs">
+      <Link>Daytimer.Fundamentals\Win32\NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Win32\SWP.cs">
+      <Link>Daytimer.Fundamentals\Win32\SWP.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Win32\WM.cs">
+      <Link>Daytimer.Fundamentals\Win32\WM.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Win32\WS.cs">
+      <Link>Daytimer.Fundamentals\Win32\WS.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Win32\WSEX.cs">
+      <Link>Daytimer.Fundamentals\Win32\WSEX.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\PositionOrder.cs">
+      <Link>Daytimer.Fundamentals\PositionOrder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\Encryption.cs">
+      <Link>Daytimer.Functions\Encryption.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\SecurityKeys.cs">
+      <Link>Daytimer.Functions\SecurityKeys.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\Settings.cs">
+      <Link>Daytimer.Functions\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\Activation.cs">
+      <Link>Daytimer.Functions\Activation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\NativeMethods.cs">
+      <Link>Daytimer.Functions\NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\MonitorHelper.cs">
+      <Link>Daytimer.Functions\MonitorHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Functions\ImageProc.cs">
+      <Link>Daytimer.Functions\ImageProc.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Styles\Converters.cs">
+      <Link>Daytimer.Styles\Converters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\ShadowController.cs">
+      <Link>Daytimer.Fundamentals\ShadowController.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Dialogs\DialogBase.cs">
+      <Link>Daytimer.Dialogs\DialogBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Dialogs\TaskDialog.xaml.cs">
+      <Link>Daytimer.Dialogs\TaskDialog.xaml.cs</Link>
+      <DependentUpon>TaskDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Controls\Extensions.cs">
+      <Link>Daytimer.Controls\Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Controls\Friction\FrictionRichTextBox.cs">
+      <Link>Daytimer.Controls\Friction\FrictionRichTextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Controls\Friction\FrictionRichTextBoxControl.xaml.cs">
+      <Link>Daytimer.Controls\Friction\FrictionRichTextBoxControl.xaml.cs</Link>
+      <DependentUpon>FrictionRichTextBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\Converters.cs">
+      <Link>Daytimer.Fundamentals\Converters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer.Fundamentals\OfficeWindow.cs">
+      <Link>Daytimer.Fundamentals\OfficeWindow.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\External DLLs\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Daytimer\AssemblyAttributeAccessors.cs">
+      <Link>AssemblyAttributeAccessors.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer\Properties\GlobalAssemlyInfo.cs">
+      <Link>Properties\GlobalAssemlyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Daytimer\SingleInstance.cs">
+      <Link>SingleInstance.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Daytimer.Functions\AnimationHelpers.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="InstallHelpers\InstallerData.cs" />
+    <Compile Include="InstallHelpers\Shortcut\ShellHelpers.cs" />
+    <Compile Include="InstallHelpers\Shortcut\WindowsAPICodePack\Core\PropertySystem\PropertyKey.cs" />
+    <Compile Include="InstallHelpers\Shortcut\WindowsAPICodePack\Core\PropertySystem\PropVariant.cs" />
+    <Compile Include="InstallHelpers\Shortcut\WindowsAPICodePack\Core\PropertySystem\PropVariantNativeMethods.cs" />
+    <Compile Include="InstallHelpers\Shortcut\WindowsAPICodePack\Core\Resources\LocalizedMessages.Designer.cs" />
+    <Compile Include="InstallHelpers\Shortcut\WindowsAPICodePack\Shell\PropertySystem\SystemProperties.cs" />
+    <Compile Include="InstallHelpers\UninstallerWorker.cs" />
+    <Compile Include="Install\CEIP.xaml.cs">
+      <DependentUpon>CEIP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Install\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Install\InstallProgress.xaml.cs">
+      <DependentUpon>InstallProgress.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Install\Personalize.xaml.cs">
+      <DependentUpon>Personalize.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Install\ProductKey.xaml.cs">
+      <DependentUpon>ProductKey.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Install\ThemeHelpers.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Splash.xaml.cs">
+      <DependentUpon>Splash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Uninstall\UninstallOptions.xaml.cs">
+      <DependentUpon>UninstallOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Uninstall\UninstallProgress.xaml.cs">
+      <DependentUpon>UninstallProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Uninstall\Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InstallHelpers\InstallerWorker.cs" />
+    <Compile Include="Install\License.xaml.cs">
+      <DependentUpon>License.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Install\Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Resource Include="..\..\Daytimer.Fonts\weblysleekuil.ttf">
+      <Link>weblysleekuil.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Fonts\weblysleekuin.ttf">
+      <Link>weblysleekuin.ttf</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Fonts\weblysleekuisl.ttf">
+      <Link>weblysleekuisl.ttf</Link>
+    </Resource>
+    <None Include="app.manifest" />
+    <None Include="key.pfx" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\Daytimer.Images\Images\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SetupDependencies\SetupDependencies.csproj">
+      <Project>{4e45dfca-d3f2-46fd-936e-a11cba89b0a1}</Project>
+      <Name>SetupDependencies</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\..\Daytimer\Themes\BrownTheme.xaml">
+      <Link>Daytimer\Themes\BrownTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\Daytimer\Themes\GreenTheme.xaml">
+      <Link>Daytimer\Themes\GreenTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\Daytimer\Themes\MaroonTheme.xaml">
+      <Link>Daytimer\Themes\MaroonTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\Daytimer\Themes\PurpleTheme.xaml">
+      <Link>Daytimer\Themes\PurpleTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\..\Daytimer\Themes\SilverTheme.xaml">
+      <Link>Daytimer\Themes\SilverTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Install\CEIP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Install\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Install\InstallProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Install\License.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Resource Include="Install\LicenseDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Page Include="Install\Personalize.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Install\ProductKey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Install\Welcome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Splash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Uninstall\UninstallOptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Uninstall\UninstallProgress.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Uninstall\Welcome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\Daytimer.Images\Images\colorwheel.png">
+      <Link>Install\colorwheel.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InstallHelpers\Shortcut\WindowsAPICodePack\Core\Resources\LocalizedMessages.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\Daytimer.Images\Images\logo_128.png">
+      <Link>logo_128.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\calligraphy.png">
+      <Link>Install\Backgrounds\calligraphy.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\circlesandstripes.png">
+      <Link>Install\Backgrounds\circlesandstripes.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\circuit.png">
+      <Link>Install\Backgrounds\circuit.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\clouds.png">
+      <Link>Install\Backgrounds\clouds.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\doodlecircles.png">
+      <Link>Install\Backgrounds\doodlecircles.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\doodlediamonds.png">
+      <Link>Install\Backgrounds\doodlediamonds.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\geometry.png">
+      <Link>Install\Backgrounds\geometry.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\lunchbox.png">
+      <Link>Install\Backgrounds\lunchbox.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\schoolsupplies.png">
+      <Link>Install\Backgrounds\schoolsupplies.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\spring.png">
+      <Link>Install\Backgrounds\spring.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\stars.png">
+      <Link>Install\Backgrounds\stars.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\straws.png">
+      <Link>Install\Backgrounds\straws.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\treerings.png">
+      <Link>Install\Backgrounds\treerings.png</Link>
+    </Resource>
+    <Resource Include="..\..\Daytimer.Backgrounds\Images\underwater.png">
+      <Link>Install\Backgrounds\underwater.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo_32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

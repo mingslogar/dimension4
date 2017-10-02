@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BlueTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Themes\BlueTheme.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="BrownTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Themes\BrownTheme.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="colorpickerlib" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\colorpickerlib.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Backgrounds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Backgrounds.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Controls" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Controls.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_DatabaseHelpers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.DatabaseHelpers.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Dialogs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Dialogs.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Functions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Functions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Fundamentals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Fundamentals.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Images" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Images.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Search.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Styles.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Gma_UserActivityMonitor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gma.UserActivityMonitor.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GreenTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Themes\GreenTheme.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="HighContrastTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Themes\HighContrastTheme.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="JumpTaskImages" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\jumptaskimages.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MaroonTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Themes\MaroonTheme.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Microsoft_Windows_Shell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Microsoft.Windows.Shell.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PurpleTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Themes\PurpleTheme.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="RecurrenceGenerator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RecurrenceGenerator.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RibbonControlsLibrary" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RibbonControlsLibrary.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SilverTheme" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Themes\SilverTheme.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="UpdateManager" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\updatemanager.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WpfAnimatedGif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\wpfanimatedgif.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CharMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CharMap.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Fonts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Fonts.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Net_Json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Net.Json.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Toasts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Toasts.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_GoogleCalendarHelpers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.GoogleCalendarHelpers.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Google_GData_AccessControl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Google.GData.AccessControl.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Google_GData_Calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Google.GData.Calendar.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Google_GData_Client" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Google.GData.Client.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Google_GData_Extensions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Google.GData.Extensions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Newtonsoft_Json" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Newtonsoft.Json.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.Help.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_ICalendarHelpers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.ICalendarHelpers.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="antlr_runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\antlr.runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DDay_Collections" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DDay.Collections.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DDay_iCal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DDay.iCal.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="License" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\License.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Birds" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Media\Birds.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Generic1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Media\Generic1.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Generic2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Media\Generic2.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Generic3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Media\Generic3.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Google" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Media\Google.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="iPhone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Media\iPhone.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nokia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Media\Nokia.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Media\Windows.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CoreAudioApi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CoreAudioApi.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AddressParser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddressParser.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DefaultNote" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Resources\Files\DefaultNote;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FirstRun" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FirstRun.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_GoogleMapHelpers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.GoogleMapHelpers.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_PrintHelpers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.PrintHelpers.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_VisualElementsManifest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Metro\Daytimer.VisualElementsManifest.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_150x150Logo_png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Metro\150x150Logo.png.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_70x70Logo_png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Metro\70x70Logo.png.dat;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Threading_Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Microsoft.Threading.Tasks.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Threading_Tasks_Extensions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Microsoft.Threading.Tasks.Extensions.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_Threading_Tasks_Extensions_Desktop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Microsoft.Threading.Tasks.Extensions.Desktop.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Runtime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Runtime.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="System_Threading_Tasks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\System.Threading.Tasks.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_DockableDialogs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.DockableDialogs.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Demo_Main" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Demo.Main.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Thought_vCards" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Thought.vCards.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_WindowsAPICodePack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Microsoft.WindowsAPICodePack.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Microsoft_WindowsAPICodePack_Shell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Microsoft.WindowsAPICodePack.Shell.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Modern_FileBrowser" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Modern.FileBrowser.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Daytimer_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.exe.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="FirstRun_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FirstRun.exe.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="UpdateManager_exe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UpdateManager.exe.config;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="Daytimer_WikiQuoteHelper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Daytimer.WikiQuoteHelper.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Wintellect_Threading" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Wintellect.Threading.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

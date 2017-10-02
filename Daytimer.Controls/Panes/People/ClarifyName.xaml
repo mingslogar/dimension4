@@ -1,0 +1,53 @@
+﻿<Office:OfficeWindow x:Class="Daytimer.Controls.Panes.People.ClarifyName"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Office="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals" Title="Clarify Name"
+		Height="255" Width="358" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+	<Grid Margin="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="50" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<TextBlock Text="Title" VerticalAlignment="Center" />
+			<ComboBox x:Name="nameTitle" VerticalAlignment="Center" IsEditable="True" Grid.Column="1" Height="23">
+				<ComboBoxItem Content="Dr." />
+				<ComboBoxItem Content="Miss" />
+				<ComboBoxItem Content="Mr." />
+				<ComboBoxItem Content="Mrs." />
+				<ComboBoxItem Content="Ms." />
+				<ComboBoxItem Content="Prof." />
+			</ComboBox>
+			<TextBlock Text="First" VerticalAlignment="Center" Grid.Row="1" />
+			<TextBox x:Name="nameFirst" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+			<TextBlock Text="Middle" VerticalAlignment="Center" Grid.Row="2" />
+			<TextBox x:Name="nameMiddle" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+			<TextBlock Text="Last" VerticalAlignment="Center" Grid.Row="3" />
+			<TextBox x:Name="nameLast" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" />
+			<TextBlock Text="Suffix" VerticalAlignment="Center" Grid.Row="4" />
+			<ComboBox x:Name="nameSuffix" VerticalAlignment="Center" IsEditable="True" Grid.Row="4" Grid.Column="1"
+					Height="23">
+				<ComboBoxItem Content="I" />
+				<ComboBoxItem Content="II" />
+				<ComboBoxItem Content="III" />
+				<ComboBoxItem Content="Jr." />
+				<ComboBoxItem Content="Sr." />
+			</ComboBox>
+		</Grid>
+		<Button x:Name="okButton" Content="_OK" IsDefault="True" Grid.Row="1" Height="25" HorizontalAlignment="Right"
+				Margin="0,10,85,0" Click="okButton_Click" />
+		<Button x:Name="cancelButton" Content="_Cancel" IsCancel="True" Grid.Row="1" Height="25"
+				HorizontalAlignment="Right" Margin="0,10,0,0" />
+	</Grid>
+</Office:OfficeWindow>

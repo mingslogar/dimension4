@@ -1,0 +1,20 @@
+﻿<local:DialogBase x:Class="Daytimer.Dialogs.SubscriptionExpired"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Daytimer.Dialogs"
+		Title="Subscription Expired" Width="476" Height="240" ResizeMode="NoResize" IsTitleVisible="False"
+		WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock Foreground="{DynamicResource DialogTitle}" FontSize="29" Margin="25,0,25,10" TextWrapping="Wrap"
+				Text="Your subscription has expired" />
+		<TextBlock Grid.Row="1" Margin="25,15,25,15" Foreground="{DynamicResource DialogContent}" FontSize="15"
+				TextWrapping="Wrap" TextTrimming="WordEllipsis"
+				Text="To keep using Dimension 4 without interruption, you'll need to reactivate." />
+		<Button x:Name="okButton" Grid.Row="2" Content="Enter _Key" HorizontalAlignment="Right" Margin="0,0,25,25"
+				Height="25" IsDefault="True" Click="okButton_Click" />
+	</Grid>
+</local:DialogBase>

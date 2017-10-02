@@ -1,0 +1,92 @@
+﻿FEATURES
+
+Install from zip file
+Smart reorder alert database
+Drag-drop for tasks: animate tree items while dragging
+Cancel tree view expand animation, alert animation, and delete animation
+Custom window context menu
+Drag appointment/task to export
+Add option to copy system time format
+Recurring tasks
+Office 2013 Window border #FF2E2E2E
+DynamicResource instead of UpdateTheme()
+Add social pane to People
+Add work to search for contact detail
+Ctrl+1, Ctrl+2, Ctrl+3 to switch TextRadios
+Validation error for email field in PeopleView
+Utilize next update for weather
+Quick-create appointment
+"Display in this order" in navigation options
+Weather -> New location
+Contact Group
+Help window should run on separate thread
+Sync contacts
+Animate message bars
+Only save database if changed
+
+Small Image for
+	Weather -> Home
+	Weather -> Change Location
+	Weather -> View
+
+	People -> Show All
+	People -> Show Favorites
+
+[SelectedDate = today] "You have nothing scheduled in the next 7 days";
+						"You have nothing scheduled on these 7 days";
+
+						** Show more than one day in calendar peek
+
+Dock to Desktop (Ctrl+Alt+D)
+Keep your notes visible by anchoring this OneNote window to the side of your desktop.
+Your notes will stay on top while you work in other programs.
+
+Normal View
+Show the ribbon and navigation tabs.
+
+Full Page View (F11)
+Feeling cluttered? Show only the current page.
+
+Spelling & Grammar (F7)
+Typos? Not on our watch. Let us check your spelling and grammar.
+
+Animation:
+
+1) Size main panel down.
+2) Slide main panel and new panel together.
+
+
+Allow notebook pages to be moved to different sections, and allow sections to be moved to different notebooks
+Add HasUserDismissedNotification attribute so physical modification of reminder is not needed.
+
+
+
+collapse ribbon in read mode
+
+BUGS
+
+zooming out week view on large screen shows hours display in the figure of an "H"
+Search fade in/fade out animation can be frozen.
+Set 100% zoom based on screen height. Add a multiplier factor.
+Back and forward in editing mode shows duplicate [DayView]
+Check to see if the window visuals still need to be updated when Aero is enabled/disabled
+Taskbar position change when window is maximized does not update window.
+Context menu in peek closes peek.
+Clicking increase/decrease font size needs to update font size box.
+Color picker dialog Sc textboxes need to be a bit wider.
+Escape on backstage should only close open dialogs if applicable.
+
+Change Case:
+Create TextRange for each character and apply requested casing rule.
+
+Use ClickCount
+
+Fix databinding errors relating to increaseSize enabled binding
+
+If quote topic has "" quotes in disambiguation window, topic will not be able to be found.
+
+
+// DatePickerControl button is unchecked on popup open
+// CalendarControl needs to check for date range
+
+%i8eh#hwhe@)frjxJF

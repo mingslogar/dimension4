@@ -1,0 +1,249 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Modern.FileBrowser"
+		xmlns:customListView="clr-namespace:Modern.FileBrowser.CustomListView"
+		xmlns:jfkPanels="clr-namespace:JFKCommonLibrary.WPF.Panels">
+	<SolidColorBrush x:Key="hoverBackground" Color="#E5F3FB" />
+	<SolidColorBrush x:Key="hoverBorder" Color="#70C0E7" />
+	<SolidColorBrush x:Key="pressBackground" Color="#CBE8F6" />
+	<SolidColorBrush x:Key="pressBorder" Color="#26A0DA" />
+	<Style x:Key="&#500;" TargetType="ButtonBase">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="ButtonBase">
+					<Border x:Name="border" BorderThickness="1" Background="Transparent" BorderBrush="Transparent">
+						<ContentPresenter />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" TargetName="border" Value="{StaticResource hoverBackground}" />
+							<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource hoverBorder}" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border" Value="{StaticResource pressBackground}" />
+							<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource pressBorder}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style TargetType="local:BreadcrumbMenuItem">
+		<Setter Property="Height" Value="22" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="local:BreadcrumbMenuItem">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="30" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Rectangle x:Name="background" StrokeThickness="1" Grid.ColumnSpan="3" Fill="Transparent"
+								Stroke="Transparent" />
+						<Image Source="{TemplateBinding IconData}" HorizontalAlignment="Center"
+								VerticalAlignment="Center" Height="16" Width="16" IsHitTestVisible="False"
+								Margin="-1,0,1,0" />
+						<TextBlock Grid.Column="1" Text="{TemplateBinding Header}" TextTrimming="CharacterEllipsis"
+								TextWrapping="NoWrap" VerticalAlignment="Center" Margin="6,0" IsHitTestVisible="False" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsHighlighted" Value="True">
+							<Setter Property="Fill" TargetName="background" Value="{StaticResource hoverBackground}" />
+							<Setter Property="Stroke" TargetName="background" Value="{StaticResource hoverBorder}" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style TargetType="local:BreadcrumbButton">
+		<Setter Property="HorizontalAlignment" Value="Left" />
+		<Setter Property="DropDownButtonData">
+			<Setter.Value>
+				<local:PathData Fill="#808080" Data="M 0 0 4.5 4.5 0 8 Z" />
+			</Setter.Value>
+		</Setter>
+		<Setter Property="DropDownButtonExpandedData">
+			<Setter.Value>
+				<local:PathData Fill="#808080" Data="M 0 0 7 0 4 4 Z" />
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type MenuItem}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+						<Rectangle x:Name="background" StrokeThickness="1" Grid.ColumnSpan="2" Fill="Transparent"
+								Stroke="Transparent" />
+						<Button Grid.ColumnSpan="2" Style="{StaticResource &#500;}"
+								Command="local:BreadcrumbButton.NavigateCommand" />
+						<TextBlock x:Name="text" Text="{TemplateBinding Header}" TextTrimming="CharacterEllipsis"
+								TextWrapping="NoWrap" VerticalAlignment="Center" Margin="5,0" IsHitTestVisible="False" />
+						<ToggleButton x:Name="dropDownButton" Grid.Column="1" Style="{StaticResource &#500;}" Width="15"
+								IsChecked="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+								ClickMode="Press">
+							<Path x:Name="path" RenderOptions.EdgeMode="Aliased"
+									Fill="{Binding DropDownButtonData.Fill, RelativeSource={RelativeSource TemplatedParent}}"
+									Stroke="{Binding DropDownButtonData.Stroke, RelativeSource={RelativeSource TemplatedParent}}"
+									StrokeThickness="{Binding DropDownButtonData.StrokeThickness, RelativeSource={RelativeSource TemplatedParent}}"
+									Data="{Binding DropDownButtonData.Data, RelativeSource={RelativeSource TemplatedParent}}"
+									Margin="{Binding DropDownButtonData.Margin, RelativeSource={RelativeSource TemplatedParent}}"
+									VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False" />
+						</ToggleButton>
+						<Popup x:Name="PART_Popup" AllowsTransparency="True" Focusable="False"
+								IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+								PopupAnimation="Fade" Placement="Bottom" Width="268">
+							<!-- StaysOpen="False" -->
+							<Border BorderBrush="#FF646464" BorderThickness="1" Background="#FFFFFFFF">
+								<ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="356">
+									<Grid>
+										<ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle"
+												Grid.IsSharedSizeScope="True" KeyboardNavigation.TabNavigation="Cycle"
+												Margin="2" />
+										<Rectangle Fill="#FFD7D7D7" HorizontalAlignment="Left" Margin="31,0,0,0"
+												Width="1" IsHitTestVisible="False" />
+									</Grid>
+								</ScrollViewer>
+							</Border>
+						</Popup>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsSuspendingPopupAnimation" Value="True">
+							<Setter Property="PopupAnimation" TargetName="PART_Popup" Value="None" />
+						</Trigger>
+						<Trigger Property="IsHighlighted" Value="True">
+							<Setter Property="Fill" TargetName="background" Value="{StaticResource hoverBackground}" />
+							<Setter Property="Stroke" TargetName="background" Value="{StaticResource hoverBorder}" />
+						</Trigger>
+						<Trigger Property="IsSubmenuOpen" Value="True">
+							<Setter Property="Fill" TargetName="background" Value="{StaticResource pressBackground}" />
+							<Setter Property="Stroke" TargetName="background" Value="{StaticResource pressBorder}" />
+							<Setter Property="Fill" TargetName="path"
+									Value="{Binding DropDownButtonExpandedData.Fill, RelativeSource={RelativeSource TemplatedParent}}" />
+							<Setter Property="Stroke" TargetName="path"
+									Value="{Binding DropDownButtonExpandedData.Stroke, RelativeSource={RelativeSource TemplatedParent}}" />
+							<Setter Property="StrokeThickness" TargetName="path"
+									Value="{Binding DropDownButtonExpandedData.StrokeThickness, RelativeSource={RelativeSource TemplatedParent}}" />
+							<Setter Property="Data" TargetName="path"
+									Value="{Binding DropDownButtonExpandedData.Data, RelativeSource={RelativeSource TemplatedParent}}" />
+							<Setter Property="Margin" TargetName="path"
+									Value="{Binding DropDownButtonExpandedData.Margin, RelativeSource={RelativeSource TemplatedParent}}" />
+						</Trigger>
+						<Trigger Property="HasItems" Value="False">
+							<Setter Property="Visibility" TargetName="dropDownButton" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="Header" Value="{x:Null}">
+							<Setter Property="Visibility" TargetName="text" Value="Collapsed" />
+						</Trigger>
+						<!--<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="StaysOpen" TargetName="PART_Popup" Value="True" />
+						</Trigger>-->
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style TargetType="local:Breadcrumb">
+		<Setter Property="Height" Value="24" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="local:Breadcrumb">
+					<Border x:Name="border" BorderThickness="1" BorderBrush="#D9D9D9" Background="Transparent">
+						<Border.ContextMenu>
+							<ContextMenu>
+								<MenuItem Header="_Copy address" Command="local:Breadcrumb.CopyAddressCommand"
+										CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+								<MenuItem Header="C_opy address as text"
+										Command="local:Breadcrumb.CopyAddressAsTextCommand"
+										CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+								<MenuItem Header="_Edit address" Command="local:Breadcrumb.EditAddressCommand"
+										CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" />
+								<!--<MenuItem Header="_Delete history" />-->
+							</ContextMenu>
+						</Border.ContextMenu>
+						<Grid ClipToBounds="True">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<!--<ToggleButton x:Name="PART_DropDownButton" Style="{StaticResource &#500;}" Width="15"
+									IsChecked="{Binding IsHiddenItemsDropdownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+									ClickMode="Press" Visibility="Collapsed">
+								<Path x:Name="arrow" RenderOptions.EdgeMode="Aliased" Stroke="#808080"
+										StrokeThickness="1" Data="M 2.5 0 0 2.5 2.5 5 M 6.5 0 4 2.5 6.5 5"
+										VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False" />
+							</ToggleButton>-->
+							<!--<local:BreadcrumbButton x:Name="PART_DropDownButton" Visibility="Collapsed"
+									DropDownButtonExpandedData="{Binding DropDownButtonData, RelativeSource={RelativeSource Self}}">
+								<local:BreadcrumbButton.DropDownButtonData>
+									<local:PathData Stroke="#808080" StrokeThickness="1"
+											Data="M 2.5 0 0 2.5 2.5 5 M 6.5 0 4 2.5 6.5 5" />
+								</local:BreadcrumbButton.DropDownButtonData>
+							</local:BreadcrumbButton>-->
+							<Image Source="{TemplateBinding Icon}" HorizontalAlignment="Center"
+									VerticalAlignment="Center" Height="16" Width="16" IsHitTestVisible="False"
+									Margin="2,0" />
+							<Grid x:Name="PART_Grid" Grid.Column="1" IsItemsHost="True" />
+							<ComboBox x:Name="PART_ComboBox" Grid.ColumnSpan="2" Visibility="Collapsed"
+									BorderThickness="0" VerticalContentAlignment="Center" Padding="3,0"
+									IsEditable="True" />
+						</Grid>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="InEditMode" Value="True">
+							<Setter Property="Visibility" TargetName="PART_ComboBox" Value="Visible" />
+							<Setter Property="Visibility" TargetName="PART_Grid" Value="Collapsed" />
+							<Setter Property="BorderBrush" TargetName="border" Value="#569DE5" />
+							<Setter Property="Panel.ZIndex" Value="1" />
+						</Trigger>
+						<!--<Trigger Property="HasHiddenItems" Value="True">
+							<Setter Property="Visibility" TargetName="PART_DropDownButton" Value="Visible" />
+						</Trigger>-->
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style
+			x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type customListView:WrapView}, ResourceId=WrapViewDefaultStyle}"
+			TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}">
+		<Setter Property="HorizontalContentAlignment" Value="Center" />
+		<Setter Property="ItemContainerStyle"
+				Value="{Binding (ListView.View).ItemContainerStyle, RelativeSource={RelativeSource Self}}" />
+		<Setter Property="ItemTemplate"
+				Value="{Binding (ListView.View).ItemTemplate, RelativeSource={RelativeSource Self}}" />
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<jfkPanels:VirtualizingWrapPanel VirtualizingStackPanel.IsVirtualizing="True"
+							VirtualizingStackPanel.VirtualizationMode="Recycling"
+							Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
+							ItemWidth="{Binding (ListView.View).ItemWidth, RelativeSource={RelativeSource AncestorType=ListView}}"
+							MinWidth="{Binding (ListView.View).ItemWidth, RelativeSource={RelativeSource AncestorType=ListView}}"
+							ItemHeight="{Binding (ListView.View).ItemHeight, RelativeSource={RelativeSource AncestorType=ListView}}" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style
+			x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type customListView:ListBoxView}, ResourceId=ListBoxViewDefaultStyle}"
+			TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}">
+		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		<Setter Property="ItemContainerStyle"
+				Value="{Binding (ListView.View).ItemContainerStyle, RelativeSource={RelativeSource Self}}" />
+		<Setter Property="ItemTemplate"
+				Value="{Binding (ListView.View).ItemTemplate, RelativeSource={RelativeSource Self}}" />
+		<Setter Property="ItemsPanel">
+			<Setter.Value>
+				<ItemsPanelTemplate>
+					<VirtualizingStackPanel IsVirtualizing="True" VirtualizationMode="Recycling"
+							Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}"
+							MinWidth="{Binding (ListView.View).ItemWidth, RelativeSource={RelativeSource AncestorType=ListView}}"
+							Margin="0,0,0,1" />
+				</ItemsPanelTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

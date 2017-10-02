@@ -1,0 +1,161 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+		xmlns:shell="clr-namespace:Microsoft.Windows.Shell;assembly=Microsoft.Windows.Shell">
+	<Style x:Key="{x:Type ribbon:RibbonContextMenu}" TargetType="{x:Type ribbon:RibbonContextMenu}">
+		<Style.Resources>
+			<Style x:Key="{x:Static MenuItem.SeparatorStyleKey}" TargetType="{x:Type ribbon:RibbonSeparator}">
+				<Setter Property="OverridesDefaultStyle" Value="True" />
+				<Setter Property="Focusable" Value="false" />
+				<Setter Property="BorderBrush"
+						Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ribbon:RibbonContextMenu}}, Path=PlacementTarget.(ribbon:RibbonControlService.Ribbon).BorderBrush}" />
+				<Setter Property="Background"
+						Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ribbon:RibbonContextMenu}}, Path=PlacementTarget.(ribbon:RibbonControlService.Ribbon).Background}" />
+				<Setter Property="FontWeight" Value="Bold" />
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="{x:Type ribbon:RibbonSeparator}">
+							<Border x:Name="MainBorder" BorderThickness="0,1,0,1"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									Background="{TemplateBinding Background}">
+								<Border x:Name="Overlay" Background="Transparent">
+									<!--<Border.Background>
+										<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+											<GradientStop Offset="0" Color="#A0FFFFFF" />
+											<GradientStop Offset="0.4" Color="#80FFFFFF" />
+											<GradientStop Offset="0.8" Color="#0AFFFFFF" />
+											<GradientStop Offset="1" Color="#08FFFFFF" />
+										</LinearGradientBrush>
+									</Border.Background>-->
+									<TextBlock x:Name="Text" Margin="2,1,2,1" Text="{TemplateBinding Label}" />
+								</Border>
+							</Border>
+							<ControlTemplate.Triggers>
+								<DataTrigger
+										Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}"
+										Value="True">
+									<Setter TargetName="Text" Property="Foreground"
+											Value="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}" />
+									<Setter TargetName="Overlay" Property="Background" Value="Transparent" />
+									<Setter TargetName="MainBorder" Property="BorderBrush"
+											Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+									<Setter TargetName="MainBorder" Property="Background"
+											Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+								</DataTrigger>
+							</ControlTemplate.Triggers>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+				<Style.Triggers>
+					<Trigger Property="Label" Value="{x:Null}">
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="{x:Type ribbon:RibbonSeparator}">
+									<Grid x:Name="Grid" SnapsToDevicePixels="True" Margin="1">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition MinWidth="22" Width="Auto"
+													SharedSizeGroup="MenuItemIconColumnGroup" />
+											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="14" />
+										</Grid.ColumnDefinitions>
+										<Border x:Name="SideBarBorder" BorderThickness="0,0,1,0" Margin="0,-1,0,-1"
+												Background="{TemplateBinding Background}"
+												BorderBrush="{TemplateBinding BorderBrush}">
+											<!--<Border x:Name="SideBarOverlay">
+												<Border.Background>
+													<LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+														<GradientStop Offset="0" Color="#A0FFFFFF" />
+														<GradientStop Offset="0.4" Color="#80FFFFFF" />
+														<GradientStop Offset="0.8" Color="#0AFFFFFF" />
+														<GradientStop Offset="1" Color="#08FFFFFF" />
+													</LinearGradientBrush>
+												</Border.Background>
+											</Border>-->
+										</Border>
+										<Line x:Name="Line" Grid.Column="1" Grid.ColumnSpan="2" Margin="2,0,0,0" X1="0"
+												Y1="0" X2="1" Y2="0" Stroke="{TemplateBinding BorderBrush}"
+												StrokeThickness="1" Stretch="Fill" />
+									</Grid>
+									<ControlTemplate.Triggers>
+										<DataTrigger
+												Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}"
+												Value="True">
+											<Setter TargetName="SideBarBorder" Property="BorderBrush"
+													Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+											<Setter TargetName="SideBarBorder" Property="Background" Value="Transparent" />
+											<!--<Setter TargetName="SideBarOverlay" Property="Background"
+													Value="Transparent" />-->
+											<Setter TargetName="Line" Property="Stroke"
+													Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+										</DataTrigger>
+									</ControlTemplate.Triggers>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+		</Style.Resources>
+		<Setter Property="Background" Value="Transparent" />
+		<Setter Property="BorderBrush" Value="Transparent" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ribbon:RibbonContextMenu}">
+					<Border>
+						<Border.Effect>
+							<DropShadowEffect ShadowDepth="0" Opacity="0.5" Color="#FFBBBBBB" />
+						</Border.Effect>
+						<Border x:Name="Border" Background="{DynamicResource ContextMenuBackground}" BorderThickness="1"
+								BorderBrush="{DynamicResource ContextMenuBorder}" Margin="4">
+							<ScrollViewer x:Name="SubMenuScrollViewer" Margin="1"
+									Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type FrameworkElement}, ResourceId=MenuScrollViewer}}">
+								<Grid RenderOptions.ClearTypeHint="Enabled">
+									<Canvas x:Name="BackgroundCanvas" Height="0" Width="0" HorizontalAlignment="Left"
+											VerticalAlignment="Top">
+										<!--<Rectangle x:Name="OpaqueRect"
+												Height="{Binding ElementName=PART_ResizeBorder,Path=ActualHeight}"
+												Width="{Binding ElementName=PART_ResizeBorder,Path=ActualWidth}"
+												Fill="{Binding ElementName=PART_ResizeBorder,Path=Background}" />
+										<Rectangle x:Name="OverlayRect"
+												Height="{Binding ElementName=SubMenuInnerBorder,Path=ActualHeight}"
+												Width="{Binding ElementName=SubMenuInnerBorder,Path=ActualWidth}"
+												Fill="{Binding ElementName=SubMenuInnerBorder,Path=Background}" />-->
+									</Canvas>
+									<ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.TabNavigation="Cycle"
+											KeyboardNavigation.DirectionalNavigation="Cycle"
+											Grid.IsSharedSizeScope="True" />
+								</Grid>
+							</ScrollViewer>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<!--<Trigger SourceName="SubMenuScrollViewer" Property="ScrollViewer.CanContentScroll" Value="false">
+							<Setter TargetName="OpaqueRect" Property="Canvas.Top"
+									Value="{Binding ElementName=SubMenuScrollViewer, Path=VerticalOffset}" />
+							<Setter TargetName="OpaqueRect" Property="Canvas.Left"
+									Value="{Binding ElementName=SubMenuScrollViewer, Path=HorizontalOffset}" />
+							<Setter TargetName="OverlayRect" Property="Canvas.Top"
+									Value="{Binding ElementName=SubMenuScrollViewer, Path=VerticalOffset}" />
+							<Setter TargetName="OverlayRect" Property="Canvas.Left"
+									Value="{Binding ElementName=SubMenuScrollViewer, Path=HorizontalOffset}" />
+						</Trigger>-->
+						<Trigger Property="HasGallery" Value="True">
+							<Setter TargetName="SubMenuScrollViewer" Property="HorizontalScrollBarVisibility"
+									Value="Disabled" />
+							<Setter TargetName="SubMenuScrollViewer" Property="VerticalScrollBarVisibility"
+									Value="Disabled" />
+						</Trigger>
+						<DataTrigger
+								Binding="{Binding Path=HighContrast, Source={x:Static shell:SystemParameters2.Current}}"
+								Value="True">
+							<Setter TargetName="BackgroundCanvas" Property="Visibility" Value="Collapsed" />
+							<Setter TargetName="SubMenuScrollViewer" Property="Foreground"
+									Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+						</DataTrigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

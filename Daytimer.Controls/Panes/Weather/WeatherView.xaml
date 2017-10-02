@@ -1,0 +1,125 @@
+﻿<UserControl x:Class="Daytimer.Controls.Panes.Weather.WeatherView"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:Weather="clr-namespace:Daytimer.Controls.Panes.Weather"
+		xmlns:Friction="clr-namespace:Daytimer.Controls.Friction"
+		xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+		mc:Ignorable="d PresentationOptions" d:DesignHeight="500" d:DesignWidth="900" Background="Transparent"
+		ClipToBounds="True">
+	<UserControl.CacheMode>
+		<BitmapCache />
+	</UserControl.CacheMode>
+	<UserControl.Resources>
+		<SolidColorBrush x:Key="LightText" PresentationOptions:Freeze="True">#803C3C3C</SolidColorBrush>
+	</UserControl.Resources>
+	<Grid Margin="15,10,10,10">
+		<Grid x:Name="grid" ClipToBounds="True" Background="Transparent">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="280" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<TextBlock x:Name="locationTextBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top"
+					Text="New York City, New York" FontSize="27" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
+					IsHitTestVisible="False" FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light"
+					TextOptions.TextFormattingMode="Ideal" Margin="4,0,0,0" />
+			<Friction:FrictionScrollViewerControl x:Name="detailedScrollViewer" Grid.Row="1"
+					VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Focusable="False"
+					Margin="0,5,15,10">
+				<Grid x:Name="currentWeatherDisplay" Margin="0,0,10,0" IsHitTestVisible="False">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal"
+							Margin="0,0,0,-17">
+						<TextBlock x:Name="tempCurrent" Text="--" FontSize="82"
+								FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light"
+								TextOptions.TextFormattingMode="Ideal" />
+						<TextBlock x:Name="tempUnit" Text="&#176;F" FontSize="22" VerticalAlignment="Center"
+								Margin="0,-17,0,18" />
+					</StackPanel>
+					<!--<Image x:Name="icon" Width="89" Height="89" Grid.RowSpan="2" VerticalAlignment="Center"
+							HorizontalAlignment="Right"
+							Source="pack://application:,,,/Daytimer.Images;component/Images/skycodes/89x89/44.png" />-->
+					<TextBlock x:Name="icon" Grid.RowSpan="2" Width="89" FontSize="64" VerticalAlignment="Center"
+							HorizontalAlignment="Right" FontFamily="/Daytimer.Fonts;component/#Weather Icons"
+							TextAlignment="Center" Text="&#xf03e;" TextOptions.TextFormattingMode="Ideal" />
+					<TextBlock x:Name="precipitationCurrent" Grid.Row="1" FontSize="22" Margin="2,10,0,0"
+							TextTrimming="CharacterEllipsis" Text="Loading..."
+							FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light"
+							TextOptions.TextFormattingMode="Ideal" />
+					<TextBlock x:Name="windChillFactor" Grid.Row="2" FontSize="12" Text="Feels like --&#176;"
+							Margin="2,8,0,0" />
+					<Grid Grid.ColumnSpan="2" Grid.Row="3" Margin="2,20,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="20" />
+							<RowDefinition Height="27" />
+							<RowDefinition Height="20" />
+							<RowDefinition Height="27" />
+							<RowDefinition Height="20" />
+							<RowDefinition Height="27" />
+						</Grid.RowDefinitions>
+						<TextBlock Text="Wind" Foreground="{StaticResource LightText}" />
+						<TextBlock x:Name="windCurrent" Grid.Row="1" Text="Loading..." />
+						<TextBlock Text="Humidity" Grid.Row="2" Foreground="{StaticResource LightText}" />
+						<TextBlock x:Name="humidityCurrent" Grid.Row="3" Text="Loading..." />
+						<TextBlock Text="Cloud Cover" Foreground="{StaticResource LightText}" Grid.Column="1" />
+						<TextBlock x:Name="cloudCoverCurrent" Grid.Row="1" Grid.Column="1" Text="Loading..." />
+						<TextBlock Text="Barometer" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource LightText}" />
+						<TextBlock x:Name="barometerCurrent" Grid.Column="1" Grid.Row="3" Text="Loading..." />
+						<TextBlock Text="Sunrise" Foreground="{StaticResource LightText}" Grid.Row="4" />
+						<TextBlock x:Name="sunriseCurrent" Grid.Row="5" Text="Loading..." />
+						<TextBlock Text="Sunset" Grid.Column="1" Grid.Row="4" Foreground="{StaticResource LightText}" />
+						<TextBlock x:Name="sunsetCurrent" Grid.Column="1" Grid.Row="5" Text="Loading..." />
+					</Grid>
+				</Grid>
+			</Friction:FrictionScrollViewerControl>
+			<TextBlock x:Name="noForecastText" Grid.Column="1" Grid.Row="1" IsHitTestVisible="False" Margin="15,10,0,0"
+					Visibility="Collapsed" Text="No forecast information is available." />
+			<Friction:FrictionScrollViewerControl x:Name="forecastScrollViewer" Grid.Column="1" Grid.Row="1"
+					VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Focusable="False"
+					Margin="0,5,0,10">
+				<StackPanel x:Name="forecastBox" Orientation="Vertical" Margin="0,0,10,-1" IsHitTestVisible="False">
+					<StackPanel.CacheMode>
+						<BitmapCache />
+					</StackPanel.CacheMode>
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+					<Weather:ForecastControl />
+				</StackPanel>
+			</Friction:FrictionScrollViewerControl>
+			<TextBlock x:Name="lastUpdated" Text="" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+					Grid.ColumnSpan="2" Grid.Row="2" Foreground="{StaticResource LightText}" IsHitTestVisible="False" />
+		</Grid>
+		<Weather:ChangeLocation x:Name="changeLocation" Visibility="Collapsed" IsHitTestVisible="False"
+				Close="changeLocation_Close" />
+		<Image x:Name="screenshot" Stretch="None" Visibility="Collapsed" HorizontalAlignment="Left"
+				RenderOptions.BitmapScalingMode="LowQuality" IsHitTestVisible="False" Panel.ZIndex="2" />
+	</Grid>
+</UserControl>

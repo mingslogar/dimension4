@@ -1,0 +1,80 @@
+﻿<Display:Peek x:Class="Daytimer.Controls.Panes.Tasks.TasksPeekContent"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:Controls="clr-namespace:Daytimer.Controls.Tasks" xmlns:Display="clr-namespace:Daytimer.Controls.Panes"
+		xmlns:Database="clr-namespace:Daytimer.DatabaseHelpers;assembly=Daytimer.DatabaseHelpers" mc:Ignorable="d"
+		d:DesignHeight="330" d:DesignWidth="250">
+	<AdornerDecorator>
+		<Grid Margin="9,0,8,9">
+			<Grid.Resources>
+				<DataTemplate DataType="{x:Type Database:UserTask}">
+					<Grid x:Name="taskGrid" Background="Transparent">
+						<!-- ContextMenuOpening="taskGrid_ContextMenuOpening" -->
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+						<!--<Grid.ContextMenu>
+							<ContextMenu>
+								<MenuItem x:Name="completeMenuItem" Header="_Mark Complete"
+										Click="completeMenuItem_Click">
+									<MenuItem.Icon>
+										<Image
+												Source="pack://application:,,,/Daytimer.Images;component/Images/greencheck.png" />
+									</MenuItem.Icon>
+								</MenuItem>
+								<Separator />
+								<MenuItem x:Name="deleteMenuItem" Header="_Delete" Click="deleteMenuItem_Click">
+									<MenuItem.Icon>
+										<Image
+												Source="pack://application:,,,/Daytimer.Images;component/Images/delete_sml.png" />
+									</MenuItem.Icon>
+								</MenuItem>
+							</ContextMenu>
+						</Grid.ContextMenu>-->
+						<TextBlock Text="{Binding Subject}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
+								Margin="0,0,5,0" />
+						<Image Grid.Column="1"
+								Source="pack://application:,,,/Daytimer.Images;component/Images/highpriority.png"
+								Stretch="None" Width="16" Height="16" Margin="0,0,8,0"
+								Visibility="{Binding HighPriority}" />
+						<Image Grid.Column="2"
+								Source="pack://application:,,,/Daytimer.Images;component/Images/redflag.png"
+								Stretch="None" Opacity="{Binding Overdue}" Visibility="{Binding ShowFlag}" Width="16"
+								Height="16" />
+						<Image Grid.Column="2"
+								Source="pack://application:,,,/Daytimer.Images;component/Images/greencheck.png"
+								Stretch="None" Visibility="{Binding ShowCheck}" Width="16" Height="16" />
+					</Grid>
+				</DataTemplate>
+			</Grid.Resources>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="30" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid Height="23" Margin="1,0" VerticalAlignment="Top">
+				<TextBlock x:Name="newTaskWatermark" Text="Type a new task" Padding="5,0,0,0" VerticalAlignment="Center"
+						Foreground="#FF808080" />
+				<TextBox x:Name="newTaskTextBox" SpellCheck.IsEnabled="True" MaxLines="1"
+						VerticalContentAlignment="Center" Padding="2,0" Background="{x:Null}"
+						KeyDown="newTaskTextBox_KeyDown" TextChanged="newTaskTextBox_TextChanged" />
+			</Grid>
+			<Controls:DraggableTreeView x:Name="tasksTreeView" BorderThickness="0" Grid.Row="1" Padding="0,0,0,10"
+					ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+					ScrollViewer.VerticalScrollBarVisibility="Visible" ItemReorder="tasksTreeView_ItemReorder"
+					VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
+					Background="Transparent">
+				<Controls:DraggableTreeView.CacheMode>
+					<BitmapCache EnableClearType="True" />
+				</Controls:DraggableTreeView.CacheMode>
+			</Controls:DraggableTreeView>
+			<TextBlock x:Name="statusText" Grid.Row="1" Text="Loading..." HorizontalAlignment="Center"
+					VerticalAlignment="Top" Margin="10,25,25,10" Foreground="#FFB2B2B2" TextWrapping="Wrap"
+					TextAlignment="Center" IsHitTestVisible="False" />
+		</Grid>
+	</AdornerDecorator>
+</Display:Peek>

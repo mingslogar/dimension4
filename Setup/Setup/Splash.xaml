@@ -1,0 +1,6 @@
+﻿<Window x:Class="Setup.Splash" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Loading Setup..." Height="128" Width="128"
+		WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+		ShowActivated="True" AllowsTransparency="True" Background="Transparent">
+	<Image Source="logo_128.png" />
+</Window>

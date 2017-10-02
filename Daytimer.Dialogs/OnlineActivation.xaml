@@ -1,0 +1,31 @@
+﻿<local:DialogBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Daytimer.Dialogs"
+		xmlns:metroprogress="clr-namespace:Daytimer.Fundamentals.MetroProgress;assembly=Daytimer.Fundamentals"
+		x:Class="Daytimer.Dialogs.OnlineActivation" Title="Activate Online" Width="464" ResizeMode="NoResize"
+		IsTitleVisible="False" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Height="570">
+	<Grid Margin="45,27" ClipToBounds="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock Text="Activate Dimension 4" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="33"
+				FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light" Foreground="{DynamicResource DialogTitle}"
+				IsHitTestVisible="False" />
+		<TextBlock x:Name="message" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top"
+				Text="You need to activate Dimension 4 to continue using it. Make sure that you're connected to the Internet, then click Continue."
+				TextWrapping="Wrap" Margin="0,40,0,0" IsHitTestVisible="False" />
+		<metroprogress:IndeterminateProgressBar x:Name="animation" Grid.Row="2" VerticalAlignment="Center"
+				HorizontalAlignment="Center" Visibility="Collapsed" StartOnLoad="False" />
+		<Button x:Name="continueButton" Grid.Row="2" Content="_Continue" HorizontalAlignment="Center"
+				VerticalAlignment="Top" Margin="0,50" Width="95" Height="25" Click="continueButton_Click" />
+		<Button x:Name="changeProductKey" Grid.Row="3" Style="{DynamicResource LinkText}" Content="Change product key"
+				HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="changeProductKey_Click"
+				Foreground="{DynamicResource DialogTitle}" Margin="-5,0,0,0" />
+		<Button x:Name="retryButton" Grid.Row="3" Content="_Retry" HorizontalAlignment="Right"
+				VerticalAlignment="Bottom" Visibility="Collapsed" Margin="0,0,90,0" Click="retryButton_Click" />
+		<Button x:Name="closeButton" Grid.Row="3" Content="_Close" HorizontalAlignment="Right"
+				VerticalAlignment="Bottom" Visibility="Collapsed" IsCancel="True" />
+	</Grid>
+</local:DialogBase>

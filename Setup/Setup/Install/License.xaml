@@ -1,0 +1,37 @@
+﻿<UserControl xmlns:Setup="clr-namespace:Setup" x:Class="Setup.Install.License"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:Friction="clr-namespace:Daytimer.Controls.Friction" mc:Ignorable="d" d:DesignHeight="412"
+		d:DesignWidth="898" Background="Transparent" TextOptions.TextRenderingMode="ClearType"
+		TextOptions.TextFormattingMode="Display">
+	<UserControl.CacheMode>
+		<BitmapCache />
+	</UserControl.CacheMode>
+	<Grid Margin="40,50,40,20">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock Text="License Agreement" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" FontSize="40"
+				FontFamily="/#WeblySleek UI Light" TextWrapping="Wrap" Foreground="#FF0097D1" IsHitTestVisible="False" />
+		<Friction:FrictionRichTextBoxControl x:Name="licenseAgreement" Grid.Row="1"
+				VerticalScrollBarVisibility="Visible" IsReadOnly="True" Padding="2,5,2,5" Block.TextAlignment="Justify"
+				Margin="10,10,10,20" BorderThickness="0">
+			<Friction:FrictionRichTextBoxControl.ContextMenu>
+				<ContextMenu>
+					<MenuItem Header="_Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C" />
+				</ContextMenu>
+			</Friction:FrictionRichTextBoxControl.ContextMenu>
+		</Friction:FrictionRichTextBoxControl>
+		<RadioButton x:Name="disagreeButton" Content="I do not accept the license terms" HorizontalAlignment="Left"
+				Margin="10,5,0,5" VerticalAlignment="Center" GroupName="agree_disagree" IsChecked="True" Grid.Row="2"
+				Checked="disagreeButton_Checked" />
+		<RadioButton x:Name="agreeButton" Content="I accept the license terms" HorizontalAlignment="Left"
+				Margin="10,5,0,5" Grid.Row="3" VerticalAlignment="Center" GroupName="agree_disagree"
+				Checked="agreeButton_Checked" />
+	</Grid>
+</UserControl>

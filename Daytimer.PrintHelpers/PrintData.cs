@@ -1,0 +1,131 @@
+﻿using System.Windows;
+
+namespace Daytimer.PrintHelpers
+{
+	public class PrintData
+	{
+		#region Paper Sizes
+
+		public static PaperSize[] PaperSizes = new PaperSize[] 
+		{ 
+			new PaperSize("Letter", new Size(8.5, 11)),
+			new PaperSize("Letter Small", new Size(8.5, 11)),
+			new PaperSize("Tabloid", new Size(11, 17)),
+			new PaperSize("Ledger", new Size(17, 11)),
+			new PaperSize("Legal", new Size(8.5, 14)),
+			new PaperSize("Statment", new Size(5.5, 8.5)),
+			new PaperSize("Executive", new Size(7.25, 10.5)),
+			new PaperSize("A3", new Size(11.69, 16.54)),
+			new PaperSize("A4", new Size(8.27, 11.69)),
+			new PaperSize("A4 Small", new Size(8.27, 11.69)),
+			new PaperSize("A5", new Size(5.83, 8.27)),
+			new PaperSize("B4 (JIS)", new Size(10.12, 14.33)),
+			new PaperSize("B5 (JIS)", new Size(7.17, 10.12)),
+			new PaperSize("Folio", new Size(8.5, 13)),
+			new PaperSize("Quarto", new Size(8.46, 10.83)),
+			new PaperSize("10x14", new Size(10, 14)),
+			new PaperSize("11x17", new Size(11, 17)),
+			new PaperSize("Note", new Size(8.5, 11)),
+			new PaperSize("Envelope #9", new Size(3.88,8.87)),
+			new PaperSize("Envelope #10", new Size(4.12, 9.5)),
+			new PaperSize("Envelope #11", new Size(4.5, 10.37)),
+			new PaperSize("Envelope #12", new Size(4.75, 11)),
+			new PaperSize("Envelope #14", new Size(5, 11.5)),
+			new PaperSize("C-Size Sheet", new Size(17, 22)),
+			new PaperSize("Envelope DL", new Size(4.33, 8.66)),
+			new PaperSize("Envelope C5", new Size(6.38, 9.02)),
+			new PaperSize("Envelope C3", new Size(12.76,18.03)),
+			new PaperSize("Envelope C4", new Size(9.02, 12.76)),
+			new PaperSize("Envelope C6", new Size(4.49, 9.02)),
+			new PaperSize("Envelope C65", new Size(4.49, 9.02)),
+			new PaperSize("Envelope B4", new Size(9.84, 13.9)),
+			new PaperSize("Envelope B5", new Size(6.93, 9.84)),
+			new PaperSize("Envelope B6", new Size(6.93, 4.92)),
+			new PaperSize("Envelope", new Size(4.33, 9.06)),
+			new PaperSize("Envelope Monarch", new Size(3.88,7.5)),
+			new PaperSize("6 3/4 Envelope", new Size(3.63, 6.5)),
+			new PaperSize("US Std Fanfold", new Size(14.87, 11)),
+			new PaperSize("German Std Fanfold", new Size(8.5, 12)),
+			new PaperSize("German Legal Fanfold", new Size(8.5, 13)),
+			new PaperSize("B4 (ISO)", new Size(9.84, 13.9)),
+			new PaperSize("Japanese Postcard", new Size(3.94, 5.83)),
+			new PaperSize("9x11", new Size(9, 11)),
+			new PaperSize("10x11", new Size(10, 11)),
+			new PaperSize("15x11", new Size(15, 11)),
+			new PaperSize("Envelope Invite", new Size(8.66, 8.66)),
+			new PaperSize("Letter Extra", new Size(9.5, 12)),
+			new PaperSize("Legal Extra", new Size(9.5, 15)),
+			new PaperSize("A4 Extra", new Size(9.27, 12.69)),
+			new PaperSize("Letter Transverse", new Size(8.5, 11)),
+			new PaperSize("A4 Transverse", new Size(8.27, 11.69)),
+			new PaperSize("Letter Extra Transverse", new Size(9.5, 12)),
+			new PaperSize("Super A", new Size(8.94, 14.02)),
+			new PaperSize("Super B", new Size(12.01, 19.17)),
+			new PaperSize("Letter Plus", new Size(8.5, 12.69)),
+			new PaperSize("A4 Plus", new Size(8.27, 12.99)),
+			new PaperSize("A5 Transverse", new Size(5.83, 8.27)),
+			new PaperSize("B5 (JIS) Transverse", new Size(7.17, 10.12)),
+			new PaperSize("A3 Extra", new Size(12.68, 17.52)),
+			new PaperSize("A5 Extra", new Size(6.85, 9.25)),
+			new PaperSize("B5 (ISO) Extra", new Size(7.91, 10.87)),
+			new PaperSize("A3 Transverse", new Size(11.69, 16.54)),
+			new PaperSize("A3 Extra Transverse", new Size(12.68, 17.52)),
+			new PaperSize("Japanese Double Postcard", new Size(7.87, 5.83)),
+			new PaperSize("A6", new Size(4.13, 5.83)),
+			new PaperSize("Japanese Envelope Kaku #2", new Size(9.45, 13.07)),
+			new PaperSize("Japanese Envelope Kaku #3", new Size(8.5, 10.91)),
+			new PaperSize("Japanese Envelope Chou #3", new Size(4.72, 9.25)),
+			new PaperSize("Japanese Envelope Chou #4", new Size(3.54, 8.07)),
+			new PaperSize("Letter Rotated", new Size(11, 8.5)),
+			new PaperSize("A3 Rotated", new Size(16.54, 11.69)),
+			new PaperSize("A4 Rotated", new Size(11.69, 8.27)),
+			new PaperSize("A5 Rotated", new Size(8.27, 5.83)),
+			new PaperSize("B4 (JIS) Rotated", new Size(14.33, 10.12)),
+			new PaperSize("B5 (JIS) Rotated", new Size(10.12, 7.17)),
+			new PaperSize("Japanse Postcard Rotated", new Size(5.83, 3.94)),
+			new PaperSize("Double Japan Postcard Rotated", new Size(5.83, 7.87)),
+			new PaperSize("A6 Rotated", new Size(5.83, 4.13)),
+			new PaperSize("Japan Envelope Kaku #2 Rotated", new Size(13.07, 9.45)),
+			new PaperSize("Japan Envelope Kaku #3 Rotated", new Size(10.91, 8.5)),
+			new PaperSize("Japan Envelope Chou #3 Rotated", new Size(9.25, 4.72)),
+			new PaperSize("Japan Envelope Chou #4 Rotated", new Size(8.07, 3.54)),
+			new PaperSize("B6 (JIS)", new Size(5.04, 7.17)),
+			new PaperSize("B6 (JIS) Rotated", new Size(7.17, 5.04)),
+			new PaperSize("12x11", new Size(12, 11)),
+			new PaperSize("Japan Envelope You #4", new Size(4.13, 9.25)),
+			new PaperSize("Japan Envelope You #4 Rotated", new Size(9.25, 4.13)),
+			new PaperSize("PRC Envelope #1", new Size(4.02, 6.5)),
+			new PaperSize("PRC Envelope #3", new Size(4.92, 6.93)),
+			new PaperSize("PRC Envelope #4", new Size(4.33, 8.19)),
+			new PaperSize("PRC Envelope #5", new Size(4.33, 8.66)),
+			new PaperSize("PRC Envelope #6", new Size(4.72, 9.06)),
+			new PaperSize("PRC Envelope #7", new Size(6.3, 9.06)),
+			new PaperSize("PRC Envelope #8", new Size(4.72, 12.17)),
+			new PaperSize("PRC Envelope #9", new Size(9.02, 12.76)),
+			new PaperSize("PRC Envelope #10", new Size(12.76, 18.03)),
+			new PaperSize("PRC Envelope #1 Rotated", new Size(6.5, 4.02)),
+			new PaperSize("PRC Envelope #3 Rotated", new Size(6.93, 4.92)),
+			new PaperSize("PRC Envelope #4 Rotated", new Size(6.93, 4.92)),
+			new PaperSize("PRC Envelope #5 Rotated", new Size(8.66, 4.33)),
+			new PaperSize("PRC Envelope #6 Rotated", new Size(9.06, 4.72)),
+			new PaperSize("PRC Envelope #7 Rotated", new Size(9.06, 6.3)),
+			new PaperSize("PRC Envelope #8 Rotated", new Size(12.17, 4.72)),
+			new PaperSize("PRC Envelope #9 Rotated", new Size(12.76, 9.02))
+		};
+
+		#endregion
+
+		#region Page Margins
+
+		public static PageMargin[] PageMargins = new PageMargin[]
+		{
+			new PageMargin("Normal", new Thickness(1)),
+			new PageMargin("Narrow", new Thickness(0.5)),
+			new PageMargin("Moderate", new Thickness(0.75, 1, 0.75, 1)),
+			new PageMargin("Wide", new Thickness(2, 1, 2, 1)),
+			new PageMargin("Office 2003 Default", new Thickness(1.25, 1, 1.25, 1))
+		};
+
+		#endregion
+	}
+}

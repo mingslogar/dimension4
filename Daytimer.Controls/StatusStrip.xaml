@@ -1,0 +1,28 @@
+﻿<local:CustomStatusStrip x:Class="Daytimer.Controls.StatusStrip"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Daytimer.Controls"
+		mc:Ignorable="d" Height="22" d:DesignWidth="600" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+		Background="{DynamicResource StatusStripBackground}" FontSize="11"
+		FontFamily="Segoe UI Semibold, /Daytimer.Fonts;component/#WeblySleek UI Semibold" Foreground="#FFFCFDFE"
+		Focusable="False" ClipToBounds="True">
+	<!--<Grid HorizontalAlignment="Left" Margin="8,0" IsHitTestVisible="False">
+		<TextBlock x:Name="mainStatus" VerticalAlignment="Center" HorizontalAlignment="Left"
+				TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Text="LOADING..." />
+		<TextBlock x:Name="copyMainStatus" VerticalAlignment="Center" HorizontalAlignment="Left"
+				TextTrimming="CharacterEllipsis" />
+	</Grid>-->
+	<Grid HorizontalAlignment="Left" Margin="8,0" IsHitTestVisible="False" SnapsToDevicePixels="False">
+		<Grid.RenderTransform>
+			<TranslateTransform x:Name="statusTranslate" Y="0" />
+		</Grid.RenderTransform>
+		<TextBlock x:Name="mainStatus" VerticalAlignment="Center" HorizontalAlignment="Left"
+				TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Text="LOADING..." />
+		<TextBlock x:Name="copyMainStatus" VerticalAlignment="Center" HorizontalAlignment="Left"
+				TextTrimming="CharacterEllipsis" Opacity="0" Margin="0,-10,0,10" />
+	</Grid>
+	<local:ViewMode x:Name="viewMode" local:CustomStatusStrip.LayoutPriority="1" />
+	<local:SliderControl x:Name="slider" local:CustomStatusStrip.LayoutPriority="2" IsEnabled="False"
+			OnValueChangedEvent="slider_OnValueChangedEvent" />
+</local:CustomStatusStrip>

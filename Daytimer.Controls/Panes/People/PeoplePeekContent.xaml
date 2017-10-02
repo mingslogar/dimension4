@@ -1,0 +1,97 @@
+﻿<Display:Peek x:Class="Daytimer.Controls.Panes.People.PeoplePeekContent"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:Display="clr-namespace:Daytimer.Controls.Panes" xmlns:Friction="clr-namespace:Daytimer.Controls.Friction"
+		xmlns:Database="clr-namespace:Daytimer.DatabaseHelpers;assembly=Daytimer.DatabaseHelpers"
+		xmlns:Fundamentals="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals" mc:Ignorable="d"
+		d:DesignHeight="330" d:DesignWidth="250" Margin="9,-6,8,9">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Fundamentals:PlaceholderTextBox x:Name="searchBox" PlaceholderText="Search People" Height="23" Margin="0,3,0,9"
+				TextChanged="searchBox_TextChanged" />
+		<TextBlock x:Name="statusBar" Grid.Row="1" Text="FAVORITES" IsHitTestVisible="False" />
+		<TextBlock x:Name="message" Grid.Row="2" TextWrapping="Wrap" TextAlignment="Center" Margin="0,16,0,0"
+				Text="Right-click a person in the People pane to add them to your favorites." IsHitTestVisible="False" />
+		<!-- Right-click a person anywhere in Daytimer to add them to your favorites. -->
+		<ListBox x:Name="contactsListBox" Grid.Row="2" BorderThickness="0" Visibility="Hidden"
+				ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+				VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"
+				Margin="0,10,0,0" SelectionChanged="contactsListBox_SelectionChanged">
+			<ListBox.Resources>
+				<DataTemplate DataType="{x:Type Database:Contact}">
+					<!--<Grid x:Name="contactGrid" Background="Transparent">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Image Width="36" Height="36" Stretch="Uniform" Margin="5">
+							<Image.Source>
+								<Binding Path="Tile" Mode="OneWay" UpdateSourceTrigger="PropertyChanged"
+										FallbackValue="pack://application:,,,/Daytimer.Images;component/Images/defaulttile.png" />
+							</Image.Source>
+						</Image>
+						<TextBlock Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+								Grid.Column="1" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Margin="6,0"
+								VerticalAlignment="Center" FontSize="17" />
+					</Grid>-->
+					<Grid Background="Transparent" IsHitTestVisible="False" ClipToBounds="True">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+						<Image Grid.RowSpan="2" Width="48" Height="48" Stretch="Uniform" Margin="6,1">
+							<Image.Source>
+								<Binding Path="Tile" Mode="OneWay" UpdateSourceTrigger="PropertyChanged"
+										FallbackValue="pack://application:,,,/Daytimer.Images;component/Images/defaulttile.png" />
+							</Image.Source>
+						</Image>
+						<TextBlock x:Name="PART_Name"
+								Text="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"
+								TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Margin="5,3,5,-3"
+								VerticalAlignment="Center" FontSize="17" />
+						<TextBlock x:Name="PART_WorkDescription"
+								Text="{Binding WorkDescription, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+								Grid.Column="1" Grid.Row="1" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
+								Margin="5,3,5,-3" VerticalAlignment="Top" />
+					</Grid>
+					<DataTemplate.Triggers>
+						<Trigger Property="Text" SourceName="PART_WorkDescription" Value="">
+							<Setter Property="Visibility" TargetName="PART_WorkDescription" Value="Collapsed" />
+							<Setter Property="Grid.RowSpan" TargetName="PART_Name" Value="2" />
+							<Setter Property="Margin" TargetName="PART_Name" Value="5,0,5,1" />
+						</Trigger>
+					</DataTemplate.Triggers>
+				</DataTemplate>
+				<Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}">
+					<Setter Property="Padding" Value="0" />
+					<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+				</Style>
+			</ListBox.Resources>
+			<ListBox.CacheMode>
+				<BitmapCache EnableClearType="True" />
+			</ListBox.CacheMode>
+			<ListBox.Template>
+				<ControlTemplate TargetType="ListBox">
+					<Friction:FrictionScrollViewerControl x:Name="_tv_scrollviewer_"
+							Background="{TemplateBinding Background}" CanContentScroll="False" Focusable="False"
+							HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+							Padding="{TemplateBinding Padding}"
+							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+							VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+						<ItemsPresenter />
+					</Friction:FrictionScrollViewerControl>
+				</ControlTemplate>
+			</ListBox.Template>
+		</ListBox>
+	</Grid>
+</Display:Peek>

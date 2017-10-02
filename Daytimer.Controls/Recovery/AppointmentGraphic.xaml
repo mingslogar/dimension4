@@ -1,0 +1,76 @@
+﻿<Grid x:Class="Daytimer.Controls.Recovery.AppointmentGraphic"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="NaN"
+		d:DesignWidth="400">
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="*" />
+	</Grid.ColumnDefinitions>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="Auto" />
+		<RowDefinition Height="*" />
+	</Grid.RowDefinitions>
+	<TextBlock x:Name="group" Text="Group" Grid.RowSpan="2" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
+			Margin="12,12,0,12" TextAlignment="Center" FontSize="15" FontWeight="Light" Visibility="Collapsed"
+			MaxWidth="119">
+		<TextBlock.LayoutTransform>
+			<RotateTransform Angle="-90" />
+		</TextBlock.LayoutTransform></TextBlock>
+	<Grid x:Name="titleGrid" Grid.Column="1" Background="{DynamicResource AppointmentToolTipBackground}"
+			Margin="12,12,12,0" Height="48" VerticalAlignment="Top">
+		<TextBlock x:Name="subjectDisplay" Foreground="#FF024367" FontWeight="SemiBold" HorizontalAlignment="Left"
+				VerticalAlignment="Center" FontSize="14" FontFamily="Calibri" TextTrimming="CharacterEllipsis"
+				Padding="15,5,5,5" TextWrapping="Wrap" Text="(No subject)" />
+		<Border x:Name="showAsStrip" BorderThickness="1" Width="6" BorderBrush="{DynamicResource Blue}"
+				Height="{Binding ActualHeight, ElementName=titleGrid, Mode=OneWay}" HorizontalAlignment="Left"
+				VerticalAlignment="Top" />
+	</Grid>
+	<Grid Margin="12,10,12,16" Grid.Row="1" Grid.Column="1">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="40" />
+			<ColumnDefinition Width="35" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="12" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.Resources>
+			<Style TargetType="TextBlock" x:Key="bold">
+				<Setter Property="Foreground" Value="{DynamicResource AppointmentToolTipForegroundBold}" />
+				<Setter Property="FontFamily" Value="Segoe UI Semibold, /Daytimer.Fonts;component/#WeblySleek UI Semibold" />
+			</Style>
+			<Style TargetType="TextBlock" x:Key="normal">
+				<Setter Property="Foreground" Value="{DynamicResource AppointmentToolTipForeground}" />
+			</Style>
+		</Grid.Resources>
+		<!-- Start -->
+		<TextBlock Style="{StaticResource bold}" Text="Start:" />
+		<TextBlock x:Name="startTimeText" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource normal}"
+				Text="1/1/1900    00:00" />
+		<!-- End -->
+		<TextBlock Style="{StaticResource bold}" Grid.Row="1" Text="End:" />
+		<TextBlock x:Name="endTimeText" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource normal}"
+				Text="1/1/1900    00:00" />
+		<!-- Location -->
+		<TextBlock x:Name="locationHeader" Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource bold}"
+				Text="Location:" />
+		<TextBlock x:Name="locationText" Grid.Row="3" Grid.Column="2" Style="{StaticResource normal}"
+				TextWrapping="Wrap" Text="1215 E. Main St. Binghamton, NY, 13905" TextTrimming="CharacterEllipsis"
+				MaxHeight="155" />
+		<!-- Reminder -->
+		<TextBlock Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource bold}" Text="Reminder:" />
+		<TextBlock x:Name="reminderText" Grid.Row="4" Grid.Column="2" Style="{StaticResource normal}"
+				TextTrimming="CharacterEllipsis" Text="5 minutes" />
+		<!-- Recurrence -->
+		<Image x:Name="recurrenceIcon" Grid.Column="2" Grid.Row="6" Stretch="None" HorizontalAlignment="Right"
+				VerticalAlignment="Bottom" Margin="0,18,2,-1"
+				Source="pack://application:,,,/Daytimer.Images;component/Images/recurrence_sml2.png" />
+	</Grid>
+</Grid>

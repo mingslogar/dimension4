@@ -1,0 +1,31 @@
+﻿<Grid x:Name="userControl" x:Class="Daytimer.Controls.Panes.People.ContactDetailBlockDate"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:ribbon="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon" mc:Ignorable="d" Height="Auto"
+		d:DesignWidth="300" Loaded="userControl_Loaded" Margin="0,4,0,0">
+	<Grid.RowDefinitions>
+		<RowDefinition />
+		<RowDefinition />
+	</Grid.RowDefinitions>
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition />
+		<ColumnDefinition Width="Auto" />
+	</Grid.ColumnDefinitions>
+	<!--<TextBlock x:Name="header" Text="{Binding Title, ElementName=userControl, FallbackValue=Title}"
+			Foreground="#FF555555" FontSize="{Binding TitleFontSize, ElementName=userControl, FallbackValue=12}"
+			VerticalAlignment="Center" HorizontalAlignment="Left" Margin="2,0,0,0" IsHitTestVisible="False" />-->
+	<TextBox x:Name="header" Text="{Binding Title, ElementName=userControl, FallbackValue=Title}" Foreground="#FF555555"
+			FontSize="{Binding TitleFontSize, ElementName=userControl, FallbackValue=12}" VerticalAlignment="Center"
+			HorizontalAlignment="Left" Margin="0" Padding="0" IsReadOnlyCaretVisible="False" BorderThickness="0" />
+	<CheckBox x:Name="showOnCalendarButton" Grid.Column="1" VerticalAlignment="Center" Content="_Show on calendar"
+			Visibility="{Binding ShowOnCalendarButtonVisibility, ElementName=userControl}">
+		<CheckBox.ToolTip>
+			<ribbon:RibbonToolTip Title="Show on Calendar"
+					Description="Automatically schedule an all-day appointment each year starting on this date." />
+		</CheckBox.ToolTip>
+	</CheckBox>
+	<DatePicker x:Name="datePicker" Grid.Row="1" VerticalContentAlignment="Center" BorderThickness="0"
+			Grid.ColumnSpan="2" Margin="0,7,0,0" />
+</Grid>

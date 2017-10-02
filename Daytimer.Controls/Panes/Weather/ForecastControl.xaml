@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="Daytimer.Controls.Panes.Weather.ForecastControl"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" Height="100" d:DesignWidth="NaN"
+		BorderBrush="#30000000" BorderThickness="0,0,0,1">
+	<UserControl.Resources>
+		<SolidColorBrush x:Key="LightText">#803C3C3C</SolidColorBrush>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="65" />
+			<ColumnDefinition Width="85" />
+			<ColumnDefinition Width="210" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<TextBlock x:Name="dateNumber" Text="--" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,10" />
+			<TextBlock x:Name="dateDOW" Text="---" FontSize="12"
+					FontFamily="Segoe UI Semibold, /Daytimer.Fonts;component/#WeblySleek UI Semibold"
+					HorizontalAlignment="Center" />
+		</StackPanel>
+		<TextBlock x:Name="weatherImg" Grid.Column="1" Width="48" Height="48" FontSize="32"
+				FontFamily="/Daytimer.Fonts;component/#Weather Icons" TextAlignment="Center" Text="&#xf03e;" />
+		<StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center" Margin="15,0,0,0">
+			<TextBlock x:Name="tempHiLo" FontSize="24" Text="Loading..." Margin="-1,-6,0,0" />
+			<TextBlock x:Name="cloudCover" FontSize="14" Text="Loading..." Margin="0,2,0,6"
+					FontFamily="/Daytimer.Fonts;component/#WeblySleek UI Light" />
+			<StackPanel Orientation="Horizontal">
+				<Image Width="9" Height="14"
+						Source="pack://application:,,,/Daytimer.Images;component/Images/raindrop.png" Opacity="0.5" />
+				<TextBlock x:Name="precip" Text="Loading..." Margin="4,0,0,0" />
+			</StackPanel>
+		</StackPanel>
+		<Grid Grid.Column="3" VerticalAlignment="Center" Margin="8,0,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="140" />
+				<ColumnDefinition Width="140" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="24" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<TextBlock Text="Wind" Foreground="{StaticResource LightText}" Margin="0,0,0,1" />
+			<TextBlock x:Name="windText" Grid.Row="1" Text="Loading..." />
+			<TextBlock Text="Humidity" Grid.Row="2" Foreground="{StaticResource LightText}" Margin="0,0,0,1" />
+			<TextBlock x:Name="humidityPercent" Grid.Row="3" Text="Loading..." />
+			<TextBlock Text="Cloud Cover" Foreground="{StaticResource LightText}" Grid.Column="1" Margin="0,0,0,1" />
+			<TextBlock x:Name="cloudsPercent" Grid.Row="1" Grid.Column="1" Text="Loading..." />
+			<TextBlock Text="Barometer" Grid.Column="1" Grid.Row="2" Foreground="{StaticResource LightText}"
+					Margin="0,0,0,1" />
+			<TextBlock x:Name="barometerPressure" Grid.Column="1" Grid.Row="3" Text="Loading..." />
+		</Grid>
+	</Grid>
+</UserControl>

@@ -1,0 +1,12 @@
+﻿<Border x:Class="Demo.Main.FixedMessageContainer" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Demo.Main" Width="Auto"
+		Height="Auto" Margin="20">
+	<Border.CacheMode>
+		<BitmapCache SnapsToDevicePixels="True" />
+	</Border.CacheMode>
+	<Border.Effect>
+		<DropShadowEffect Color="#FFBBBBBB" ShadowDepth="0" RenderingBias="Performance" Opacity="0.5" />
+	</Border.Effect>
+	<Border x:Name="innerBorder" Background="White" Margin="5" BorderBrush="{DynamicResource WindowBorderFocused}"
+			BorderThickness="1" />
+</Border>

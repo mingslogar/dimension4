@@ -1,0 +1,109 @@
+﻿<FlowDocument x:Uid="FlowDocument_1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" FontSize="14.667" FontFamily="Calibri" Background="White">
+	<FlowDocument.Resources>
+		<Style x:Uid="Style_1" TargetType="{x:Type Paragraph}">
+			<Setter x:Uid="Setter_1" Property="Margin" Value="0" />
+			<Setter x:Uid="Setter_2" Property="BorderBrush" Value="#FF040404" />
+		</Style>
+	</FlowDocument.Resources>
+	<Table x:Uid="Table_1">
+		<Table.Columns>
+			<TableColumn x:Uid="TableColumn_1" Width="96" />
+			<TableColumn x:Uid="TableColumn_2" Width="529" />
+		</Table.Columns>
+		<Table.Resources>
+			<Style x:Uid="Style_2" TargetType="TableCell">
+				<Setter x:Uid="Setter_3" Property="BorderThickness" Value="1" />
+				<Setter x:Uid="Setter_4" Property="BorderBrush" Value="White" />
+			</Style>
+		</Table.Resources>
+		<TableRowGroup x:Uid="TableRowGroup_1">
+			<TableRow x:Uid="TableRow_1">
+				<TableCell x:Uid="TableCell_1">
+					<Paragraph x:Uid="Paragraph_1" Margin="0,10,0,20">
+						<InlineUIContainer x:Uid="InlineUIContainer_1">
+							<Image x:Uid="Tile" x:Name="Tile" Width="96" Height="96"
+									Source="pack://application:,,,/Daytimer.Images;component/Images/defaulttile.png" />
+						</InlineUIContainer>
+					</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_2">
+					<Paragraph x:Uid="Name" x:Name="Name" FontFamily="Segoe UI Light" FontSize="29" Foreground="#FF809EC2"
+							Margin="20,10,0,10" />
+					<Paragraph x:Uid="JobDescription" x:Name="JobDescription" Margin="20,0,0,0" />
+				</TableCell>
+			</TableRow>
+		</TableRowGroup>
+	</Table>
+	<Table x:Uid="Table_2">
+		<Table.Columns>
+			<TableColumn x:Uid="TableColumn_3" Width="90" />
+			<TableColumn x:Uid="TableColumn_4" Width="535" />
+		</Table.Columns>
+		<Table.Resources>
+			<Style x:Uid="Style_3" TargetType="TableCell">
+				<Setter x:Uid="Setter_5" Property="BorderThickness" Value="1" />
+				<Setter x:Uid="Setter_6" Property="BorderBrush" Value="White" />
+			</Style>
+		</Table.Resources>
+		<TableRowGroup x:Uid="TableRowGroup_2">
+			<TableRow x:Uid="TableRow_2">
+				<TableCell x:Uid="TableCell_3">
+					<Paragraph x:Uid="Paragraph_2">Email:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_4">
+					<Paragraph x:Uid="Email" x:Name="Email" />
+				</TableCell>
+			</TableRow>
+			<TableRow x:Uid="TableRow_3">
+				<TableCell x:Uid="TableCell_5">
+					<Paragraph x:Uid="Paragraph_3">Phone:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_6">
+					<Paragraph x:Uid="Phone" x:Name="Phone" />
+				</TableCell>
+			</TableRow>
+			<TableRow x:Uid="TableRow_4">
+				<TableCell x:Uid="TableCell_7">
+					<Paragraph x:Uid="Paragraph_4">IM:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_8">
+					<Paragraph x:Uid="IM" x:Name="IM" />
+				</TableCell>
+			</TableRow>
+			<TableRow x:Uid="TableRow_5">
+				<TableCell x:Uid="TableCell_9">
+					<Paragraph x:Uid="Paragraph_5">Work:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_10">
+					<Paragraph x:Uid="Work" x:Name="Work" />
+				</TableCell>
+			</TableRow>
+			<TableRow x:Uid="TableRow_6">
+				<TableCell x:Uid="TableCell_11">
+					<Paragraph x:Uid="Paragraph_6">Address:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_12">
+					<Paragraph x:Uid="Address" x:Name="Address" />
+				</TableCell>
+			</TableRow>
+			<TableRow x:Uid="TableRow_7">
+				<TableCell x:Uid="TableCell_13">
+					<Paragraph x:Uid="Paragraph_7">Website:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_14">
+					<Paragraph x:Uid="Website" x:Name="Website" />
+				</TableCell>
+			</TableRow>
+			<TableRow x:Uid="TableRow_8">
+				<TableCell x:Uid="TableCell_15">
+					<Paragraph x:Uid="Paragraph_8">Birthday:</Paragraph>
+				</TableCell>
+				<TableCell x:Uid="TableCell_16">
+					<Paragraph x:Uid="Birthday" x:Name="Birthday" />
+				</TableCell>
+			</TableRow>
+		</TableRowGroup>
+	</Table>
+	<Section x:Uid="Notes" x:Name="Notes" />
+</FlowDocument>

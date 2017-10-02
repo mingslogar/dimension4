@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Style x:Key="closeButton" TargetType="Button">
+		<Setter Property="Margin" Value="0" />
+		<Setter Property="Focusable" Value="False" />
+		<Setter Property="HorizontalAlignment" Value="Right" />
+		<Setter Property="VerticalAlignment" Value="Top" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Button">
+					<Border x:Name="border" BorderThickness="1" Background="Transparent" BorderBrush="Transparent"
+							Padding="5">
+						<Path Stroke="Black" StrokeThickness="2" Data="M 0 0 8 8 M 0 8 8 0" Margin="1,1,0,0"
+								IsHitTestVisible="False" />
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" TargetName="border"
+									Value="{DynamicResource AppointmentCloseMouseOverBackground}" />
+							<Setter Property="BorderBrush" TargetName="border"
+									Value="{DynamicResource AppointmentCloseMouseOverBorder}" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border" Value="Transparent" />
+							<Setter Property="BorderBrush" TargetName="border" Value="#FF2D2D2D" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

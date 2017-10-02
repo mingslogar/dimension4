@@ -1,0 +1,31 @@
+﻿<local:DialogBase x:Class="Daytimer.Dialogs.TaskDialog"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Daytimer.Dialogs"
+		Title="TaskDialog Title" Width="476" MinHeight="230" IsTitleVisible="False" ResizeMode="NoResize"
+		WindowStartupLocation="CenterOwner" ShowInTaskbar="False" SizeToContent="Height" Loaded="window_Loaded"
+		MaxHeight="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock Foreground="{DynamicResource DialogTitle}" FontSize="29" Margin="25,0,25,10" TextWrapping="Wrap"
+				Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, FallbackValue=Title}"
+				IsHitTestVisible="False" />
+		<TextBlock x:Name="detailsText" Grid.Row="1" Margin="25,15,25,15" Foreground="{DynamicResource DialogContent}"
+				FontSize="15" TextWrapping="Wrap" TextTrimming="WordEllipsis" Text="TaskDialog Details Text."
+				IsHitTestVisible="False" />
+		<Grid Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,14,14">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+			<Button x:Name="okButton" Grid.Column="1" Content="_OK" HorizontalAlignment="Right" Margin="0,0,9,0"
+					Height="25" IsDefault="True" Click="okButton_Click" />
+			<Button x:Name="cancelButton" Grid.Column="2" Content="_Cancel" HorizontalAlignment="Right" Margin="0,0,9,0"
+					Height="25" IsCancel="True" Visibility="Collapsed" />
+		</Grid>
+	</Grid>
+</local:DialogBase>

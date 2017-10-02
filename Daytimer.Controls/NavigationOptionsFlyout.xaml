@@ -1,0 +1,81 @@
+﻿<fundamentals:BalloonTip x:Class="Daytimer.Controls.NavigationOptionsFlyout"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:fundamentals="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals"
+		xmlns:local="clr-namespace:Daytimer.Controls" mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="330"
+		Title="Navigation Options Flyout" ContentWidth="250" ContentHeight="330">
+	<Grid Margin="9,15,8,9">
+		<Grid.Resources>
+			<Style x:Key="Header" TargetType="TextBlock">
+				<Setter Property="FontSize" Value="18" />
+				<Setter Property="FontFamily" Value="/Daytimer.Fonts;component/#WeblySleek UI Light" />
+				<Setter Property="Margin" Value="0,0,0,10" />
+				<Setter Property="Foreground" Value="#FF555555" />
+			</Style>
+		</Grid.Resources>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<TextBlock Text="Navigation Options" Style="{StaticResource Header}" Grid.ColumnSpan="2" />
+			<TextBlock Grid.Row="1" Text="Maximum number of visible items:" Grid.ColumnSpan="2"
+					VerticalAlignment="Center" Margin="0,5,0,0" />
+			<ComboBox x:Name="maxVisibleItems" Grid.Row="2" Height="23" IsEditable="True" Margin="0,5,0,0" Width="50">
+				<ComboBoxItem Content="1" />
+				<ComboBoxItem Content="2" />
+				<ComboBoxItem Content="3" />
+				<ComboBoxItem Content="4" />
+				<ComboBoxItem Content="5" />
+			</ComboBox>
+			<Button x:Name="resetButton" Style="{DynamicResource LinkText}" Grid.Row="2" Grid.Column="1"
+					Margin="6,5,0,0" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Center"
+					Foreground="{DynamicResource TodayText}" Click="resetButton_Click" />
+		</Grid>
+		<Grid Grid.Row="1" Margin="0,30,0,0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<TextBlock Text="Hidden Panes" Style="{StaticResource Header}" />
+			<TextBlock x:Name="hiddenPanesPlaceholder" Grid.Row="1" Text="You have no hidden panes."
+					HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="#FFB2B2B2" />
+			<ListBox x:Name="hiddenPanes" Grid.Row="1" Background="{x:Null}" BorderThickness="0"
+					ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="hiddenPanes_SelectionChanged">
+				<ListBox.Resources>
+					<Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}">
+						<Setter Property="Padding" Value="8,5" />
+					</Style>
+				</ListBox.Resources>
+				<ListBox.ItemTemplate>
+					<ItemContainerTemplate>
+						<Grid>
+							<Grid.Resources>
+								<local:ImageSourceConverter x:Key="ImageSourceConverter" />
+							</Grid.Resources>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+							<Image Source="{TemplateBinding Content, Converter={StaticResource ImageSourceConverter}}"
+									Stretch="None" Margin="0,0,10,0" />
+							<TextBlock Grid.Column="1" Text="{TemplateBinding Content}" VerticalAlignment="Center"
+									FontSize="16" FontWeight="Light" Margin="0,-3,0,0" />
+						</Grid>
+					</ItemContainerTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Grid>
+	</Grid>
+</fundamentals:BalloonTip>

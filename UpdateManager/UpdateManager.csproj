@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D0AA701B-3CF6-4AEE-8FCF-12B77C082DDA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UpdateManager</RootNamespace>
+    <AssemblyName>UpdateManager</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>..\Daytimer\bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>..\Setup\SetupDependencies\Resources\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\Daytimer.Images\Images\logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External DLLs\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\Daytimer.Fundamentals\Themes\generic.xaml">
+      <Link>Themes\generic.xaml</Link>
+    </Page>
+    <Page Include="..\Daytimer.Dialogs\TaskDialog.xaml">
+      <Link>Daytimer.Dialogs\TaskDialog.xaml</Link>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Daytimer.Dialogs\DialogHelpers.cs">
+      <Link>Daytimer.Dialogs\DialogHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Functions\AnimationHelpers.cs">
+      <Link>Daytimer.Functions\AnimationHelpers.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Functions\GlobalData.cs">
+      <Link>Daytimer.Functions\GlobalData.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Functions\MonitorHelper.cs">
+      <Link>Daytimer.Functions\MonitorHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Functions\NativeMethods.cs">
+      <Link>Daytimer.Functions\NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Functions\OSVersions.cs">
+      <Link>Daytimer.Functions\OSVersions.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Functions\Settings.cs">
+      <Link>Daytimer.Functions\Settings.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Functions\TimeFormat.cs">
+      <Link>Daytimer.Functions\TimeFormat.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Functions\UserInfo.cs">
+      <Link>Daytimer.Functions\UserInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\AppBar.cs">
+      <Link>Daytimer.Fundamentals\AppBar.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\BalloonTip.cs">
+      <Link>Daytimer.Fundamentals\BalloonTip.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Interop.cs">
+      <Link>Daytimer.Fundamentals\Interop.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\MahApps.Metro.Native\Constants.cs">
+      <Link>Daytimer.Fundamentals\MahApps.Metro.Native\Constants.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\MahApps.Metro.Native\MONITORINFO.cs">
+      <Link>Daytimer.Fundamentals\MahApps.Metro.Native\MONITORINFO.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\MahApps.Metro.Native\RECT.cs">
+      <Link>Daytimer.Fundamentals\MahApps.Metro.Native\RECT.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\MahApps.Metro.Native\UnsafeNativeMethods.cs">
+      <Link>Daytimer.Fundamentals\MahApps.Metro.Native\UnsafeNativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\MetroProgress\Dot.cs">
+      <Link>Daytimer.Fundamentals\MetroProgress\Dot.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\MetroProgress\IndeterminateProgressBar.cs">
+      <Link>Daytimer.Fundamentals\MetroProgress\IndeterminateProgressBar.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\MetroProgress\ProgressBase.cs">
+      <Link>Daytimer.Fundamentals\MetroProgress\ProgressBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\NoActivateWindow.cs">
+      <Link>Daytimer.Fundamentals\NoActivateWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\PlaceholderTextBox.cs">
+      <Link>Daytimer.Fundamentals\PlaceholderTextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Shadow.cs">
+      <Link>Daytimer.Fundamentals\Shadow.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\StatusStripProgressBar.cs">
+      <Link>Daytimer.Fundamentals\StatusStripProgressBar.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Win32\GWL.cs">
+      <Link>Daytimer.Fundamentals\Win32\GWL.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Win32\HitTestValues.cs">
+      <Link>Daytimer.Fundamentals\Win32\HitTestValues.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Win32\NativeMethods.cs">
+      <Link>Daytimer.Fundamentals\Win32\NativeMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Win32\SWP.cs">
+      <Link>Daytimer.Fundamentals\Win32\SWP.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Win32\WM.cs">
+      <Link>Daytimer.Fundamentals\Win32\WM.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Win32\WS.cs">
+      <Link>Daytimer.Fundamentals\Win32\WS.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Win32\WSEX.cs">
+      <Link>Daytimer.Fundamentals\Win32\WSEX.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\Converters.cs">
+      <Link>Daytimer.Fundamentals\Converters.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\PositionOrder.cs">
+      <Link>Daytimer.Fundamentals\PositionOrder.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\ShadowController.cs">
+      <Link>Daytimer.Fundamentals\ShadowController.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Fundamentals\OfficeWindow.cs">
+      <Link>Daytimer.Fundamentals\OfficeWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Dialogs\DialogBase.cs">
+      <Link>Daytimer.Dialogs\DialogBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer.Dialogs\TaskDialog.xaml.cs">
+      <Link>Daytimer.Dialogs\TaskDialog.xaml.cs</Link>
+      <DependentUpon>TaskDialog.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="..\Daytimer.Styles\Resources\Button.xaml">
+      <Link>Daytimer.Styles\Resources\Button.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Daytimer.Styles\Resources\CaptionButtons.xaml">
+      <Link>Daytimer.Styles\Resources\CaptionButtons.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Daytimer.Styles\Resources\ProgressBar.xaml">
+      <Link>Daytimer.Styles\Resources\ProgressBar.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Daytimer.Styles\Resources\ScrollBar.xaml">
+      <Link>Daytimer.Styles\Resources\ScrollBar.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Daytimer.Styles\Resources\ToolTip.xaml">
+      <Link>Daytimer.Styles\Resources\ToolTip.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\Daytimer\Themes\BlueTheme.xaml">
+      <Link>Daytimer\Themes\BlueTheme.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Localizable>False</Localizable>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\Daytimer.Styles\Converters.cs">
+      <Link>Daytimer.Styles\Converters.cs</Link>
+    </Compile>
+    <Compile Include="..\Daytimer\Properties\GlobalAssemlyInfo.cs">
+      <Link>Properties\GlobalAssemlyInfo.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data.cs" />
+    <Compile Include="DownloadObject.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="app.manifest" />
+    <None Include="key.pfx" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Daytimer.Images\Images\logo.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

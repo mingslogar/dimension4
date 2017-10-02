@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{74EB4A97-A7EC-4D51-9FAB-80E15AE52605}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Daytimer.Images</RootNamespace>
+    <AssemblyName>Daytimer.Images</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Daytimer\Properties\GlobalAssemlyInfo.cs">
+      <Link>Properties\GlobalAssemlyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="key.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendar.png" />
+    <Resource Include="Images\close.png" />
+    <Resource Include="Images\colors.png" />
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\cut.png" />
+    <Resource Include="Images\day.png" />
+    <Resource Include="Images\day_sml.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\delete_sml.png" />
+    <Resource Include="Images\doc.png" />
+    <Resource Include="Images\find.png" />
+    <Resource Include="Images\general.png" />
+    <Resource Include="Images\help.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\lastmonth.png" />
+    <Resource Include="Images\lastmonth_sml.png" />
+    <Resource Include="Images\month.png" />
+    <Resource Include="Images\month_sml.png" />
+    <Resource Include="Images\new_sml.png" />
+    <Resource Include="Images\newappointment.png" />
+    <Resource Include="Images\newappointment_sml.png" />
+    <Resource Include="Images\next7days.png" />
+    <Resource Include="Images\next7days_sml.png" />
+    <Resource Include="Images\nextmonth.png" />
+    <Resource Include="Images\nextmonth_sml.png" />
+    <Resource Include="Images\options.png" />
+    <Resource Include="Images\paste.png" />
+    <Resource Include="Images\recycle.png" />
+    <Resource Include="Images\recycle_sml.png" />
+    <Resource Include="Images\redo.png" />
+    <Resource Include="Images\saveandclose.png" />
+    <Resource Include="Images\saveas.png" />
+    <Resource Include="Images\screenshot.png" />
+    <Resource Include="Images\today.png" />
+    <Resource Include="Images\today_sml.png" />
+    <Resource Include="Images\undo.png" />
+    <Resource Include="Images\week.png" />
+    <Resource Include="Images\week_sml.png" />
+    <Resource Include="Images\worktimes.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\searchpane.png" />
+    <Resource Include="Images\hideribbon.png" />
+    <Resource Include="Images\pinribbon.png" />
+    <Resource Include="Images\searchoptns.png" />
+    <Resource Include="Images\shield.png" />
+    <Resource Include="Images\appointmentnav.png" />
+    <Resource Include="Images\workweek.png" />
+    <Resource Include="Images\workweek_sml.png" />
+    <Resource Include="Images\info_sml.png" />
+    <Resource Include="Images\newtask.png" />
+    <Resource Include="Images\newtask_sml.png" />
+    <Resource Include="Images\exportAppointment.png" />
+    <Resource Include="Images\exportTask.png" />
+    <Resource Include="Images\redflag.png" />
+    <Resource Include="Images\greencheck.png" />
+    <Resource Include="Images\blackcheck.png" />
+    <Resource Include="Images\save.png" />
+    <Resource Include="Images\save_sml.png" />
+    <Resource Include="Images\paste_sml.png" />
+    <Resource Include="Images\gotodate.png" />
+    <Resource Include="Images\error.png" />
+    <Resource Include="Images\colorwheel.png" />
+    <Resource Include="Images\recurrence.png" />
+    <Resource Include="Images\recurrence_sml.png" />
+    <Resource Include="Images\managetask.png" />
+    <Resource Include="Images\redflag_lg.png" />
+    <Resource Include="Images\text.png" />
+    <Resource Include="Images\infotip.png" />
+    <Resource Include="Images\updates.png" />
+    <Resource Include="Images\frown.png" />
+    <Resource Include="Images\smile.png" />
+    <Resource Include="Images\export_sml.png" />
+    <Resource Include="Images\recurrence_sml2.png" />
+    <Resource Include="Images\layout.png" />
+    <Resource Include="Images\center.png" />
+    <Resource Include="Images\font.png" />
+    <Resource Include="Images\bold.png" />
+    <Resource Include="Images\italic.png" />
+    <Resource Include="Images\underline.png" />
+    <Resource Include="Images\decreasesize.png" />
+    <Resource Include="Images\increasesize.png" />
+    <Resource Include="Images\strikethrough.png" />
+    <Resource Include="Images\subscript.png" />
+    <Resource Include="Images\superscript.png" />
+    <Resource Include="Images\clearformatting.png" />
+    <Resource Include="Images\changecase.png" />
+    <Resource Include="Images\gotodate_sml.png" />
+    <Resource Include="Images\fontcolor.png" />
+    <Resource Include="Images\colorwheel2.png" />
+    <Resource Include="Images\recurrence_sml2_canceled.png" />
+    <Resource Include="Images\yellowexclamation.png" />
+    <Resource Include="Images\highlightcolor.png" />
+    <Resource Include="Images\aligncenter.png" />
+    <Resource Include="Images\alignjustify.png" />
+    <Resource Include="Images\alignleft.png" />
+    <Resource Include="Images\alignright.png" />
+    <Resource Include="Images\lowpriority.png" />
+    <Resource Include="Images\highpriority.png" />
+    <Resource Include="Images\decreaseindent.png" />
+    <Resource Include="Images\increaseindent.png" />
+    <Resource Include="Images\bullets.png" />
+    <Resource Include="Images\numbers.png" />
+    <Resource Include="Images\spacing.png" />
+    <Resource Include="Images\paintbucket.png" />
+    <Resource Include="Images\symbol.png" />
+    <Resource Include="Images\horizontalline.png" />
+    <Resource Include="Images\lock_sml.png" />
+    <Resource Include="Images\newcontact.png" />
+    <Resource Include="Images\newcontact_sml.png" />
+    <Resource Include="Images\defaulttile.png" />
+    <Resource Include="Images\new.png" />
+    <Resource Include="Images\lock.png" />
+    <Resource Include="Images\exportContact.png" />
+    <Resource Include="Images\contactgroup.png" />
+    <Resource Include="Images\contactgroup_star.png" />
+    <Resource Include="Images\formatpainter.png" />
+    <Resource Include="Images\hyperlink.png" />
+    <Resource Include="Images\eyedropper.png" />
+    <Resource Include="Images\raindrop.png" />
+    <Resource Include="Images\home.png" />
+    <Resource Include="Images\location.png" />
+    <Resource Include="Images\refresh.png" />
+    <Resource Include="Images\weather.png" />
+    <Resource Include="Images\categorize.png" />
+    <Resource Include="Images\categorize_sml.png" />
+    <Resource Include="Images\contact_xl.png" />
+    <Resource Include="Images\task_xl.png" />
+    <Resource Include="Images\compass.png" />
+    <Resource Include="Images\cloud.png" />
+    <Resource Include="Images\google.png" />
+    <Resource Include="Images\cancelsendreceive.png" />
+    <Resource Include="Images\offline.png" />
+    <Resource Include="Images\sendreceive.png" />
+    <Resource Include="Images\showprogress.png" />
+    <Resource Include="Images\preferences.png" />
+    <Resource Include="Images\sendreceive_sml.png" />
+    <Resource Include="Images\showprogress_sml.png" />
+    <Resource Include="Images\compass_black.png" />
+    <Resource Include="Images\autohideribbon.png" />
+    <Resource Include="Images\showtabs.png" />
+    <Resource Include="Images\showtabscommands.png" />
+    <Resource Include="Images\home_nav.png" />
+    <Resource Include="Images\printer.png" />
+    <Resource Include="Images\dock.png" />
+    <Resource Include="Images\contact.png" />
+    <Resource Include="Images\contact_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\todobar.png" />
+    <Resource Include="Images\todobar_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\normallayout.png" />
+    <Resource Include="Images\readmodelayout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\normallayout_sml.png" />
+    <Resource Include="Images\readmodelayout_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendar_black.png" />
+    <Resource Include="Images\people_black.png" />
+    <Resource Include="Images\tasks_black.png" />
+    <Resource Include="Images\weather_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ellipsis_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\notes_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\newnote.png" />
+    <Resource Include="Images\newnote_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\1pixelA1A1A1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\note_xl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exportNote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\showas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\nodrag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragcopy.png" />
+    <Resource Include="Images\dragmove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\experimentsoptns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\info_mdm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\google_lg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\web_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\printer_lg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\maplocation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\open_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\printer_ready.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\printer_error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\printer_busy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\selectall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\matchcase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\wholeword.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\regex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\replaceall.png" />
+    <Resource Include="Images\replacenext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bell_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\portrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\landscape.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\manualduplex.png" />
+    <Resource Include="Images\onesided.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\shortduplex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\longduplex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\printer_waiting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\collated.png" />
+    <Resource Include="Images\uncollated.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16pages.png" />
+    <Resource Include="Images\1page.png" />
+    <Resource Include="Images\2pages.png" />
+    <Resource Include="Images\4pages.png" />
+    <Resource Include="Images\6pages.png" />
+    <Resource Include="Images\8pages.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\docktodesktop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fullpageview_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\docktodesktop_sml.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo_128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\compass_metro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cancelsendreceive_sml.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

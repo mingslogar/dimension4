@@ -1,0 +1,67 @@
+﻿<Grid x:Class="Daytimer.Controls.Tasks.DomainUpDown" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d" d:DesignHeight="24"
+		d:DesignWidth="120">
+	<Grid.Resources>
+		<Style TargetType="Button">
+			<Setter Property="Foreground" Value="#FF5D5E5F" />
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="Border" BorderThickness="0,1,1,1" BorderBrush="#FFABADB3"
+								Background="Transparent">
+							<Path HorizontalAlignment="Center" VerticalAlignment="Center"
+									Data="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+									Stroke="{TemplateBinding Foreground}" Fill="{TemplateBinding Foreground}"
+									SnapsToDevicePixels="True" StrokeThickness="1" Margin="1,0,0,0" />
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" TargetName="Border"
+										Value="{DynamicResource ButtonMouseOverBackground}" />
+							</Trigger>
+							<Trigger Property="IsPressed" Value="True">
+								<Setter Property="Background" TargetName="Border"
+										Value="{DynamicResource ButtonPressedBackground}" />
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Grid.Resources>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="*" />
+		<RowDefinition Height="*" />
+	</Grid.RowDefinitions>
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="20" />
+	</Grid.ColumnDefinitions>
+	<TextBox x:Name="text" Grid.RowSpan="2" Text="0%" IsUndoEnabled="False" Height="Auto" VerticalAlignment="Stretch"
+			LostKeyboardFocus="text_LostKeyboardFocus">
+		<TextBox.ContextMenu>
+			<ContextMenu>
+				<MenuItem Header="Cu_t" Command="ApplicationCommands.Cut" InputGestureText="Ctrl+X">
+					<MenuItem.Icon>
+						<Image Source="pack://application:,,,/Daytimer.Images;component/Images/cut.png" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="_Copy" Command="ApplicationCommands.Copy" InputGestureText="Ctrl+C">
+					<MenuItem.Icon>
+						<Image Source="pack://application:,,,/Daytimer.Images;component/Images/copy.png" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="_Paste" Command="ApplicationCommands.Paste" InputGestureText="Ctrl+V">
+					<MenuItem.Icon>
+						<Image Source="pack://application:,,,/Daytimer.Images;component/Images/paste_sml.png" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</ContextMenu>
+		</TextBox.ContextMenu>
+	</TextBox>
+	<Button x:Name="domainUp" Grid.Column="1" Content="M -0.5 3.5 1.5 1 3.5 3.5 Z" Click="domainUp_Click" />
+	<Button x:Name="domainDown" Grid.Column="1" Grid.Row="1" Content="M 0.5 0.5 2.5 3 4.5 0.5 Z"
+			Click="domainDown_Click" />
+</Grid>

@@ -1,0 +1,117 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary">
+	<Style TargetType="Ribbon:RibbonToolTip">
+		<Setter Property="Background" Value="{DynamicResource White}" />
+		<Setter Property="BorderBrush" Value="#FFBFBFBF" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="ImageSource" Value="{x:Null}" />
+		<Setter Property="FooterImageSource" Value="{x:Null}" />
+		<Setter Property="FooterTitle" Value="{x:Null}" />
+		<Setter Property="FooterDescription" Value="{x:Null}" />
+		<Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+		<Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+		<Setter Property="UseLayoutRounding" Value="True" />
+		<Setter Property="FontFamily" Value="Segoe UI, /Daytimer.Fonts;component/#WeblySleek UI Normal" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="ToolTipService.BetweenShowDelay" Value="0" />
+		<Setter Property="Foreground" Value="{DynamicResource RibbonToolTipForeground}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="Ribbon:RibbonToolTip">
+					<Border>
+						<Border.Effect>
+							<DropShadowEffect ShadowDepth="0" Opacity="0.5" Color="#FFBBBBBB" />
+						</Border.Effect>
+						<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+								Padding="{TemplateBinding Padding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+								MinHeight="50" Margin="4">
+							<StackPanel>
+								<Grid x:Name="Header">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition />
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+										<RowDefinition Height="Auto" />
+									</Grid.RowDefinitions>
+									<TextBlock x:Name="Title" Grid.ColumnSpan="2" FontWeight="Bold" TextWrapping="Wrap"
+											Text="{TemplateBinding Title}" Margin="5,1,5,0" />
+									<Image x:Name="Image" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											Margin="7,9,6,4" Grid.Row="1" Source="{TemplateBinding ImageSource}"
+											Stretch="None" />
+									<TextBlock x:Name="Description" Grid.Column="1"
+											HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											Margin="5,8,5,6" Grid.Row="1" TextWrapping="Wrap"
+											Text="{TemplateBinding Description}" />
+								</Grid>
+								<!--<Ribbon:RibbonSeparator x:Name="Separator" BorderBrush="{TemplateBinding BorderBrush}"
+										Margin="0,6,0,0" Visibility="Collapsed" />-->
+								<Grid x:Name="Footer" Margin="0,1,0,0" Visibility="Collapsed">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition />
+									</Grid.ColumnDefinitions>
+									<Grid.RowDefinitions>
+										<RowDefinition Height="Auto" />
+										<RowDefinition />
+									</Grid.RowDefinitions>
+									<Image x:Name="FooterImage"
+											HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+											Margin="0,0,7,0" Source="{TemplateBinding FooterImageSource}" Stretch="None" />
+									<TextBlock x:Name="FooterTitle" Grid.Column="1" FontWeight="Bold" TextWrapping="Wrap"
+											Text="{TemplateBinding FooterTitle}" />
+									<TextBlock x:Name="FooterDescription" Grid.Column="1" Margin="5,8,5,6" Grid.Row="1"
+											TextWrapping="Wrap" Text="{TemplateBinding FooterDescription}" />
+								</Grid>
+							</StackPanel>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="HasHeader" Value="False">
+							<Setter Property="Visibility" TargetName="Header" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="ImageSource" Value="{x:Null}">
+							<Setter Property="Visibility" TargetName="Image" Value="Collapsed" />
+							<Setter Property="Grid.Column" TargetName="Description" Value="0" />
+							<Setter Property="Grid.ColumnSpan" TargetName="Description" Value="2" />
+							<Setter Property="Width" Value="223" />
+						</Trigger>
+						<Trigger Property="HasFooter" Value="True">
+							<!--<Setter Property="Visibility" TargetName="Separator" Value="Visible" />-->
+							<Setter Property="Visibility" TargetName="Footer" Value="Visible" />
+						</Trigger>
+						<Trigger Property="FooterImageSource" Value="{x:Null}">
+							<Setter Property="Visibility" TargetName="FooterImage" Value="Collapsed" />
+							<Setter Property="Grid.Column" TargetName="FooterDescription" Value="0" />
+							<Setter Property="Grid.ColumnSpan" TargetName="FooterDescription" Value="2" />
+						</Trigger>
+						<Trigger Property="FooterTitle" Value="{x:Null}">
+							<Setter Property="Visibility" TargetName="FooterTitle" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="FooterDescription" Value="{x:Null}">
+							<Setter Property="Visibility" TargetName="FooterDescription" Value="Collapsed" />
+						</Trigger>
+						<Trigger Property="IsPlacementTargetInRibbonGroup" Value="True">
+							<Setter Property="Placement" Value="Custom" />
+						</Trigger>
+						<MultiTrigger>
+							<MultiTrigger.Conditions>
+								<Condition Property="ImageSource" Value="{x:Null}" />
+								<Condition Property="Description" Value="{x:Null}" />
+								<Condition Property="HasFooter" Value="False" />
+							</MultiTrigger.Conditions>
+							<Setter Property="MinHeight" TargetName="Border" Value="0" />
+							<Setter Property="FontWeight" TargetName="Title" Value="Normal" />
+							<Setter Property="Visibility" TargetName="Description" Value="Collapsed" />
+							<Setter Property="Width" Value="Auto" />
+						</MultiTrigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

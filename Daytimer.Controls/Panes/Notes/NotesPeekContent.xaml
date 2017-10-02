@@ -1,0 +1,62 @@
+﻿<Display:Peek x:Class="Daytimer.Controls.Panes.Notes.NotesPeekContent"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Controls="clr-namespace:Daytimer.Controls"
+		xmlns:Display="clr-namespace:Daytimer.Controls.Panes" xmlns:Friction="clr-namespace:Daytimer.Controls.Friction"
+		xmlns:Fundamentals="clr-namespace:Daytimer.Fundamentals;assembly=Daytimer.Fundamentals"
+		xmlns:Ribbon="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon" mc:Ignorable="d"
+		d:DesignHeight="330" d:DesignWidth="250">
+	<Grid Margin="9,-12,8,9">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<StackPanel Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Left">
+			<StackPanel.ToolTip>
+				<Ribbon:RibbonToolTip Title="Quick Note"
+						Description="Create a note which will be added to the currently open section."
+						FooterDescription="If you don't have any open section, the note will be added to a new Quick Notes section." />
+			</StackPanel.ToolTip>
+			<TextBlock Text="Create a new Quick Note." FontSize="14" IsHitTestVisible="False" />
+			<Image Source="pack://application:,,,/Daytimer.Images;component/Images/infotip.png" Stretch="None"
+					VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" IsHitTestVisible="False" />
+		</StackPanel>
+		<Friction:FrictionScrollViewerControl Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,9,0,0">
+			<Grid Margin="0,1,0,0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Fundamentals:PlaceholderTextBox x:Name="titleTextBox" SpellCheck.IsEnabled="True" AcceptsReturn="False"
+						VerticalContentAlignment="Center" Padding="2,0,10,0" MinHeight="23" MaxHeight="75"
+						Margin="0,0,0,10" TextElement.FontSize="14" PlaceholderText="Title" BorderThickness="0,0,0,1"
+						Width="Auto" HorizontalAlignment="Left" TextWrapping="Wrap" MaxWidth="233" MinWidth="100"
+						Height="NaN" VerticalScrollBarVisibility="Auto" KeyDown="titleTextBox_KeyDown" />
+				<TextBlock x:Name="contentWatermark" Grid.Row="1" Text="Type note" Padding="5,8,0,0"
+						Foreground="#FF808080" FontSize="13" IsHitTestVisible="False" />
+				<Friction:FrictionRichTextBoxControl x:Name="contentTextBox" Padding="0,8" Grid.Row="1"
+						HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" FontFamily="Calibri"
+						FontSize="14.667" IsDocumentEnabled="True" Foreground="Black" AcceptsTab="True"
+						BorderThickness="0" IsReadOnlyCaretVisible="True" SpellCheck.IsEnabled="True" MinHeight="100"
+						Background="{x:Null}" TextChanged="contentTextBox_TextChanged">
+					<Friction:FrictionRichTextBoxControl.Resources>
+						<Style TargetType="{x:Type Paragraph}">
+							<Setter Property="Margin" Value="0" />
+							<Setter Property="BorderBrush" Value="#FF040404" />
+						</Style>
+						<Controls:UriToolTipConverter x:Key="UriToolTipConverter" />
+						<Style TargetType="{x:Type Hyperlink}">
+							<EventSetter Event="Click" Handler="Hyperlink_Click" />
+							<Setter Property="ToolTip"
+									Value="{Binding NavigateUri, RelativeSource={RelativeSource Self}, Converter={StaticResource UriToolTipConverter}}" />
+						</Style>
+					</Friction:FrictionRichTextBoxControl.Resources>
+				</Friction:FrictionRichTextBoxControl>
+				<Button x:Name="createButton" Grid.Row="2" Content="_Create" Height="25" Width="80"
+						HorizontalAlignment="Right" Margin="0,10,0,0" Click="createButton_Click" />
+			</Grid>
+		</Friction:FrictionScrollViewerControl>
+	</Grid>
+</Display:Peek>

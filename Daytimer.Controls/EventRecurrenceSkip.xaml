@@ -1,0 +1,175 @@
+﻿<dialog:DialogBase x:Class="Daytimer.Controls.EventRecurrenceSkip"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:dialog="clr-namespace:Daytimer.Dialogs;assembly=Daytimer.Dialogs"
+		xmlns:system="clr-namespace:System;assembly=mscorlib" Title="Event Recurrence Skip" Height="300" Width="500"
+		MinHeight="200" MinWidth="350" WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<TextBlock Text="Skip these dates" FontSize="15" Padding="10" HorizontalAlignment="Stretch"
+				VerticalAlignment="Center" Grid.ColumnSpan="3" />
+		<ListBox x:Name="listBox" Grid.Row="1" Grid.ColumnSpan="3" BorderThickness="0"
+				VirtualizingStackPanel.VirtualizationMode="Recycling"
+				ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+			<ListBox.Resources>
+				<Style x:Key="DeleteButton" TargetType="{x:Type Button}">
+					<Setter Property="Width" Value="22" />
+					<Setter Property="Height" Value="22" />
+					<Setter Property="HorizontalAlignment" Value="Center" />
+					<Setter Property="VerticalAlignment" Value="Center" />
+					<Setter Property="Focusable" Value="False" />
+					<Setter Property="Cursor" Value="Arrow" />
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type Button}">
+								<Border x:Name="border">
+									<Border.Background>
+										<SolidColorBrush x:Name="background" Color="Transparent" />
+									</Border.Background>
+									<VisualStateManager.VisualStateGroups>
+										<VisualStateGroup x:Name="CommonStates">
+											<VisualState x:Name="Normal" />
+											<VisualState x:Name="MouseOver">
+												<Storyboard>
+													<ColorAnimationUsingKeyFrames Storyboard.TargetName="background"
+															Storyboard.TargetProperty="Color">
+														<EasingColorKeyFrame KeyTime="0"
+																Value="{DynamicResource CaptionMouseOver}" />
+													</ColorAnimationUsingKeyFrames>
+												</Storyboard>
+											</VisualState>
+											<VisualState x:Name="Pressed">
+												<Storyboard>
+													<ColorAnimationUsingKeyFrames Storyboard.TargetName="background"
+															Storyboard.TargetProperty="Color">
+														<EasingColorKeyFrame KeyTime="0"
+																Value="{DynamicResource CaptionPressed}" />
+													</ColorAnimationUsingKeyFrames>
+												</Storyboard>
+											</VisualState>
+											<VisualState x:Name="Disabled">
+												<Storyboard>
+													<DoubleAnimationUsingKeyFrames Storyboard.TargetName="border"
+															Storyboard.TargetProperty="Opacity">
+														<EasingDoubleKeyFrame KeyTime="0" Value="0.5" />
+													</DoubleAnimationUsingKeyFrames>
+												</Storyboard>
+											</VisualState>
+										</VisualStateGroup>
+									</VisualStateManager.VisualStateGroups>
+									<Path HorizontalAlignment="Center" VerticalAlignment="Center"
+											Data="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+											Stroke="{TemplateBinding Foreground}" SnapsToDevicePixels="True"
+											StrokeThickness="2" />
+								</Border>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+				<Style TargetType="{x:Type ListBoxItem}">
+					<Setter Property="Padding" Value="10,2" />
+					<Setter Property="BorderThickness" Value="0" />
+					<Setter Property="Cursor" Value="Arrow" />
+					<Setter Property="Foreground" Value="{DynamicResource Black}" />
+					<Setter Property="Background" Value="{DynamicResource White}" />
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type ListBoxItem}">
+								<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}"
+										BorderThickness="{TemplateBinding BorderThickness}"
+										Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+										SnapsToDevicePixels="True">
+									<Grid ClipToBounds="True">
+										<Grid.CacheMode>
+											<BitmapCache />
+										</Grid.CacheMode>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="Auto" />
+										</Grid.ColumnDefinitions>
+										<TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"
+												TextTrimming="CharacterEllipsis"
+												Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" />
+										<Button x:Name="deleteButton" Visibility="Hidden"
+												Style="{StaticResource DeleteButton}" Grid.Column="4"
+												Content="M 0.5 0.5 7.5 7.5 M 0.5 7.5 7.5 0.5"
+												Foreground="{Binding Foreground, ElementName=title}" Margin="4,0,0,0"
+												ToolTip="Delete" Click="deleteButton_Click" />
+									</Grid>
+								</Border>
+								<ControlTemplate.Triggers>
+									<MultiTrigger>
+										<MultiTrigger.Conditions>
+											<Condition Property="IsMouseOver" Value="True" />
+										</MultiTrigger.Conditions>
+										<Setter Property="Background" TargetName="Bd"
+												Value="{DynamicResource Appointment}" />
+										<Setter Property="Visibility" TargetName="deleteButton" Value="Visible" />
+										<Setter Property="TextElement.Foreground" TargetName="Bd" Value="#FF3C3C3C" />
+									</MultiTrigger>
+									<Trigger Property="IsSelected" Value="True">
+										<Setter Property="Visibility" TargetName="deleteButton" Value="Visible" />
+									</Trigger>
+									<MultiTrigger>
+										<MultiTrigger.Conditions>
+											<Condition Property="Selector.IsSelectionActive" Value="False" />
+											<Condition Property="IsSelected" Value="True" />
+										</MultiTrigger.Conditions>
+										<Setter Property="Background" TargetName="Bd" Value="#3DDADADA" />
+									</MultiTrigger>
+									<MultiTrigger>
+										<MultiTrigger.Conditions>
+											<Condition Property="Selector.IsSelectionActive" Value="True" />
+											<Condition Property="IsSelected" Value="True" />
+										</MultiTrigger.Conditions>
+										<Setter Property="Background" TargetName="Bd" Value="{DynamicResource Blue}" />
+										<Setter Property="TextElement.Foreground" TargetName="Bd" Value="#FF3C3C3C" />
+									</MultiTrigger>
+									<Trigger Property="IsEnabled" Value="False">
+										<Setter Property="TextElement.Foreground" TargetName="Bd"
+												Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+									</Trigger>
+								</ControlTemplate.Triggers>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</Style>
+			</ListBox.Resources>
+			<ListBox.ItemTemplate>
+				<DataTemplate DataType="system:DateTime">
+					<Grid Background="Transparent">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{Binding Month}" />
+						<TextBlock Grid.Column="1" Text="/" />
+						<TextBlock Grid.Column="2" Text="{Binding Day}" />
+						<TextBlock Grid.Column="3" Text="/" />
+						<TextBlock Grid.Column="4" Text="{Binding Year}" />
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<TextBlock x:Name="statusText" Grid.ColumnSpan="3" Grid.Row="1"
+				Text="This recurrence sequence does not skip any dates." HorizontalAlignment="Center"
+				VerticalAlignment="Top" Margin="0,20,0,0" TextWrapping="Wrap" TextAlignment="Center"
+				Foreground="#FFB2B2B2" />
+		<Button x:Name="okButton" IsDefault="True" Content="_OK" Grid.Column="1" Grid.Row="2" Margin="10,10,0,10"
+				Click="okButton_Click" />
+		<Button IsCancel="True" Content="_Cancel" Grid.Column="2" Grid.Row="2" Margin="10" />
+	</Grid>
+</dialog:DialogBase>

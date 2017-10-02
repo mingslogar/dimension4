@@ -1,0 +1,107 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!-- General -->
+	<SolidColorBrush x:Key="Blue" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="TodayText" Color="#FFCFCFCF" />
+	<SolidColorBrush x:Key="Black" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="White" Color="#FF2D2D2D" />
+	<Color x:Key="WhiteColor">#FF2D2D2D</Color>
+	<SolidColorBrush x:Key="Gray" Color="#FFE1E1E1" />
+	<Visibility x:Key="BackgroundVisibility">Collapsed</Visibility>
+	<SolidColorBrush x:Key="DialogFooter" Color="#FF2D2D2D" />
+	<!-- Calendar -->
+	<SolidColorBrush x:Key="Appointment" Color="#FFEFEFEF" />
+	<SolidColorBrush x:Key="AppointmentToolTipBackground" Color="#FFEFEFEF" />
+	<SolidColorBrush x:Key="AppointmentToolTipForeground" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="AppointmentToolTipForegroundBold" Color="#FFE0E0E0" />
+	<SolidColorBrush x:Key="NormalDayOfWeek" Color="#FF000000" />
+	<SolidColorBrush x:Key="AppointmentMoreButton" Color="#FF0072C6" />
+	<SolidColorBrush x:Key="LinkTextForeground" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="CheckedDate" Color="#FFFFFFFF" />
+	<!-- Time slider -->
+	<SolidColorBrush x:Key="TimeSliderBackground" Color="#FF2C8ED4" />
+	<SolidColorBrush x:Key="TimeSliderBorder" Color="#FFB2D7F0" />
+	<!-- Nav buttons -->
+	<Color x:Key="NavHover">#FFFFFFFF</Color>
+	<SolidColorBrush x:Key="AppointmentNavForeground" Color="#FFFFFFFF" />
+	<!-- Ribbon -->
+	<SolidColorBrush x:Key="RibbonBorder" Color="#FFD4D4D4" />
+	<SolidColorBrush x:Key="RibbonMouseOver" Color="#FF4D4D4D" />
+	<SolidColorBrush x:Key="RibbonPressed" Color="#FF888888" />
+	<SolidColorBrush x:Key="RibbonChecked" Color="#FF888800" />
+	<SolidColorBrush x:Key="RibbonAppMenu" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="RibbonAppMenuMouseOver" Color="#FFBBBBBB" />
+	<SolidColorBrush x:Key="RibbonAppMenuChecked" Color="#FF00FFFF" />
+	<SolidColorBrush x:Key="RibbonTabHeaderActive" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="RibbonToolTipForeground" Color="#FFFFFFFF" />
+	<!-- Backstage -->
+	<SolidColorBrush x:Key="BackstageSubHeaderForeground" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="BackstageRadioChecked" Color="#FF2A8DD4" />
+	<SolidColorBrush x:Key="BackstageRadioMouseOver" Color="#FF0067B0" />
+	<SolidColorBrush x:Key="BackstageRadioDisabled" Color="#FF298DD4" />
+	<!-- Window caption -->
+	<Color x:Key="CaptionMouseOver">#FFFFFF00</Color>
+	<Color x:Key="CaptionPressed">#FFBBBBBB</Color>
+	<Color x:Key="CaptionMouseOverForeground">#FF000000</Color>
+	<Color x:Key="CaptionPressedForeground">#FFFFFF00</Color>
+	<SolidColorBrush x:Key="WindowBorderFocused" Color="#FF0071C4" />
+	<SolidColorBrush x:Key="WindowBorderUnfocused" Color="#FF828282" />
+	<SolidColorBrush x:Key="WindowCaptionFocused" Color="#FFE0E0E0" />
+	<SolidColorBrush x:Key="WindowCaptionUnfocused" Color="#FFA8A8A8" />
+	<!-- Appointment -->
+	<SolidColorBrush x:Key="AppointmentCloseMouseOverBackground" Color="#FFD0E7FE" />
+	<SolidColorBrush x:Key="AppointmentCloseMouseOverBorder" Color="#FF65A6E7" />
+	<SolidColorBrush x:Key="SmallDetailClosePressed" Color="#FFFFFF00" />
+	<!-- Alert -->
+	<SolidColorBrush x:Key="AlertBackground" Color="#FF000000" />
+	<SolidColorBrush x:Key="AlertBorder" Color="#FFBBBBBB" />
+	<Color x:Key="AlertCloseMouseOver">#FF555555</Color>
+	<Color x:Key="AlertClosePressed">#FF2D2D2D</Color>
+	<!-- Buttons -->
+	<SolidColorBrush x:Key="ButtonForeground" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="ButtonNormalBackground" Color="#FF000000" />
+	<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="ButtonMouseOverBackground" Color="#FF4D4D4D" />
+	<SolidColorBrush x:Key="ButtonMouseOverBorder" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="ButtonPressedBackground" Color="#FF888888" />
+	<SolidColorBrush x:Key="ButtonPressedBorder" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="ButtonDefaultBorder" Color="#FFFFFF00" />
+	<!-- CheckBox -->
+	<SolidColorBrush x:Key="CheckBoxBorder" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="CheckBoxMark" Color="#FFFFFFFF" />
+	<!-- ProgressBar -->
+	<SolidColorBrush x:Key="ProgressBarIndeterminateForeground" Color="#FFFFFF00" />
+	<SolidColorBrush x:Key="ProgressBarForeground" Color="#FF666666" />
+	<!-- Context Menu -->
+	<!--<SolidColorBrush x:Key="ContextMenuHover" Color="#FF666666" />-->
+	<SolidColorBrush x:Key="ContextMenuBackground" Color="#FF000000" />
+	<SolidColorBrush x:Key="ContextMenuBorder" Color="#FFC6C6C6" />
+	<SolidColorBrush x:Key="ContextMenuHoverBackground" Color="#FF666666" />
+	<SolidColorBrush x:Key="ContextMenuDisabledForeground" Color="#FFB1B1B1" />
+	<SolidColorBrush x:Key="ContextMenuSeparator" Color="#FFE0E3E6" />
+	<SolidColorBrush x:Key="GlyphColor" Color="#FF777777" />
+	<!-- Status Strip -->
+	<SolidColorBrush x:Key="StatusStripBackground" Color="#FF000000" />
+	<!-- Zoom Slider -->
+	<SolidColorBrush x:Key="ZoomSliderOver" Color="#FF92B7D1" />
+	<Color x:Key="ZoomSliderOverColor">#FF92B7D1</Color>
+	<SolidColorBrush x:Key="ZoomSliderPressed" Color="#FF92B7D1" />
+	<Color x:Key="ZoomSliderPressedColor">#FF92B7D1</Color>
+	<!-- Bottom Text Radios -->
+	<Color x:Key="TextRadioChecked">#FFFFFFFF</Color>
+	<SolidColorBrush x:Key="TextRadioBackground" Color="#FF3C3C3C" />
+	<Color x:Key="ImageRadioHover">#FF4D4D4D</Color>
+	<Color x:Key="ImageRadioPressed">#FFBBBBBB</Color>
+	<!-- Tasks Pane / TreeViewItem -->
+	<SolidColorBrush x:Key="TreeViewItemMouseOver" Color="#FFFFFF00" />
+	<SolidColorBrush x:Key="TreeViewItemSelected" Color="#FFEFEFEF" />
+	<SolidColorBrush x:Key="TreeViewTriangleOver" Color="#FFFFFFFF" />
+	<!-- Dialogs -->
+	<SolidColorBrush x:Key="DialogTitle" Color="#FFFFFFFF" />
+	<SolidColorBrush x:Key="DialogContent" Color="#FFFFFFFF" />
+	<!-- CalendarControl -->
+	<SolidColorBrush x:Key="CalendarControlMouseOver" Color="#FFE5F3FB" />
+	<SolidColorBrush x:Key="CalendarControlPressed" Color="#FFCBE8F6" />
+	<SolidColorBrush x:Key="CalendarControlChecked" Color="#FFCBE8F6" />
+	<SolidColorBrush x:Key="CalendarControlToday" Color="#FF000000" />
+</ResourceDictionary>

@@ -1,0 +1,93 @@
+﻿<Display:Peek x:Class="Daytimer.Controls.Panes.Calendar.CalendarPeekContent"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:Display="clr-namespace:Daytimer.Controls.Panes" xmlns:friction="clr-namespace:Daytimer.Controls.Friction"
+		xmlns:Controls="clr-namespace:Daytimer.Controls"
+		xmlns:Database="clr-namespace:Daytimer.DatabaseHelpers;assembly=Daytimer.DatabaseHelpers" mc:Ignorable="d"
+		d:DesignHeight="330" d:DesignWidth="250" FontSize="11" Margin="9,-5,8,9">
+	<friction:FrictionScrollViewerControl x:Name="scrollViewer" VerticalScrollBarVisibility="Auto">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<!--<Controls:CalendarControl x:Name="calendar" Width="172" Height="172"
+					OnSelectedDateChangedEvent="calendar_OnSelectedDateChangedEvent"
+					OnDateOpenedEvent="calendar_OnDateOpenedEvent" />-->
+			<Calendar x:Name="calendar" BorderThickness="0" SelectedDatesChanged="calendar_SelectedDatesChanged">
+				<Calendar.CalendarDayButtonStyle>
+					<Style TargetType="CalendarDayButton" BasedOn="{StaticResource CalendarDayButtonStyle}">
+						<EventSetter Event="PreviewMouseDoubleClick" Handler="CalendarDayButton_PreviewMouseDoubleClick" />
+					</Style>
+				</Calendar.CalendarDayButtonStyle>
+			</Calendar>
+			<TextBlock x:Name="message" Grid.Row="1" Margin="0,15" Text="Loading..." HorizontalAlignment="Center"
+					VerticalAlignment="Top" Foreground="#FFB2B2B2" TextWrapping="Wrap" TextAlignment="Center"
+					IsHitTestVisible="False" />
+			<ListBox x:Name="appointments" Grid.Row="1" Margin="0,10,0,0" Height="Auto"
+					ScrollViewer.VerticalScrollBarVisibility="Disabled"
+					ScrollViewer.HorizontalScrollBarVisibility="Disabled" VirtualizingStackPanel.IsVirtualizing="True"
+					VirtualizingStackPanel.VirtualizationMode="Recycling" Background="Transparent" BorderThickness="0"
+					SelectionChanged="appointments_SelectionChanged" FontSize="10.5">
+				<ListBox.Resources>
+					<DataTemplate DataType="{x:Type Database:Appointment}">
+						<Grid IsHitTestVisible="False" Margin="4,3">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Rectangle x:Name="freeBusy" Grid.RowSpan="2" Width="6" StrokeThickness="1"
+									Stroke="{DynamicResource Blue}" Margin="0,0,10,0" />
+							<TextBlock x:Name="subject" Text="{Binding Subject, Mode=OneWay}" TextWrapping="NoWrap"
+									TextTrimming="CharacterEllipsis" HorizontalAlignment="Left"
+									VerticalAlignment="Center" FontWeight="Bold" Grid.Column="1" />
+							<TextBlock Text="{Binding TimeString, Mode=OneWay}" Grid.Column="2" TextWrapping="NoWrap"
+									TextTrimming="CharacterEllipsis" Margin="10,0,0,0" HorizontalAlignment="Right"
+									VerticalAlignment="Center" />
+							<TextBlock x:Name="location" Text="{Binding Location, Mode=OneWay}" Grid.Row="1"
+									Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="NoWrap"
+									TextTrimming="CharacterEllipsis" Margin="0,3,0,0" HorizontalAlignment="Left"
+									VerticalAlignment="Center" />
+						</Grid>
+						<DataTemplate.Triggers>
+							<DataTrigger Binding="{Binding Location}" Value="">
+								<Setter Property="Visibility" TargetName="location" Value="Collapsed" />
+								<Setter Property="FontWeight" TargetName="subject" Value="Normal" />
+							</DataTrigger>
+							<DataTrigger Binding="{Binding ShowAs}" Value="Free">
+								<Setter Property="Fill" TargetName="freeBusy" Value="{DynamicResource FreeFill}" />
+							</DataTrigger>
+							<DataTrigger Binding="{Binding ShowAs}" Value="WorkingElsewhere">
+								<Setter Property="Fill" TargetName="freeBusy"
+										Value="{DynamicResource WorkingElsewhereFill}" />
+							</DataTrigger>
+							<DataTrigger Binding="{Binding ShowAs}" Value="Tentative">
+								<Setter Property="Fill" TargetName="freeBusy" Value="{DynamicResource TentativeFill}" />
+							</DataTrigger>
+							<DataTrigger Binding="{Binding ShowAs}" Value="Busy">
+								<Setter Property="Fill" TargetName="freeBusy" Value="{DynamicResource BusyFill}" />
+							</DataTrigger>
+							<DataTrigger Binding="{Binding ShowAs}" Value="OutOfOffice">
+								<Setter Property="Fill" TargetName="freeBusy" Value="{DynamicResource OutOfOfficeFill}" />
+							</DataTrigger>
+						</DataTemplate.Triggers>
+					</DataTemplate>
+					<Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}">
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+					</Style>
+				</ListBox.Resources>
+				<ListBox.CacheMode>
+					<BitmapCache EnableClearType="True" />
+				</ListBox.CacheMode>
+			</ListBox>
+		</Grid>
+	</friction:FrictionScrollViewerControl>
+</Display:Peek>
